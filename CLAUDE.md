@@ -4,7 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Astro 5 static site (SSG) using the official Basics starter template. Single production dependency: `astro`.
+Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebouwd in Astro 5 met Tailwind CSS, deployed op Cloudflare Pages. Donker thema (#1E2228) met witte tekst en witte accenten. Geen goud/kleur-accenten behalve Google-sterren (#FBBC04) bij reviews.
+
+### Bedrijfsinfo
+- **Naam:** Projectbouw 010
+- **Eigenaar:** Mike
+- **Telefoon:** 06-53999433
+- **Email:** info@projectbouw010.nl
+- **Website:** projectbouw010.nl
+- **Regio:** Rotterdam e.o.
+- **Diensten:** Aanbouw, Uitbouw, Opbouw, Badkamer Renovatie, Keukenrenovatie, Stukadoor, Cinewall, Pvc Vloer Leggen, Toilet Renovatie, Stalen Deuren, Verlaagd Plafond, Traprenovatie, Tegelzetter
+- **Reviews:** Trustoo 9.3 (173+ reviews), Google reviews
+
+### Branding regels
+- Primaire kleur: `#1E2228` (donker antraciet)
+- Tekst: wit op donker, grijs-tinten voor secundaire tekst
+- Accenten: wit knoppen, wit icons — **GEEN goud/kleur-accenten**
+- Uitzondering: Google review-sterren gebruiken `#FBBC04`
+- Fonts: Inter (body), Playfair Display (headings)
+- Icons: Lucide via astro-icon — **NOOIT emoji's gebruiken**
+- Logo: `/public/images/logo.png` (het "010" logo) — alleen afbeelding, geen tekst ernaast
+- Stijl: luxe, professioneel, minimalistisch donker
 
 ## Commands
 
@@ -16,9 +36,29 @@ Astro 5 static site (SSG) using the official Basics starter template. Single pro
 ## Architecture
 
 - **File-based routing:** Pages in `src/pages/` map directly to routes (e.g., `index.astro` → `/`)
-- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell using `<slot />` for content injection
-- **Components:** `src/components/` contains reusable `.astro` components with scoped CSS
-- **Assets:** `src/assets/` for optimized/imported assets; `public/` for static files served as-is
+- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell with fonts, meta tags, IntersectionObserver for fade-in animations, counter animation, carousel pause-on-hover
+- **Components:** `src/components/` contains reusable `.astro` components
+- **Assets:** `src/assets/` for source assets; `public/images/` for served images (logo.png, over.jpg)
+- **API:** `src/pages/api/offerte.ts` — Postmark email endpoint (prerender = false)
+
+### Key components
+- `Navbar.astro` — Sticky nav with Diensten dropdown (3-column, hover on desktop, accordion on mobile), hamburger → X on mobile
+- `Footer.astro` — 4-column footer with logo, diensten links, contact info
+- `CookieConsent.astro` — Cookie banner with localStorage persistence
+- `TestimonialCard.astro` — Compact review card with Google-goud sterren (#FBBC04)
+- `ServiceCard.astro` — Dienst kaart met wit icon
+- `ProcessStep.astro` — Werkwijze stap met nummer
+
+### Pages
+- `index.astro` — Homepage: Hero, Diensten (6 cards), Over Ons, Projecten, Werkwijze (4 stappen), Reviews (auto-scroll carousel), CTA Banner, Contact
+- `offerte.astro` — Offerte formulier met file uploads (huidige + gewenste situatie), Postmark integratie
+- `api/offerte.ts` — Server endpoint voor Postmark email
+
+### Important patterns
+- **Fade-in animations:** Elements with `.fade-in` class start at `opacity:0; translateY(24px)` and get `.is-visible` added by IntersectionObserver
+- **Counter animation:** Elements with `data-count` attribute animate from 0 to target value
+- **Review carousel:** CSS keyframe `scrollReviews` (28s, translateX 0→-50%), cards duplicated for seamless loop, pause on hover
+- **Hamburger → X:** Uses absolutely positioned bars with translateY for spacing, rotate for X shape. Default: `translateY(-6px)`, `translateY(0)`, `translateY(6px)`. Open: `rotate(45deg)`, `opacity:0`, `rotate(-45deg)`
 
 ## Conventions
 
@@ -26,6 +66,8 @@ Astro 5 static site (SSG) using the official Basics starter template. Single pro
 - TypeScript strict mode via `astro/tsconfigs/strict`
 - No UI framework integrations (React, Vue, etc.) — pure Astro components
 - ES Modules (`"type": "module"` in package.json)
+- Tailwind for styling (utility classes), global styles in Layout.astro `<style is:global>`
+- Cloudflare Pages adapter (`@astrojs/cloudflare`), output: `static`
 
 ## Visual Debugging with Screenshots
 
@@ -39,6 +81,10 @@ Playwright is installed as a dev dependency for taking screenshots of the websit
    - Second arg: comma-separated page routes using names, not `/` (e.g., `index`, `about`, `index,about,contact`)
    - On Windows/Git Bash, avoid passing bare `/` as an argument (it gets mangled); use `index` instead
 3. Screenshots are saved as `{page}-{viewport}.png` in `screenshots/` for three viewports: desktop (1920x1080), tablet (768x1024), mobile (375x812)
+4. The screenshot script forces `.is-visible` on all `.fade-in` elements and sets `[data-count]` values before capture
+
+### Reference screenshots
+- `screenshots/referentie-diensten-dropdown.png` — Diensten dropdown van de huidige live site als referentie
 
 ### When to use screenshots
 
@@ -127,5 +173,7 @@ Controleer screenshots altijd op deze punten:
 
 ## Configuration
 
-- `astro.config.mjs` — Astro config (currently minimal/default)
+- `astro.config.mjs` — Astro config with Tailwind, sitemap, icon integrations + Cloudflare adapter
+- `tailwind.config.mjs` — Custom colors (primary #1E2228), fonts (Inter, Playfair Display), animations
 - `tsconfig.json` — Extends `astro/tsconfigs/strict`
+- `.env` — `POSTMARK_API_KEY` (niet in repo, moet door gebruiker worden ingesteld)

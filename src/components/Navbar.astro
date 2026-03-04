@@ -1,10 +1,23 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Diensten', href: '/#diensten' },
   { label: 'Over Ons', href: '/#over-ons' },
   { label: 'Projecten', href: '/#projecten' },
   { label: 'Contact', href: '/#contact' },
+];
+
+const dienstenColumns = [
+  {
+    items: ['Aanbouw', 'Uitbouw', 'Opbouw'],
+  },
+  {
+    items: ['Badkamer Renovatie', 'Keukenrenovatie', 'Stukadoor', 'Cinewall', 'Pvc Vloer Leggen'],
+  },
+  {
+    items: ['Toilet Renovatie', 'Stalen Deuren', 'Verlaagd Plafond', 'Traprenovatie', 'Tegelzetter'],
+  },
 ];
 ---
 
@@ -18,7 +31,26 @@ const navLinks = [
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-8">
-        {navLinks.map((link) => (
+        <a
+          href="/"
+          class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+        >
+          Home
+        </a>
+
+        <!-- Diensten with hover dropdown -->
+        <div class="relative" id="diensten-desktop">
+          <a
+            href="/#diensten"
+            class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-1"
+            id="diensten-desktop-trigger"
+          >
+            Diensten
+            <Icon name="lucide:chevron-down" class="w-3.5 h-3.5 transition-transform duration-300" id="diensten-desktop-chevron" />
+          </a>
+        </div>
+
+        {navLinks.slice(1).map((link) => (
           <a
             href={link.href}
             class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
@@ -37,20 +69,52 @@ const navLinks = [
       <!-- Mobile Hamburger -->
       <button
         id="menu-toggle"
-        class="lg:hidden flex flex-col gap-1.5 p-2"
+        class="lg:hidden relative w-10 h-10 flex items-center justify-center"
         aria-label="Menu openen"
         aria-expanded="false"
       >
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar1"></span>
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar3"></span>
+        <span class="absolute w-6 h-0.5 bg-white transition-all duration-300" id="bar1" style="transform: translateY(-6px)"></span>
+        <span class="absolute w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+        <span class="absolute w-6 h-0.5 bg-white transition-all duration-300" id="bar3" style="transform: translateY(6px)"></span>
       </button>
     </div>
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden hidden">
       <div class="py-4 space-y-1 border-t border-white/10">
-        {navLinks.map((link) => (
+        <a
+          href="/"
+          class="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors duration-200"
+        >
+          Home
+        </a>
+
+        <!-- Mobile Diensten accordion -->
+        <div>
+          <button
+            id="diensten-mobile-toggle"
+            class="w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors duration-200"
+          >
+            <span>Diensten</span>
+            <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform duration-200" id="diensten-chevron" />
+          </button>
+          <div id="diensten-mobile-list" class="hidden pl-4">
+            {dienstenColumns.map((col) => (
+              <Fragment>
+                {col.items.map((item) => (
+                  <a
+                    href="/#diensten"
+                    class="block px-4 py-2 text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+
+        {navLinks.slice(1).map((link) => (
           <a
             href={link.href}
             class="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded transition-colors duration-200"
@@ -69,6 +133,46 @@ const navLinks = [
       </div>
     </div>
   </nav>
+
+  <!-- Full-width Diensten dropdown panel (animated) -->
+  <div id="diensten-dropdown" class="w-full bg-primary border-t border-white/10 overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; opacity: 0;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-[1fr_auto_1fr_1fr] gap-x-12 items-start">
+        <!-- Column 1 — larger text like reference -->
+        <ul class="space-y-5">
+          {dienstenColumns[0].items.map((item) => (
+            <li>
+              <a href="/#diensten" class="text-gray-300 hover:text-white transition-colors duration-200 text-2xl font-light block">
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <!-- Vertical divider -->
+        <div class="w-px bg-white/15 self-stretch"></div>
+        <!-- Column 2 -->
+        <ul class="space-y-4">
+          {dienstenColumns[1].items.map((item) => (
+            <li>
+              <a href="/#diensten" class="text-gray-300 hover:text-white transition-colors duration-200 text-lg block">
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <!-- Column 3 -->
+        <ul class="space-y-4">
+          {dienstenColumns[2].items.map((item) => (
+            <li>
+              <a href="/#diensten" class="text-gray-300 hover:text-white transition-colors duration-200 text-lg block">
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
 </header>
 
 <script>
@@ -82,7 +186,8 @@ const navLinks = [
 
   // Scroll: transparent → solid
   function updateNavbar() {
-    if (window.scrollY > 50 || menuOpen) {
+    const dropdownIsOpen = !document.getElementById('diensten-dropdown')?.classList.contains('hidden');
+    if (window.scrollY > 50 || menuOpen || dropdownIsOpen) {
       navbar.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-lg');
     } else {
       navbar.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-lg');
@@ -91,20 +196,20 @@ const navLinks = [
   window.addEventListener('scroll', updateNavbar, { passive: true });
   updateNavbar();
 
-  // Mobile menu toggle
+  // Mobile menu toggle — using absolute positioned bars for clean X
   menuToggle.addEventListener('click', () => {
     menuOpen = !menuOpen;
     mobileMenu.classList.toggle('hidden');
     menuToggle.setAttribute('aria-expanded', menuOpen.toString());
 
     if (menuOpen) {
-      bar1.style.transform = 'rotate(45deg) translate(3px, 3px)';
+      bar1.style.transform = 'rotate(45deg)';
       bar2.style.opacity = '0';
-      bar3.style.transform = 'rotate(-45deg) translate(3px, -3px)';
+      bar3.style.transform = 'rotate(-45deg)';
     } else {
-      bar1.style.transform = '';
-      bar2.style.opacity = '';
-      bar3.style.transform = '';
+      bar1.style.transform = 'translateY(-6px)';
+      bar2.style.opacity = '1';
+      bar3.style.transform = 'translateY(6px)';
     }
     updateNavbar();
   });
@@ -115,10 +220,71 @@ const navLinks = [
       menuOpen = false;
       mobileMenu.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
-      bar1.style.transform = '';
-      bar2.style.opacity = '';
-      bar3.style.transform = '';
+      bar1.style.transform = 'translateY(-6px)';
+      bar2.style.opacity = '1';
+      bar3.style.transform = 'translateY(6px)';
       updateNavbar();
     });
   });
+
+  // Desktop diensten dropdown — hover based with animation
+  const dienstenTrigger = document.getElementById('diensten-desktop-trigger');
+  const dienstenDesktop = document.getElementById('diensten-desktop');
+  const dienstenDropdown = document.getElementById('diensten-dropdown');
+  const dienstenDesktopChevron = document.getElementById('diensten-desktop-chevron');
+  let dropdownOpen = false;
+  let closeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  function openDropdown() {
+    if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+    if (dropdownOpen) return;
+    dropdownOpen = true;
+    dienstenDropdown!.style.maxHeight = dienstenDropdown!.scrollHeight + 'px';
+    dienstenDropdown!.style.opacity = '1';
+    dienstenDesktopChevron!.style.transform = 'rotate(180deg)';
+    navbar.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-lg');
+  }
+
+  function closeDropdown() {
+    closeTimeout = setTimeout(() => {
+      dropdownOpen = false;
+      dienstenDropdown!.style.maxHeight = '0';
+      dienstenDropdown!.style.opacity = '0';
+      dienstenDesktopChevron!.style.transform = '';
+      updateNavbar();
+    }, 150);
+  }
+
+  if (dienstenTrigger && dienstenDesktop && dienstenDropdown && dienstenDesktopChevron) {
+    // Open on hover over trigger
+    dienstenDesktop.addEventListener('mouseenter', openDropdown);
+    dienstenDesktop.addEventListener('mouseleave', closeDropdown);
+
+    // Keep open when hovering the dropdown panel itself
+    dienstenDropdown.addEventListener('mouseenter', openDropdown);
+    dienstenDropdown.addEventListener('mouseleave', closeDropdown);
+
+    // Close on link click inside dropdown
+    dienstenDropdown.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        dropdownOpen = false;
+        dienstenDropdown.style.maxHeight = '0';
+        dienstenDropdown.style.opacity = '0';
+        dienstenDesktopChevron.style.transform = '';
+        updateNavbar();
+      });
+    });
+  }
+
+  // Mobile diensten accordion
+  const dienstenToggle = document.getElementById('diensten-mobile-toggle');
+  const dienstenList = document.getElementById('diensten-mobile-list');
+  const dienstenChevron = document.getElementById('diensten-chevron');
+
+  if (dienstenToggle && dienstenList && dienstenChevron) {
+    dienstenToggle.addEventListener('click', () => {
+      dienstenList.classList.toggle('hidden');
+      dienstenChevron.style.transform = dienstenList.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  }
 </script>
