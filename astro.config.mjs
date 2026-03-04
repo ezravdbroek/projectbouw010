@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
-import node from '@astrojs/node';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +14,5 @@ export default defineConfig({
     icon(),
   ],
   output: 'static',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: cloudflare(),
 });

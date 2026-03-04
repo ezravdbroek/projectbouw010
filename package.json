@@ -11,7 +11,7 @@
     "screenshot:all": "node scripts/screenshot.mjs http://localhost:4321 /,/about"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.4",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource-variable/inter": "^5.2.8",

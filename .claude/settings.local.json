@@ -9,7 +9,8 @@
       "WebFetch(domain:openasset.com)",
       "Bash(npm ls:*)",
       "WebFetch(domain:projectbouw010.nl)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npm:*)"
     ]
   }
 }
