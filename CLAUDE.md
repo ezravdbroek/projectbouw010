@@ -25,6 +25,7 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 - Icons: Lucide via astro-icon — **NOOIT emoji's gebruiken**
 - Logo: `/public/images/logo.png` (het "010" logo) — alleen afbeelding, geen tekst ernaast
 - Stijl: luxe, professioneel, minimalistisch donker
+- **GEEN witte/lichte secties** — alles blijft donker. Subtiele variatie via `bg-primary-800/30` is ok, maar geen `bg-white`, `bg-gray-100`, of `bg-[#f5f5f5]`
 
 ## Commands
 
@@ -36,29 +37,51 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 ## Architecture
 
 - **File-based routing:** Pages in `src/pages/` map directly to routes (e.g., `index.astro` → `/`)
-- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell with fonts, meta tags, IntersectionObserver for fade-in animations, counter animation, carousel pause-on-hover
+- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell with fonts, meta tags, IntersectionObserver for reveal animations, counter animation, marquee pause-on-hover
 - **Components:** `src/components/` contains reusable `.astro` components
-- **Assets:** `src/assets/` for source assets; `public/images/` for served images (logo.png, over.jpg)
+- **Assets:** `src/assets/` for source assets; `public/images/` for served images (logo.png, hero.jpg, hero-telefoon.jpeg, over.jpeg, badkamer.jpeg, keuken.jpeg, uitbouw.jpeg, 1.jpg, 2.jpg, 3.jpg)
 - **API:** `src/pages/api/offerte.ts` — Postmark email endpoint (prerender = false)
 
 ### Key components
-- `Navbar.astro` — Sticky nav with Diensten dropdown (3-column, hover on desktop, accordion on mobile), hamburger → X on mobile
-- `Footer.astro` — 4-column footer with logo, diensten links, contact info
+- `Navbar.astro` — Sticky nav with Diensten dropdown (3-column, hover on desktop, accordion on mobile), hamburger → X on mobile, `.nav-link` hover underline animation
+- `Footer.astro` — Large outlined "PROJECTBOUW 010" header text, 3-column layout (logo+socials, diensten, contact+offerte CTA)
 - `CookieConsent.astro` — Cookie banner with localStorage persistence
-- `TestimonialCard.astro` — Compact review card with Google-goud sterren (#FBBC04)
-- `ServiceCard.astro` — Dienst kaart met wit icon
-- `ProcessStep.astro` — Werkwijze stap met nummer
+
+### Deleted components (now inlined in index.astro)
+- ~~`ServiceCard.astro`~~ — Replaced by bento grid items in diensten section
+- ~~`ProcessStep.astro`~~ — Replaced by vertical timeline items in werkwijze section
+- ~~`TestimonialCard.astro`~~ — Replaced by marquee cards in reviews section
 
 ### Pages
-- `index.astro` — Homepage: Hero, Diensten (6 cards), Over Ons, Projecten, Werkwijze (4 stappen), Reviews (auto-scroll carousel), CTA Banner, Contact
-- `offerte.astro` — Offerte formulier met file uploads (huidige + gewenste situatie), Postmark integratie
+- `index.astro` — Homepage secties:
+  1. **Hero** — Split-screen (grid-cols-5: 3+2), "010" outlined background text, stats strip (grid-cols-3 on mobile)
+  2. **Diensten** — Bento grid (3-kolom), eerste kaart 2-kolom+2-rij, alle kaarten met achtergrondafbeeldingen
+  3. **Over Ons** — Grid layout met overlappend glassmorphism tekstblok (`lg:-mr-16`), foto rechts
+  4. **Projecten** — Scroll-linked horizontale galerij (350vh sticky section op desktop, horizontaal scrollbaar op mobiel)
+  5. **Werkwijze** — Verticale timeline, alternerende links/rechts, grote outlined nummers
+  6. **Reviews** — Dubbele marquee (2 rijen, tegengestelde richting), glassmorphism kaarten
+  7. **CTA Banner** — Asymmetrisch met subtle diagonale accent (clip-path)
+  8. **Contact** — 4 glassmorphism blokken (telefoon, WhatsApp, email, locatie)
+- `offerte.astro` — Offerte formulier met file uploads (huidige + gewenste situatie), Postmark integratie, links-uitgelijnde hero
 - `api/offerte.ts` — Server endpoint voor Postmark email
 
-### Important patterns
-- **Fade-in animations:** Elements with `.fade-in` class start at `opacity:0; translateY(24px)` and get `.is-visible` added by IntersectionObserver
+### Animation system (defined in Layout.astro `<style is:global>`)
+- **Reveal animations:** `.reveal-up`, `.reveal-left`, `.reveal-right`, `.reveal-scale` — start hidden, animate to visible via IntersectionObserver adding `.is-visible`
+- **Stagger delays:** Via CSS `--delay` custom property, e.g. `style="--delay: 0.2s"`
 - **Counter animation:** Elements with `data-count` attribute animate from 0 to target value
-- **Review carousel:** CSS keyframe `scrollReviews` (28s, translateX 0→-50%), cards duplicated for seamless loop, pause on hover
+- **Marquee:** `.marquee-track` (left) en `.marquee-track-reverse` (right), 40s linear infinite, pauze on hover
+- **Glassmorphism:** `.glass` utility — `rgba(255,255,255,0.05)` bg + `backdrop-filter: blur(12px)` + white/10 border
+- **Outlined text:** `.text-outline` (wit stroke op transparant) en `.text-outline-dark` (donkere stroke)
+
+### Scroll-linked horizontal gallery (Projecten sectie)
+- Desktop (>640px): Section is 350vh, sticky container, JavaScript translateX op scroll
+- Mobiel (≤640px): Section auto height, overflow-x auto met touch scrolling, hidden scrollbar
+- Project kaarten: `w-[300px] sm:w-[360px] lg:w-[420px]`, aspect-[3/4]
+
+### Important patterns
 - **Hamburger → X:** Uses absolutely positioned bars with translateY for spacing, rotate for X shape. Default: `translateY(-6px)`, `translateY(0)`, `translateY(6px)`. Open: `rotate(45deg)`, `opacity:0`, `rotate(-45deg)`
+- **Overflow prevention:** `overflow-x-hidden` op html + body voorkomt horizontale scroll op mobiel
+- **Diensten dropdown:** max-height animatie (niet display:none/block) voor smooth open/close
 
 ## Conventions
 
@@ -68,73 +91,7 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 - ES Modules (`"type": "module"` in package.json)
 - Tailwind for styling (utility classes), global styles in Layout.astro `<style is:global>`
 - Cloudflare Pages adapter (`@astrojs/cloudflare`), output: `static`
-
-## Visual Debugging with Screenshots
-
-Playwright is installed as a dev dependency for taking screenshots of the website. Screenshots are saved to `screenshots/` (gitignored, separate from project assets).
-
-### How to take screenshots
-
-1. Start the dev server: `npm run dev`
-2. Run the screenshot script: `node scripts/screenshot.mjs http://localhost:4321 index`
-   - First arg: base URL (default `http://localhost:4321`)
-   - Second arg: comma-separated page routes using names, not `/` (e.g., `index`, `about`, `index,about,contact`)
-   - On Windows/Git Bash, avoid passing bare `/` as an argument (it gets mangled); use `index` instead
-3. Screenshots are saved as `{page}-{viewport}.png` in `screenshots/` for three viewports: desktop (1920x1080), tablet (768x1024), mobile (375x812)
-4. The screenshot script forces `.is-visible` on all `.fade-in` elements and sets `[data-count]` values before capture
-
-### Reference screenshots
-- `screenshots/referentie-diensten-dropdown.png` — Diensten dropdown van de huidige live site als referentie
-
-### When to use screenshots
-
-- **After making visual/CSS changes:** Take before and after screenshots to verify layout, spacing, colors, and responsiveness across all three viewports
-- **When debugging UI bugs:** Screenshot the broken state, fix the code, screenshot again to confirm the fix
-- **After adding new pages or components:** Screenshot to verify they render correctly on all viewports
-- **Read screenshots using the Read tool** — it displays images visually, allowing direct inspection of the rendered page
-
-### Screenshot workflow
-
-1. Take screenshots of the current state before making changes
-2. Make code changes
-3. Take new screenshots and compare visually using Read tool
-4. Check all three viewports (desktop, tablet, mobile) for responsive issues
-5. Old screenshots are overwritten automatically — take them again if you need a fresh baseline
-
-## Visuele fouten herkennen in screenshots
-
-Controleer screenshots altijd op deze punten:
-
-### Layout & structuur
-- Elementen die overlappen of buiten hun container vallen
-- Onverwachte horizontale scrollbar (wijst op overflow)
-- Content die tegen de rand van het scherm plakt zonder padding
-- Lege ruimtes waar content hoort te staan (kapotte imports, missende afbeeldingen)
-- Footer die niet onderaan de pagina staat bij weinig content
-
-### Typografie & leesbaarheid
-- Tekst die te klein is op mobile (kleiner dan ~14px)
-- Tekst die over afbeeldingen of andere elementen loopt zonder contrast
-- Regels die te breed zijn op desktop (meer dan ~75 tekens per regel)
-- Afgeknipte tekst (text-overflow) waar dat niet hoort
-
-### Responsiveness (vergelijk alle 3 viewports)
-- Desktop-layout die onveranderd op mobile verschijnt (niet responsive)
-- Knoppen of links die te klein zijn om op mobile te tappen (min 44x44px)
-- Kolommen die op mobile naast elkaar blijven staan in plaats van stapelen
-- Afbeeldingen die niet meeschalen en buiten het scherm vallen
-
-### Visuele consistentie
-- Inconsistente spacing/margins tussen vergelijkbare elementen
-- Kleuren die niet bij het ontwerp passen of slecht contrast hebben
-- Afbeeldingen die uitgerekt of samengedrukt zijn (verkeerde aspect ratio)
-- Borders, schaduwen of hoeken die inconsistent zijn tussen componenten
-
-### Kapotte elementen
-- Afbeeldingen die niet laden (gebroken icoon of lege ruimte)
-- Iconen die als tekst/vierkantjes verschijnen (missend font)
-- Lege secties waar dynamische content hoort
-- Console-errors zichtbaar in de pagina (Astro error overlay)
+- Secties afwisselen met `bg-primary-800/30` voor subtiel contrast — **nooit wit/licht**
 
 ## Werkregels voor het bouwen van deze website
 
@@ -150,12 +107,10 @@ Controleer screenshots altijd op deze punten:
 - Houd styling in scoped `<style>` tags binnen Astro-componenten — geen losse CSS-bestanden tenzij global styles nodig zijn
 - Hergebruik bestaande componenten in plaats van nieuwe te maken met dezelfde functie
 - Test met `npm run build` als je twijfelt of iets werkt — build-fouten vang je zo vroeg op
+- Zorg dat decoratieve elementen (grote achtergrondtekst, absolute borders) niet buiten hun container lekken — gebruik `overflow-hidden`
 
 ### Na elke wijziging
 - Draai `npm run build` om te checken op build-fouten
-- Neem screenshots van alle gewijzigde pagina's op alle 3 viewports
-- Bekijk de screenshots met Read tool en controleer op de punten hierboven
-- Als er een visueel probleem is: fix het direct, screenshot opnieuw, en verifieer
 
 ### Kwaliteitsregels
 - Elke pagina moet er goed uitzien op alle 3 viewports (desktop, tablet, mobile)
@@ -164,6 +119,7 @@ Controleer screenshots altijd op deze punten:
 - Links en knoppen moeten visueel duidelijk klikbaar zijn
 - Kleurcontrast moet voldoende zijn (donkere tekst op lichte achtergrond of vice versa)
 - Laad geen externe fonts/scripts tenzij de gebruiker erom vraagt
+- Horizontale overflow testen op mobiel — voorkom dat gebruikers kunnen uitzoomen/zijwaarts scrollen
 
 ### Bij problemen
 - Als de dev server crashed: lees de error output, fix de oorzaak, herstart
@@ -174,6 +130,6 @@ Controleer screenshots altijd op deze punten:
 ## Configuration
 
 - `astro.config.mjs` — Astro config with Tailwind, sitemap, icon integrations + Cloudflare adapter
-- `tailwind.config.mjs` — Custom colors (primary #1E2228), fonts (Inter, Playfair Display), animations
+- `tailwind.config.mjs` — Custom colors (primary #1E2228), fonts (Inter, Playfair Display), marquee animations
 - `tsconfig.json` — Extends `astro/tsconfigs/strict`
 - `.env` — `POSTMARK_API_KEY` (niet in repo, moet door gebruiker worden ingesteld)

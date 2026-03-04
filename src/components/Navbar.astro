@@ -33,7 +33,7 @@ const dienstenColumns = [
       <div class="hidden lg:flex items-center gap-8">
         <a
           href="/"
-          class="text-base font-medium text-gray-300 hover:text-white transition-colors duration-200"
+          class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 relative"
         >
           Home
         </a>
@@ -42,7 +42,7 @@ const dienstenColumns = [
         <div class="relative" id="diensten-desktop">
           <a
             href="/#diensten"
-            class="text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-1"
+            class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-1 relative"
             id="diensten-desktop-trigger"
           >
             Diensten
@@ -53,7 +53,7 @@ const dienstenColumns = [
         {navLinks.slice(1).map((link) => (
           <a
             href={link.href}
-            class="text-base font-medium text-gray-300 hover:text-white transition-colors duration-200"
+            class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors duration-200 relative"
           >
             {link.label}
           </a>
@@ -300,3 +300,19 @@ const dienstenColumns = [
     });
   }
 </script>
+
+<style>
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>

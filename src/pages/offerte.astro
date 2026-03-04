@@ -4,23 +4,23 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <Layout title="Gratis Offerte Aanvragen | Projectbouw 010" description="Vraag een gratis en vrijblijvende offerte aan voor uw renovatie of verbouwing in Rotterdam. Reactie binnen 24 uur.">
-  <!-- Hero Banner -->
+  <!-- Hero Banner — Left aligned -->
   <section class="relative pt-32 pb-16 overflow-hidden">
     <div class="absolute inset-0">
       <img
-        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80"
+        src="/images/hero.jpg"
         alt="Verbouwing werkzaamheden"
         class="w-full h-full object-cover"
         loading="eager"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-primary/90 to-primary"></div>
     </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-4">Vrijblijvend & Gratis</p>
-      <h1 class="fade-in fade-in-delay-1 text-4xl sm:text-5xl font-heading font-bold text-white mb-4">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-4">Vrijblijvend & Gratis</p>
+      <h1 class="reveal-up text-4xl sm:text-5xl font-heading font-bold text-white mb-4" style="--delay: 0.1s">
         Offerte Aanvragen
       </h1>
-      <p class="fade-in fade-in-delay-2 text-gray-300 text-lg max-w-xl mx-auto">
+      <p class="reveal-up text-gray-300 text-lg max-w-xl" style="--delay: 0.2s">
         Vul het formulier in en ontvang binnen 24 uur een vrijblijvende offerte op maat.
       </p>
     </div>
@@ -32,7 +32,7 @@ import { Icon } from 'astro-icon/components';
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
         <!-- Form (3 cols) -->
         <div class="lg:col-span-3">
-          <form id="offerte-form" class="fade-in space-y-5">
+          <form id="offerte-form" class="reveal-up space-y-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label for="naam" class="block text-sm font-medium text-gray-300 mb-1.5">Naam *</label>
@@ -198,7 +198,7 @@ import { Icon } from 'astro-icon/components';
 
         <!-- Benefits (2 cols) -->
         <div class="lg:col-span-2">
-          <div class="fade-in fade-in-delay-2 bg-white/5 border border-white/10 rounded-lg p-8 sticky top-28">
+          <div class="reveal-right glass rounded-xl p-8 sticky top-28" style="--delay: 0.2s">
             <h3 class="text-white font-heading font-bold text-xl mb-6">Waarom Projectbouw 010?</h3>
             <ul class="space-y-5">
               <li class="flex items-start gap-3">

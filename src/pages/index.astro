@@ -1,206 +1,100 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
-import ServiceCard from '../components/ServiceCard.astro';
-import ProcessStep from '../components/ProcessStep.astro';
-import TestimonialCard from '../components/TestimonialCard.astro';
 ---
 
 <Layout>
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0">
-      <img
-        src="/images/hero.jpg"
-        alt="Projectbouw 010 - Renovatie werkzaamheden"
-        class="hidden sm:block w-full h-full object-cover"
-        loading="eager"
-      />
-      <img
-        src="/images/hero-telefoon.jpeg"
-        alt="Projectbouw 010 - Renovatie werkzaamheden"
-        class="sm:hidden w-full h-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary"></div>
+  <!-- Hero Section — Split-screen -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+      <span class="text-[12rem] sm:text-[28rem] lg:text-[40rem] font-heading font-bold text-outline leading-none">010</span>
     </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
-      <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-4">Renovatie & Verbouwing Rotterdam</p>
-      <h1 class="fade-in fade-in-delay-1 text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-        Vakmanschap dat staat als een huis.
-      </h1>
-      <p class="fade-in fade-in-delay-2 text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-        Met de jarenlange ervaring van Mike en zijn team is jouw project in vertrouwde handen. Kwaliteit, precisie en veelzijdigheid – dát is Projectbouw010.
-      </p>
-      <div class="fade-in fade-in-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/offerte"
-          class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200"
-        >
-          Offerte Aanvragen
-        </a>
-        <a
-          href="#projecten"
-          class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200"
-        >
-          Bekijk Projecten
-        </a>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32 lg:py-0">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+        <div class="lg:col-span-3">
+          <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-4">Renovatie & Verbouwing Rotterdam</p>
+          <h1 class="reveal-up text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight" style="--delay: 0.1s">
+            Vakmanschap dat<br />staat als een huis.
+          </h1>
+          <p class="reveal-up text-gray-300 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed" style="--delay: 0.2s">
+            Met de jarenlange ervaring van Mike en zijn team is jouw project in vertrouwde handen. Kwaliteit, precisie en veelzijdigheid – dát is Projectbouw010.
+          </p>
+          <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.3s">
+            <a href="/offerte" class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center">
+              Offerte Aanvragen
+            </a>
+            <a href="#projecten" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center">
+              Bekijk Projecten
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 reveal-scale" style="--delay: 0.2s">
+          <div class="relative">
+            <img src="/images/hero.jpg" alt="Projectbouw 010 - Renovatie werkzaamheden" class="hidden sm:block w-full rounded-2xl object-cover aspect-[3/4] shadow-2xl" loading="eager" />
+            <img src="/images/hero-telefoon.jpeg" alt="Projectbouw 010 - Renovatie werkzaamheden" class="sm:hidden w-full rounded-2xl object-cover aspect-[3/4] shadow-2xl" loading="eager" />
+            <div class="absolute -inset-3 border border-white/10 rounded-2xl -z-10"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="reveal-up mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:flex sm:flex-wrap sm:justify-start sm:gap-8 lg:gap-16" style="--delay: 0.4s">
+        <div>
+          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block"><span data-count="10">0</span>+</span>
+          <span class="text-gray-400 text-xs sm:text-sm">Jaar Ervaring</span>
+        </div>
+        <div class="w-px h-10 bg-white/10 hidden sm:block self-center"></div>
+        <div>
+          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block"><span data-count="250">0</span>+</span>
+          <span class="text-gray-400 text-xs sm:text-sm">Projecten</span>
+        </div>
+        <div class="w-px h-10 bg-white/10 hidden sm:block self-center"></div>
+        <div>
+          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">9.3</span>
+          <span class="text-gray-400 text-xs sm:text-sm">Trustoo Score</span>
+        </div>
       </div>
     </div>
-    <!-- Scroll indicator -->
+
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
       <Icon name="lucide:chevron-down" class="w-6 h-6 text-white/50" />
     </div>
   </section>
 
-  <!-- Diensten Section -->
+  <!-- Diensten Section — Bento Grid -->
   <section id="diensten" class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Wat wij doen</p>
-        <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white">
-          Onze Diensten
-        </h2>
+      <div class="mb-16">
+        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Wat wij doen</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white" style="--delay: 0.1s">Onze Diensten</h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
-          title="Aanbouw & Uitbouw"
-          description="Meer ruimte nodig? Wij realiseren uw aanbouw of uitbouw vakkundig en op maat."
-          delay={1}
-        />
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>'
-          title="Badkamer Renovatie"
-          description="Een complete badkamer renovatie met hoogwaardige materialen en modern design."
-          delay={2}
-        />
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>'
-          title="Keukenrenovatie"
-          description="Uw droomkeuken op maat gemaakt. Van ontwerp tot installatie, wij regelen het."
-          delay={3}
-        />
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>'
-          title="Stalen Deuren"
-          description="Industriele stalen deuren en kozijnen voor een stijlvolle uitstraling in uw woning."
-          delay={1}
-        />
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>'
-          title="Stucwerk & Tegelwerk"
-          description="Professioneel stucwerk en tegelwerk voor een perfect afgewerkt resultaat."
-          delay={2}
-        />
-        <ServiceCard
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4c0-.5.2-1 .6-1.4C5 2.2 5.5 2 6 2h12c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4v18"/><path d="M10 14v4"/><path d="M14 14v4"/><path d="M10 10h4"/></svg>'
-          title="Traprenovatie"
-          description="Geef uw trap een nieuw leven met onze vakkundige traprenovaties."
-          delay={3}
-        />
-      </div>
-    </div>
-  </section>
 
-  <!-- Over Ons Section -->
-  <section id="over-ons" class="py-20 lg:py-28 bg-primary-800/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <!-- Image -->
-        <div class="fade-in relative">
-          <img
-            src="/images/over.jpeg"
-            alt="Projectbouw 010 op locatie"
-            class="rounded-lg w-full object-cover aspect-[4/3]"
-            loading="lazy"
-          />
-          <div class="absolute -bottom-4 -right-4 bg-white text-primary p-4 rounded-lg hidden sm:block">
-            <p class="text-3xl font-heading font-bold">10+</p>
-            <p class="text-sm font-semibold">Jaar Ervaring</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Aanbouw & Uitbouw — large -->
+        <div class="reveal-scale sm:col-span-2 lg:col-span-2 lg:row-span-2 relative rounded-xl overflow-hidden group cursor-pointer aspect-[4/3] lg:aspect-auto">
+          <img src="/images/uitbouw.jpeg" alt="Aanbouw & Uitbouw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
+          <div class="relative h-full flex flex-col justify-end p-6 lg:p-8">
+            <h3 class="text-white font-heading font-bold text-2xl lg:text-3xl mb-2">Aanbouw & Uitbouw</h3>
+            <p class="text-gray-300 text-sm lg:text-base max-w-sm">Meer ruimte nodig? Wij realiseren uw aanbouw of uitbouw vakkundig en op maat.</p>
           </div>
         </div>
 
-        <!-- Content -->
-        <div>
-          <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Over Projectbouw 010</p>
-          <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl font-heading font-bold text-white mb-6">
-            Vakmanschap & Betrouwbaarheid
-          </h2>
-          <p class="fade-in fade-in-delay-2 text-gray-300 leading-relaxed mb-6">
-            Projectbouw 010, opgericht door Mike, is een aannemersbedrijf gevestigd in Rotterdam. Wij zijn gespecialiseerd in renovaties en verbouwingen voor particulieren. Van een complete badkamerrenovatie tot een stijlvolle uitbouw — wij leveren kwaliteit waar u op kunt vertrouwen.
-          </p>
-          <p class="fade-in fade-in-delay-3 text-gray-300 leading-relaxed mb-8">
-            Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt en weet precies waar u aan toe bent. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
-          </p>
-
-          <!-- Stats -->
-          <div class="fade-in fade-in-delay-4 grid grid-cols-3 gap-6">
-            <div class="text-center">
-              <p class="text-3xl font-heading font-bold text-white">
-                <span data-count="10">0</span>+
-              </p>
-              <p class="text-gray-400 text-sm mt-1">Jaar Ervaring</p>
-            </div>
-            <div class="text-center">
-              <p class="text-3xl font-heading font-bold text-white">
-                <span data-count="250">0</span>+
-              </p>
-              <p class="text-gray-400 text-sm mt-1">Projecten</p>
-            </div>
-            <div class="text-center">
-              <p class="text-3xl font-heading font-bold text-white">
-                4 <span class="text-lg">jaar</span>
-              </p>
-              <p class="text-gray-400 text-sm mt-1">Garantie</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projecten Showcase -->
-  <section id="projecten" class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Ons werk</p>
-        <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white">
-          Uitgelichte Projecten
-        </h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          {
-            img: '/images/badkamer.jpeg',
-            title: 'Badkamer Renovatie',
-            location: 'Rotterdam-Zuid',
-          },
-          {
-            img: '/images/keuken.jpeg',
-            title: 'Keuken Op Maat',
-            location: 'Kralingen',
-          },
-          {
-            img: '/images/uitbouw.jpeg',
-            title: 'Complete Renovatie',
-            location: 'Hillegersberg',
-          },
-        ].map((project, i) => (
-          <div class={`fade-in fade-in-delay-${i + 1} group relative overflow-hidden rounded-lg aspect-[4/3]`}>
-            <img
-              src={project.img}
-              alt={project.title}
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <h3 class="text-white font-semibold text-lg">{project.title}</h3>
-              <p class="text-gray-300 text-sm flex items-center gap-1 mt-1">
-                <Icon name="lucide:map-pin" class="w-3 h-3" />
-                {project.location}
-              </p>
+          { img: '/images/badkamer.jpeg', title: 'Badkamer Renovatie', desc: 'Complete badkamer renovatie met hoogwaardige materialen en modern design.' },
+          { img: '/images/keuken.jpeg', title: 'Keukenrenovatie', desc: 'Uw droomkeuken op maat gemaakt. Van ontwerp tot installatie.' },
+          { img: '/images/1.jpg', title: 'Stalen Deuren', desc: 'Industriele stalen deuren en kozijnen voor een stijlvolle uitstraling.' },
+          { img: '/images/2.jpg', title: 'Stucwerk & Tegelwerk', desc: 'Professioneel stucwerk en tegelwerk voor een perfect afgewerkt resultaat.' },
+          { img: '/images/3.jpg', title: 'Traprenovatie', desc: 'Geef uw trap een nieuw leven met onze vakkundige traprenovaties.' },
+        ].map((item, i) => (
+          <div class="reveal-up relative rounded-xl overflow-hidden group cursor-pointer aspect-[4/3]" style={`--delay: ${(i + 1) * 0.05}s`}>
+            <img src={item.img} alt={item.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
+            <div class="relative h-full flex flex-col justify-end p-5">
+              <h3 class="text-white font-semibold text-lg">{item.title}</h3>
+              <p class="text-gray-300 text-xs mt-1 line-clamp-2">{item.desc}</p>
             </div>
           </div>
         ))}
@@ -208,57 +102,137 @@ import TestimonialCard from '../components/TestimonialCard.astro';
     </div>
   </section>
 
-  <!-- Werkwijze / Proces -->
-  <section class="py-20 lg:py-28 bg-primary-800/30">
+  <!-- Over Ons Section — Side by side with overlap -->
+  <section id="over-ons" class="py-20 lg:py-28 bg-primary-800/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
-        <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white">
-          Onze Werkwijze
-        </h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <ProcessStep
-          number={1}
-          title="Contact"
-          description="Neem vrijblijvend contact met ons op. Wij bespreken uw wensen en plannen."
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'
-          delay={1}
-        />
-        <ProcessStep
-          number={2}
-          title="Offerte"
-          description="U ontvangt een duidelijke, all-in offerte zonder verborgen kosten."
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>'
-          delay={2}
-        />
-        <ProcessStep
-          number={3}
-          title="Uitvoering"
-          description="Ons vakkundig team gaat aan de slag. U wordt continu op de hoogte gehouden."
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
-          delay={3}
-        />
-        <ProcessStep
-          number={4}
-          title="Oplevering"
-          description="Samen lopen we het resultaat na. Pas als u tevreden bent, is het project klaar."
-          icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
-          delay={4}
-        />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
+        <!-- Text block (overlaps photo on desktop) -->
+        <div class="reveal-left lg:relative lg:z-10 lg:-mr-16 order-2 lg:order-1">
+          <div class="glass rounded-xl p-8 lg:p-10">
+            <p class="text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Over Projectbouw 010</p>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-6">
+              Vakmanschap &<br />Betrouwbaarheid
+            </h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+              Projectbouw 010, opgericht door Mike, is een aannemersbedrijf gevestigd in Rotterdam. Wij zijn gespecialiseerd in renovaties en verbouwingen voor particulieren. Van een complete badkamerrenovatie tot een stijlvolle uitbouw — wij leveren kwaliteit waar u op kunt vertrouwen.
+            </p>
+            <p class="text-gray-300 leading-relaxed mb-8">
+              Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt en weet precies waar u aan toe bent. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p class="text-4xl lg:text-5xl font-heading font-bold text-white"><span data-count="10">0</span>+</p>
+                <p class="text-gray-400 text-xs mt-1">Jaar Ervaring</p>
+              </div>
+              <div>
+                <p class="text-4xl lg:text-5xl font-heading font-bold text-white"><span data-count="250">0</span>+</p>
+                <p class="text-gray-400 text-xs mt-1">Projecten</p>
+              </div>
+              <div>
+                <p class="text-4xl lg:text-5xl font-heading font-bold text-white">4<span class="text-lg ml-1">jr</span></p>
+                <p class="text-gray-400 text-xs mt-1">Garantie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="reveal-right order-1 lg:order-2" style="--delay: 0.1s">
+          <img src="/images/over.jpeg" alt="Projectbouw 010 op locatie" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Projecten — Scroll-linked horizontal gallery -->
+  <section id="projecten" class="project-section relative">
+    <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 w-full">
+        <div class="flex items-end justify-between">
+          <div>
+            <p class="text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Ons werk</p>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white">Uitgelichte Projecten</h2>
+          </div>
+          <a href="/offerte" class="hidden sm:flex items-center gap-2 text-white/70 hover:text-white font-medium hover:gap-3 transition-all">
+            Bekijk onze diensten
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <div class="project-track-container overflow-hidden w-full">
+        <div class="flex gap-6 px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]" id="project-track">
+          {[
+            { img: '/images/badkamer.jpeg', title: 'Badkamer Renovatie', location: 'Rotterdam-Zuid' },
+            { img: '/images/keuken.jpeg', title: 'Keuken Op Maat', location: 'Kralingen' },
+            { img: '/images/uitbouw.jpeg', title: 'Complete Uitbouw', location: 'Hillegersberg' },
+            { img: '/images/1.jpg', title: 'Stalen Deuren', location: 'Rotterdam-West' },
+            { img: '/images/2.jpg', title: 'Stucwerk & Tegelwerk', location: 'Capelle a/d IJssel' },
+            { img: '/images/3.jpg', title: 'Traprenovatie', location: 'Schiedam' },
+          ].map((project) => (
+            <div class="w-[300px] sm:w-[360px] lg:w-[420px] shrink-0 group">
+              <div class="rounded-xl overflow-hidden aspect-[3/4] mb-4">
+                <img src={project.img} alt={project.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-white font-semibold text-lg">{project.title}</h3>
+                  <p class="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
+                    <Icon name="lucide:map-pin" class="w-3 h-3" />
+                    {project.location}
+                  </p>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
+                  <Icon name="lucide:arrow-right" class="w-4 h-4 text-white group-hover:text-primary transition-colors" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Werkwijze — Vertical Timeline -->
   <section class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Klantbeoordelingen</p>
-        <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-          Wat Onze Klanten Zeggen
-        </h2>
-        <div class="fade-in fade-in-delay-2 flex items-center justify-center gap-3 flex-wrap">
+      <div class="text-center mb-16">
+        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white" style="--delay: 0.1s">Onze Werkwijze</h2>
+      </div>
+
+      <div class="relative max-w-4xl mx-auto">
+        <div class="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-white/10 lg:-translate-x-px"></div>
+
+        {[
+          { number: '01', title: 'Contact', description: 'Neem vrijblijvend contact met ons op. Wij bespreken uw wensen en plannen.' },
+          { number: '02', title: 'Offerte', description: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten.' },
+          { number: '03', title: 'Uitvoering', description: 'Ons vakkundig team gaat aan de slag. U wordt continu op de hoogte gehouden.' },
+          { number: '04', title: 'Oplevering', description: 'Samen lopen we het resultaat na. Pas als u tevreden bent, is het project klaar.' },
+        ].map((step, i) => (
+          <div class={`relative flex items-start gap-8 lg:gap-0 mb-16 last:mb-0 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+            <div class="absolute left-4 lg:left-1/2 w-3 h-3 bg-white rounded-full -translate-x-1.5 lg:-translate-x-1.5 mt-2 z-10"></div>
+            <div class={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-16 lg:text-right' : 'lg:pl-16 lg:ml-auto'}`}>
+              <div class={`reveal-${i % 2 === 0 ? 'right' : 'left'}`} style={`--delay: ${i * 0.1}s`}>
+                <span class="text-6xl lg:text-7xl font-heading font-bold text-outline">{step.number}</span>
+                <h3 class="text-white font-heading font-bold text-xl lg:text-2xl mt-2 mb-3">{step.title}</h3>
+                <p class="text-gray-400 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews — Double Marquee -->
+  <section class="py-20 lg:py-28 bg-primary-800/30 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div class="text-center">
+        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Klantbeoordelingen</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4" style="--delay: 0.1s">Wat Onze Klanten Zeggen</h2>
+        <div class="reveal-up flex items-center justify-center gap-3 flex-wrap" style="--delay: 0.2s">
           <div class="flex gap-0.5">
             {Array.from({ length: 5 }).map(() => (
               <Icon name="lucide:star" class="w-5 h-5 fill-[#FBBC04] text-[#FBBC04]" />
@@ -268,171 +242,81 @@ import TestimonialCard from '../components/TestimonialCard.astro';
           <span class="text-gray-400">gemiddelde score op Trustoo (173 reviews)</span>
         </div>
       </div>
+    </div>
 
-      <!-- Auto-scrolling review carousel -->
-      <div class="fade-in overflow-hidden" id="review-carousel">
-        <div class="flex gap-5 animate-scroll" id="review-track">
-          <!-- Set 1 -->
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Ik kan Projectbouw010 alleen maar aanraden. Vakmanschap, betrouwbaarheid en een mooi eindresultaat."
-              name="Lisa Aakai"
-              project="Google Review"
-              stars={5}
-            />
+    <div class="overflow-hidden mb-4">
+      <div class="marquee-track flex gap-4 w-max">
+        {[
+          { quote: "Ik kan Projectbouw010 alleen maar aanraden. Vakmanschap, betrouwbaarheid en een mooi eindresultaat.", name: "Lisa Aakai", source: "Google Review" },
+          { quote: "Projectbouw010 levert netjes en strak werk. Alles werd volgens afspraak uitgevoerd en de communicatie was duidelijk.", name: "Ehab D", source: "Google Review" },
+          { quote: "Wat een prachtig resultaat. Dit bedrijf doet er alles aan om haar klanten tevreden te stellen.", name: "Touria Asri", source: "Google Review" },
+          { quote: "Great service and excellent results. They delivered exactly what they promised. Finished in two days instead of three.", name: "MJ Saloum", source: "Google Review" },
+          { quote: "Ik kan Projectbouw010 alleen maar aanraden. Vakmanschap, betrouwbaarheid en een mooi eindresultaat.", name: "Lisa Aakai", source: "Google Review" },
+          { quote: "Projectbouw010 levert netjes en strak werk. Alles werd volgens afspraak uitgevoerd en de communicatie was duidelijk.", name: "Ehab D", source: "Google Review" },
+          { quote: "Wat een prachtig resultaat. Dit bedrijf doet er alles aan om haar klanten tevreden te stellen.", name: "Touria Asri", source: "Google Review" },
+          { quote: "Great service and excellent results. They delivered exactly what they promised. Finished in two days instead of three.", name: "MJ Saloum", source: "Google Review" },
+        ].map((review) => (
+          <div class="w-[400px] shrink-0 glass rounded-xl p-6">
+            <div class="flex gap-0.5 mb-3">
+              {Array.from({ length: 5 }).map(() => (
+                <Icon name="lucide:star" class="w-4 h-4 fill-[#FBBC04] text-[#FBBC04]" />
+              ))}
+            </div>
+            <p class="text-white text-sm leading-relaxed mb-4">"{review.quote}"</p>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-medium text-sm">{review.name}</span>
+              <span class="text-gray-500 text-xs">— {review.source}</span>
+            </div>
           </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Projectbouw010 levert netjes en strak werk. Alles werd volgens afspraak uitgevoerd en de communicatie was duidelijk."
-              name="Ehab D"
-              project="Google Review"
-              stars={5}
-            />
+        ))}
+      </div>
+    </div>
+
+    <div class="overflow-hidden">
+      <div class="marquee-track-reverse flex gap-4 w-max">
+        {[
+          { quote: "Uitstekend vakwerk. Op tijd opgeleverd en zeer betrouwbaar. Complete badkamer, toilet en keuken betegeld.", name: "Roy", source: "Badkamer & Keuken Renovatie" },
+          { quote: "TOP bedrijf. Betrouwbaar, snelle communicatie en vakkundig werk. Aanrader voor iedereen die kwaliteit zoekt.", name: "Brain", source: "Renovatie" },
+          { quote: "Mike is super vriendelijk, denkt mee in oplossingen, handelt snel en komt zijn afspraken na. Heel professioneel.", name: "Verified Klant", source: "Trustoo Review" },
+          { quote: "Groot renovatieproject laten uitvoeren. Huis compleet gestript en netjes opgebouwd. Zeer tevreden met het resultaat.", name: "Verified Klant", source: "Trustoo Review" },
+          { quote: "Uitstekend vakwerk. Op tijd opgeleverd en zeer betrouwbaar. Complete badkamer, toilet en keuken betegeld.", name: "Roy", source: "Badkamer & Keuken Renovatie" },
+          { quote: "TOP bedrijf. Betrouwbaar, snelle communicatie en vakkundig werk. Aanrader voor iedereen die kwaliteit zoekt.", name: "Brain", source: "Renovatie" },
+          { quote: "Mike is super vriendelijk, denkt mee in oplossingen, handelt snel en komt zijn afspraken na. Heel professioneel.", name: "Verified Klant", source: "Trustoo Review" },
+          { quote: "Groot renovatieproject laten uitvoeren. Huis compleet gestript en netjes opgebouwd. Zeer tevreden met het resultaat.", name: "Verified Klant", source: "Trustoo Review" },
+        ].map((review) => (
+          <div class="w-[400px] shrink-0 glass rounded-xl p-6">
+            <div class="flex gap-0.5 mb-3">
+              {Array.from({ length: 5 }).map(() => (
+                <Icon name="lucide:star" class="w-4 h-4 fill-[#FBBC04] text-[#FBBC04]" />
+              ))}
+            </div>
+            <p class="text-white text-sm leading-relaxed mb-4">"{review.quote}"</p>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-medium text-sm">{review.name}</span>
+              <span class="text-gray-500 text-xs">— {review.source}</span>
+            </div>
           </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Wat een prachtig resultaat. Dit bedrijf doet er alles aan om haar klanten tevreden te stellen."
-              name="Touria Asri"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Great service and excellent results. They delivered exactly what they promised. Finished in two days instead of three."
-              name="MJ Saloum"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Uitstekend vakwerk. Op tijd opgeleverd en zeer betrouwbaar. Complete badkamer, toilet en keuken betegeld."
-              name="Roy"
-              project="Badkamer & Keuken Renovatie"
-              stars={4.5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="TOP bedrijf. Betrouwbaar, snelle communicatie en vakkundig werk. Aanrader voor iedereen die kwaliteit zoekt."
-              name="Brain"
-              project="Renovatie"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Mike is super vriendelijk, denkt mee in oplossingen, handelt snel en komt zijn afspraken na. Heel professioneel."
-              name="Verified Klant"
-              project="Trustoo Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Groot renovatieproject laten uitvoeren. Huis compleet gestript en netjes opgebouwd. Zeer tevreden met het resultaat."
-              name="Verified Klant"
-              project="Trustoo Review"
-              stars={5}
-            />
-          </div>
-          <!-- Duplicated set for seamless loop -->
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Ik kan Projectbouw010 alleen maar aanraden. Vakmanschap, betrouwbaarheid en een mooi eindresultaat."
-              name="Lisa Aakai"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Projectbouw010 levert netjes en strak werk. Alles werd volgens afspraak uitgevoerd en de communicatie was duidelijk."
-              name="Ehab D"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Wat een prachtig resultaat. Dit bedrijf doet er alles aan om haar klanten tevreden te stellen."
-              name="Touria Asri"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Great service and excellent results. They delivered exactly what they promised. Finished in two days instead of three."
-              name="MJ Saloum"
-              project="Google Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Uitstekend vakwerk. Op tijd opgeleverd en zeer betrouwbaar. Complete badkamer, toilet en keuken betegeld."
-              name="Roy"
-              project="Badkamer & Keuken Renovatie"
-              stars={4.5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="TOP bedrijf. Betrouwbaar, snelle communicatie en vakkundig werk. Aanrader voor iedereen die kwaliteit zoekt."
-              name="Brain"
-              project="Renovatie"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Mike is super vriendelijk, denkt mee in oplossingen, handelt snel en komt zijn afspraken na. Heel professioneel."
-              name="Verified Klant"
-              project="Trustoo Review"
-              stars={5}
-            />
-          </div>
-          <div class="w-[320px] shrink-0">
-            <TestimonialCard
-              quote="Groot renovatieproject laten uitvoeren. Huis compleet gestript en netjes opgebouwd. Zeer tevreden met het resultaat."
-              name="Verified Klant"
-              project="Trustoo Review"
-              stars={5}
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA Banner -->
-  <section class="py-20 lg:py-24 bg-gradient-to-r from-primary-900 to-primary-800 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#FFFFFF_1px,transparent_1px)] bg-[length:24px_24px]"></div>
-    </div>
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="fade-in text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
-        Klaar Om Te Beginnen?
-      </h2>
-      <p class="fade-in fade-in-delay-1 text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-        Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.
-      </p>
-      <div class="fade-in fade-in-delay-2 flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/offerte"
-          class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200"
-        >
-          Gratis Offerte Aanvragen
-        </a>
-        <a
-          href="tel:0653999433"
-          class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 flex items-center justify-center gap-2"
-        >
-          <Icon name="lucide:phone" class="w-5 h-5" />
-          06-53999433
-        </a>
+  <section class="relative py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-white/[0.03]" style="clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%)"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">Klaar Om<br />Te Beginnen?</h2>
+          <p class="reveal-up text-gray-300 text-lg mb-10 max-w-lg" style="--delay: 0.1s">Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
+        </div>
+        <div class="reveal-up flex flex-col sm:flex-row gap-4 lg:justify-end" style="--delay: 0.2s">
+          <a href="/offerte" class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center">Gratis Offerte Aanvragen</a>
+          <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 flex items-center justify-center gap-2">
+            <Icon name="lucide:phone" class="w-5 h-5" />
+            06-53999433
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -440,149 +324,95 @@ import TestimonialCard from '../components/TestimonialCard.astro';
   <!-- Contact Section -->
   <section id="contact" class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="fade-in text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Neem contact op</p>
-        <h2 class="fade-in fade-in-delay-1 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-          Heeft U Een Vraag?
-        </h2>
-        <p class="fade-in fade-in-delay-2 text-gray-400 max-w-xl mx-auto">
-          Vul het formulier in en wij nemen zo snel mogelijk contact met u op. Of neem direct contact op via telefoon of WhatsApp.
-        </p>
+      <div class="mb-12">
+        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Neem contact op</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4" style="--delay: 0.1s">Heeft U Een Vraag?</h2>
+        <p class="reveal-up text-gray-400 max-w-xl" style="--delay: 0.2s">Neem direct contact op via telefoon, WhatsApp of e-mail. Of vraag een offerte aan via ons formulier.</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-        <!-- Form -->
-        <div class="lg:col-span-3">
-          <form class="fade-in bg-white/5 border border-white/10 rounded-xl p-6 sm:p-8 space-y-5" id="contact-form">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label for="contact-naam" class="block text-sm font-medium text-gray-300 mb-1.5">Naam *</label>
-                <input
-                  type="text"
-                  id="contact-naam"
-                  name="name"
-                  required
-                  placeholder="Uw volledige naam"
-                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/40 transition-colors"
-                />
-              </div>
-              <div>
-                <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-1.5">E-mail *</label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  required
-                  placeholder="uw@email.nl"
-                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/40 transition-colors"
-                />
-              </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label for="contact-telefoon" class="block text-sm font-medium text-gray-300 mb-1.5">Telefoon</label>
-                <input
-                  type="tel"
-                  id="contact-telefoon"
-                  name="phone"
-                  placeholder="06-12345678"
-                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/40 transition-colors"
-                />
-              </div>
-              <div>
-                <label for="contact-onderwerp" class="block text-sm font-medium text-gray-300 mb-1.5">Onderwerp</label>
-                <select
-                  id="contact-onderwerp"
-                  name="subject"
-                  class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors appearance-none"
-                >
-                  <option value="" class="bg-primary">Selecteer onderwerp...</option>
-                  <option value="offerte" class="bg-primary">Offerte aanvragen</option>
-                  <option value="informatie" class="bg-primary">Algemene informatie</option>
-                  <option value="planning" class="bg-primary">Planning & beschikbaarheid</option>
-                  <option value="klacht" class="bg-primary">Klacht of opmerking</option>
-                  <option value="overig" class="bg-primary">Overig</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label for="contact-bericht" class="block text-sm font-medium text-gray-300 mb-1.5">Bericht *</label>
-              <textarea
-                id="contact-bericht"
-                name="message"
-                rows="5"
-                required
-                placeholder="Vertel ons waar u hulp bij nodig heeft..."
-                class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/40 transition-colors resize-none"
-              ></textarea>
-            </div>
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-              <button
-                type="submit"
-                class="bg-white hover:bg-gray-200 text-primary px-8 py-3.5 font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
-              >
-                <Icon name="lucide:send" class="w-4 h-4" />
-                Verstuur Bericht
-              </button>
-              <p class="text-gray-500 text-xs">Wij reageren binnen 24 uur</p>
-            </div>
-            <div id="contact-status" class="hidden rounded-lg p-4 text-sm"></div>
-          </form>
-        </div>
-
-        <!-- Contact cards -->
-        <div class="lg:col-span-2 space-y-4">
-          <a href="tel:0653999433" class="fade-in fade-in-delay-1 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors group">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
-              <Icon name="lucide:phone" class="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p class="text-white font-semibold">Bel ons direct</p>
-              <p class="text-gray-400 text-sm">06-53999433</p>
-            </div>
-          </a>
-
-          <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="fade-in fade-in-delay-2 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors group">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
-              <Icon name="lucide:message-circle" class="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p class="text-white font-semibold">WhatsApp</p>
-              <p class="text-gray-400 text-sm">Stuur ons een bericht</p>
-            </div>
-          </a>
-
-          <a href="mailto:info@projectbouw010.nl" class="fade-in fade-in-delay-3 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors group">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
-              <Icon name="lucide:mail" class="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p class="text-white font-semibold">E-mail</p>
-              <p class="text-gray-400 text-sm">info@projectbouw010.nl</p>
-            </div>
-          </a>
-
-          <div class="fade-in fade-in-delay-4 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-5">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-              <Icon name="lucide:map-pin" class="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p class="text-white font-semibold">Locatie</p>
-              <p class="text-gray-400 text-sm">Rotterdam, Zuid-Holland</p>
-            </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="tel:0653999433" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0s">
+          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <Icon name="lucide:phone" class="w-6 h-6 text-white" />
           </div>
+          <h3 class="text-white font-semibold text-lg mb-1">Bel ons direct</h3>
+          <p class="text-gray-400">06-53999433</p>
+        </a>
 
-          <div class="fade-in fade-in-delay-5 flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-5">
-            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-              <Icon name="lucide:clock" class="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p class="text-white font-semibold">Bereikbaar</p>
-              <p class="text-gray-400 text-sm">Ma - Za: 08:00 - 18:00</p>
-            </div>
+        <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0.1s">
+          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <Icon name="lucide:message-circle" class="w-6 h-6 text-white" />
           </div>
+          <h3 class="text-white font-semibold text-lg mb-1">WhatsApp</h3>
+          <p class="text-gray-400">Stuur een bericht</p>
+        </a>
+
+        <a href="mailto:info@projectbouw010.nl" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0.2s">
+          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <Icon name="lucide:mail" class="w-6 h-6 text-white" />
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-1">E-mail</h3>
+          <p class="text-gray-400">info@projectbouw010.nl</p>
+        </a>
+
+        <div class="reveal-up glass rounded-xl p-8" style="--delay: 0.3s">
+          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+            <Icon name="lucide:map-pin" class="w-6 h-6 text-white" />
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-1">Locatie</h3>
+          <p class="text-gray-400">Rotterdam, Zuid-Holland</p>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Project section: tall container for scroll-linked animation on desktop */
+  .project-section {
+    height: 350vh;
+  }
+  @media (max-width: 640px) {
+    .project-section {
+      height: auto;
+    }
+    .project-section .sticky {
+      position: relative;
+      height: auto;
+    }
+    .project-track-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .project-track-container::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Scroll-linked horizontal scroll for projects
+  const section = document.querySelector('.project-section') as HTMLElement;
+  const track = document.getElementById('project-track') as HTMLElement;
+
+  if (section && track && window.innerWidth > 640) {
+    // Calculate max scroll from the last card's right edge
+    const lastCard = track.lastElementChild as HTMLElement;
+    const trackLeft = track.getBoundingClientRect().left + window.scrollX;
+    const lastCardRight = lastCard.offsetLeft + lastCard.offsetWidth + parseInt(getComputedStyle(track).paddingRight || '0');
+    const maxScroll = Math.max(0, lastCardRight - window.innerWidth + trackLeft);
+
+    const updateScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight - window.innerHeight;
+      const scrollProgress = Math.max(0, Math.min(1, -rect.top / sectionHeight));
+      track.style.transform = `translateX(-${scrollProgress * maxScroll}px)`;
+    };
+
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll();
+  }
+</script>

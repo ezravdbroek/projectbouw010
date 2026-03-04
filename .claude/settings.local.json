@@ -10,7 +10,14 @@
       "Bash(npm ls:*)",
       "WebFetch(domain:projectbouw010.nl)",
       "Bash(node:*)",
-      "Bash(npm:*)"
+      "Bash(npm:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:blacksmith.agency)",
+      "WebFetch(domain:elementor.com)",
+      "WebFetch(domain:hookagency.com)",
+      "WebFetch(domain:www.plugandplaydesign.co.uk)",
+      "WebFetch(domain:www.vnzoaec.com)"
     ]
   }
 }
