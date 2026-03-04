@@ -13,7 +13,13 @@ import TestimonialCard from '../components/TestimonialCard.astro';
       <img
         src="/images/hero.jpg"
         alt="Projectbouw 010 - Renovatie werkzaamheden"
-        class="w-full h-full object-cover"
+        class="hidden sm:block w-full h-full object-cover"
+        loading="eager"
+      />
+      <img
+        src="/images/hero-telefoon.jpeg"
+        alt="Projectbouw 010 - Renovatie werkzaamheden"
+        class="sm:hidden w-full h-full object-cover"
         loading="eager"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary"></div>
@@ -104,7 +110,7 @@ import TestimonialCard from '../components/TestimonialCard.astro';
         <!-- Image -->
         <div class="fade-in relative">
           <img
-            src="/images/over.jpg"
+            src="/images/over.jpeg"
             alt="Projectbouw 010 op locatie"
             class="rounded-lg w-full object-cover aspect-[4/3]"
             loading="lazy"
