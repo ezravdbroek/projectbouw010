@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm install:*)",
+      "WebFetch(domain:www.projectbouw010.nl)",
+      "WebFetch(domain:epiic.com)",
+      "WebFetch(domain:epiicdesign.com)",
+      "WebFetch(domain:openasset.com)",
+      "Bash(npm ls:*)",
+      "WebFetch(domain:projectbouw010.nl)",
+      "Bash(node:*)"
+    ]
+  }
+}
