@@ -7,86 +7,175 @@ import { Icon } from 'astro-icon/components';
   title="Contact | Projectbouw 010 Rotterdam"
   description="Neem contact op met Projectbouw 010 in Rotterdam. Bel, WhatsApp, e-mail of kom langs. Wij reageren binnen 24 uur."
 >
-  <!-- Hero -->
-  <section class="relative pt-32 pb-16 overflow-hidden bg-[#111]">
+  <!-- Hero — Full width with image -->
+  <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/stukadoor.jpg" alt="Projectbouw 010 contact" class="w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#111]/60 via-[#111]/70 to-[#111]"></div>
+    </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="reveal-up text-white/60 font-medium tracking-widest uppercase text-sm mb-4">Neem contact op</p>
-      <h1 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase" style="--delay: 0.1s">
-        Contact
+      <nav class="reveal-up flex items-center gap-2 text-sm text-white/50 mb-8">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <Icon name="lucide:chevron-right" class="w-3 h-3" />
+        <span class="text-white">Contact</span>
+      </nav>
+      <h1 class="reveal-up text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white uppercase leading-[0.95]" style="--delay: 0.1s">
+        Neem Contact<br />Met Ons Op
       </h1>
-      <p class="reveal-up text-gray-400 text-lg max-w-xl mt-4" style="--delay: 0.2s">
-        Heeft u een vraag of wilt u een project bespreken? Neem gerust contact met ons op.
+      <p class="reveal-up text-gray-300 text-lg sm:text-xl max-w-2xl mt-6 leading-relaxed" style="--delay: 0.2s">
+        Heeft u een vraag of wilt u een project bespreken? Wij staan voor u klaar.
       </p>
     </div>
   </section>
 
-  <!-- Contact cards -->
+  <!-- Contact info + Map side by side -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <a href="tel:0653999433" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0s">
-          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
-            <Icon name="lucide:phone" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
-          </div>
-          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">Bel ons direct</h3>
-          <p class="text-[#777]">06-53999433</p>
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Contact cards -->
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Bereik ons</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-8" style="--delay: 0.1s">
+            Contactgegevens
+          </h2>
 
-        <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.1s">
-          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
-            <Icon name="lucide:message-circle" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
-          </div>
-          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">WhatsApp</h3>
-          <p class="text-[#777]">Stuur een bericht</p>
-        </a>
+          <div class="space-y-4">
+            <a href="tel:0653999433" class="reveal-up flex items-center gap-5 rounded-xl border border-[#e0e0e0] p-6 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.1s">
+              <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#111] transition-colors">
+                <Icon name="lucide:phone" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <h3 class="text-[#111] font-heading font-bold text-lg uppercase">Bel Ons Direct</h3>
+                <p class="text-[#777]">06-53999433</p>
+              </div>
+            </a>
 
-        <a href="mailto:info@projectbouw010.nl" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.2s">
-          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
-            <Icon name="lucide:mail" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
-          </div>
-          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">E-mail</h3>
-          <p class="text-[#777]">info@projectbouw010.nl</p>
-        </a>
+            <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="reveal-up flex items-center gap-5 rounded-xl border border-[#e0e0e0] p-6 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.15s">
+              <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#111] transition-colors">
+                <Icon name="lucide:message-circle" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <h3 class="text-[#111] font-heading font-bold text-lg uppercase">WhatsApp</h3>
+                <p class="text-[#777]">Stuur een bericht</p>
+              </div>
+            </a>
 
-        <div class="reveal-up rounded-xl border border-[#e0e0e0] p-8" style="--delay: 0.3s">
-          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6">
-            <Icon name="lucide:map-pin" class="w-6 h-6 text-[#111]" />
+            <a href="mailto:info@projectbouw010.nl" class="reveal-up flex items-center gap-5 rounded-xl border border-[#e0e0e0] p-6 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.2s">
+              <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#111] transition-colors">
+                <Icon name="lucide:mail" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <h3 class="text-[#111] font-heading font-bold text-lg uppercase">E-mail</h3>
+                <p class="text-[#777]">info@projectbouw010.nl</p>
+              </div>
+            </a>
+
+            <div class="reveal-up flex items-center gap-5 rounded-xl border border-[#e0e0e0] p-6" style="--delay: 0.25s">
+              <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0">
+                <Icon name="lucide:map-pin" class="w-6 h-6 text-[#111]" />
+              </div>
+              <div>
+                <h3 class="text-[#111] font-heading font-bold text-lg uppercase">Adres</h3>
+                <p class="text-[#777]">Theodoor Colenbranderhof 5<br />3059 LS Rotterdam</p>
+              </div>
+            </div>
+
+            <div class="reveal-up flex items-center gap-5 rounded-xl border border-[#e0e0e0] p-6" style="--delay: 0.3s">
+              <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0">
+                <Icon name="lucide:clock" class="w-6 h-6 text-[#111]" />
+              </div>
+              <div>
+                <h3 class="text-[#111] font-heading font-bold text-lg uppercase">Bereikbaar</h3>
+                <p class="text-[#777]">Ma - Za: 07:00 - 20:00</p>
+              </div>
+            </div>
           </div>
-          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">Adres</h3>
-          <p class="text-[#777]">Theodoor Colenbranderhof 5<br />3059 LS Rotterdam</p>
+        </div>
+
+        <!-- Map -->
+        <div class="reveal-scale">
+          <div class="rounded-xl overflow-hidden aspect-square lg:aspect-auto lg:h-full min-h-[400px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2461.7!2d4.4777!3d51.9244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRotterdam!5e0!3m2!1snl!2snl!4v1"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Locatie Projectbouw 010 Rotterdam"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Map -->
-  <section class="py-8 lg:py-12 bg-white">
+  <!-- USPs Row -->
+  <section class="py-12 bg-[#f4f4f4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal-up rounded-xl overflow-hidden aspect-[16/7]">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2461.7!2d4.4777!3d51.9244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRotterdam!5e0!3m2!1snl!2snl!4v1"
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Locatie Projectbouw 010 Rotterdam"
-        ></iframe>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: 'lucide:shield-check', text: '4 Jaar Garantie' },
+          { icon: 'lucide:clock', text: 'Reactie Binnen 24 Uur' },
+          { icon: 'lucide:calculator', text: 'All-in Prijzen' },
+          { icon: 'lucide:star', text: '9.3 Beoordeling' },
+        ].map((usp, i) => (
+          <div class="reveal-up flex items-center gap-3" style={`--delay: ${i * 0.05}s`}>
+            <div class="w-10 h-10 bg-[#111] rounded-xl flex items-center justify-center shrink-0">
+              <Icon name={usp.icon} class="w-5 h-5 text-white" />
+            </div>
+            <p class="text-[#111] font-semibold text-sm sm:text-base">{usp.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-16 lg:py-20 bg-[#111]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase mb-4">Liever direct een offerte?</h2>
-      <p class="reveal-up text-gray-400 mb-8 max-w-lg mx-auto" style="--delay: 0.1s">
-        Vul ons offerteformulier in en ontvang binnen 24 uur een vrijblijvende offerte op maat.
-      </p>
-      <a href="/offerte-aanvragen" class="reveal-up inline-block bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 hover:bg-gray-200" style="--delay: 0.2s">
-        Offerte Aanvragen
-      </a>
+  <section class="py-16 lg:py-24 bg-[#111]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white uppercase mb-4">
+            Liever Direct Een Offerte?
+          </h2>
+          <p class="reveal-up text-gray-400 text-lg mb-8" style="--delay: 0.1s">
+            Vul ons offerteformulier in en ontvang binnen 24 uur een vrijblijvende offerte op maat.
+          </p>
+          <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.2s">
+            <a href="/offerte-aanvragen" class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
+              Offerte Aanvragen
+            </a>
+            <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center flex items-center justify-center gap-2">
+              <Icon name="lucide:phone" class="w-4 h-4" />
+              06-53999433
+            </a>
+          </div>
+        </div>
+        <div class="reveal-up text-center lg:text-left" style="--delay: 0.3s">
+          <div class="bg-[#1c1c1c] rounded-xl p-10">
+            <div class="grid grid-cols-2 gap-6">
+              <div>
+                <p class="text-3xl sm:text-4xl font-heading font-bold text-white">500+</p>
+                <p class="text-gray-500 text-sm mt-1">Projecten</p>
+              </div>
+              <div>
+                <p class="text-3xl sm:text-4xl font-heading font-bold text-white">9.3</p>
+                <p class="text-gray-500 text-sm mt-1">Beoordeling</p>
+              </div>
+              <div>
+                <p class="text-3xl sm:text-4xl font-heading font-bold text-white">15+</p>
+                <p class="text-gray-500 text-sm mt-1">Jaar Ervaring</p>
+              </div>
+              <div>
+                <p class="text-3xl sm:text-4xl font-heading font-bold text-white">4 jr</p>
+                <p class="text-gray-500 text-sm mt-1">Garantie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

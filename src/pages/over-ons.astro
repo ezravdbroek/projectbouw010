@@ -7,46 +7,88 @@ import { Icon } from 'astro-icon/components';
   title="Over Ons | Projectbouw 010 Rotterdam"
   description="Leer meer over Projectbouw 010, opgericht door Mike Gouri. Al meer dan 15 jaar specialist in renovaties en verbouwingen in Rotterdam."
 >
-  <!-- Hero -->
-  <section class="relative pt-32 pb-20 overflow-hidden">
+  <!-- Hero — Full width image -->
+  <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/cinewall.jpeg" alt="Projectbouw 010 team" class="w-full h-full object-cover" loading="eager" />
-      <div class="absolute inset-0 bg-gradient-to-b from-[#111]/80 to-[#111]"></div>
+      <img src="/images/cinewall.jpeg" alt="Projectbouw 010 team aan het werk" class="w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#111]/60 via-[#111]/70 to-[#111]"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="reveal-up text-white/60 font-medium tracking-widest uppercase text-sm mb-4">Over ons</p>
-      <h1 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase" style="--delay: 0.1s">
+      <nav class="reveal-up flex items-center gap-2 text-sm text-white/50 mb-8">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <Icon name="lucide:chevron-right" class="w-3 h-3" />
+        <span class="text-white">Over Ons</span>
+      </nav>
+      <h1 class="reveal-up text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white uppercase leading-[0.95]" style="--delay: 0.1s">
         Het Verhaal Achter<br />Projectbouw 010
       </h1>
+      <p class="reveal-up text-gray-300 text-lg sm:text-xl max-w-2xl mt-6 leading-relaxed" style="--delay: 0.2s">
+        Meer dan 15 jaar ervaring in renovaties en verbouwingen in Rotterdam. Vakmanschap, betrouwbaarheid en persoonlijke aanpak.
+      </p>
     </div>
   </section>
 
-  <!-- Story -->
+  <!-- Story — Founder -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div class="reveal-left">
-          <img src="/images/cinewall.jpeg" alt="Mike Gouri - Projectbouw 010" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+          <div class="relative">
+            <img src="/images/cinewall.jpeg" alt="Mike Gouri - Projectbouw 010" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+            <div class="absolute -bottom-6 -right-6 bg-[#111] text-white p-6 rounded-xl hidden lg:block">
+              <p class="text-3xl font-heading font-bold">15+</p>
+              <p class="text-gray-400 text-sm">Jaar Ervaring</p>
+            </div>
+          </div>
         </div>
         <div class="reveal-right" style="--delay: 0.1s">
+          <p class="text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Ons verhaal</p>
           <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-6">
             Vakmanschap met passie
           </h2>
-          <p class="text-[#333] leading-relaxed mb-4">
+          <p class="text-[#555] leading-relaxed mb-4">
             Projectbouw 010 is opgericht door Mike Gouri vanuit een passie voor het bouwvak. Met meer dan 15 jaar ervaring in renovaties en verbouwingen heeft hij een bedrijf opgebouwd dat staat voor kwaliteit, betrouwbaarheid en vakmanschap.
           </p>
-          <p class="text-[#333] leading-relaxed mb-4">
+          <p class="text-[#555] leading-relaxed mb-4">
             Wat begon als een eenmanszaak is uitgegroeid tot een veelzijdig aannemersbedrijf met een vast team van vakmensen. Van een complete badkamerrenovatie tot een uitbouw of opbouw — wij leveren alles in eigen beheer.
           </p>
-          <p class="text-[#333] leading-relaxed">
-            Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt, weet precies waar u aan toe bent en kunt rekenen op eerlijke, all-in prijzen. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
+          <p class="text-[#555] leading-relaxed mb-8">
+            Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt, weet precies waar u aan toe bent en kunt rekenen op eerlijke, all-in prijzen.
           </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/offerte-aanvragen" class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
+              Gratis Offerte
+            </a>
+            <a href="tel:0653999433" class="border border-[#111] text-[#111] px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center flex items-center justify-center gap-2 hover:bg-[#111] hover:text-white">
+              <Icon name="lucide:phone" class="w-4 h-4" />
+              06-53999433
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Values -->
+  <!-- Stats — Full width dark band -->
+  <section class="py-16 lg:py-20 bg-[#111]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        {[
+          { value: '15+', label: 'Jaar Ervaring' },
+          { value: '500+', label: 'Projecten Gerealiseerd' },
+          { value: '9.3', label: 'Gemiddelde Beoordeling' },
+          { value: '4 jr', label: 'Garantie op Werk' },
+        ].map((s, i) => (
+          <div class="reveal-up text-center" style={`--delay: ${i * 0.08}s`}>
+            <p class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white">{s.value}</p>
+            <p class="text-gray-500 text-sm sm:text-base mt-2">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values — Grid -->
   <section class="py-16 lg:py-24 bg-[#f4f4f4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -61,31 +103,68 @@ import { Icon } from 'astro-icon/components';
           { icon: 'lucide:users', title: 'Persoonlijk', desc: 'U heeft altijd een vast aanspreekpunt. Wij denken met u mee.' },
           { icon: 'lucide:calculator', title: 'Transparant', desc: 'All-in prijzen zonder verborgen kosten. U weet vooraf precies waar u aan toe bent.' },
         ].map((v, i) => (
-          <div class="reveal-up text-center p-8" style={`--delay: ${i * 0.1}s`}>
-            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Icon name={v.icon} class="w-7 h-7 text-[#111]" />
+          <div class="reveal-up bg-white rounded-xl p-8" style={`--delay: ${i * 0.08}s`}>
+            <div class="w-14 h-14 bg-[#111] rounded-xl flex items-center justify-center mb-6">
+              <Icon name={v.icon} class="w-6 h-6 text-white" />
             </div>
             <h3 class="text-[#111] font-heading font-bold text-xl uppercase mb-3">{v.title}</h3>
-            <p class="text-[#555] text-sm leading-relaxed">{v.desc}</p>
+            <p class="text-[#777] text-sm leading-relaxed">{v.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
+  <!-- Werkwijze -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-8" style="--delay: 0.1s">
+            Van Idee Tot Oplevering
+          </h2>
+          <div class="space-y-6">
+            {[
+              { number: '01', title: 'Kennismaking & Opname', desc: 'Wij bespreken uw wensen en komen langs voor een opname op locatie. Samen bekijken we de mogelijkheden.' },
+              { number: '02', title: 'Offerte Op Maat', desc: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten. Inclusief materiaal en arbeid.' },
+              { number: '03', title: 'Vakkundige Uitvoering', desc: 'Ons team gaat aan de slag. U wordt continu op de hoogte gehouden van de voortgang.' },
+              { number: '04', title: 'Oplevering & Garantie', desc: 'Samen lopen we het resultaat na. Pas als u tevreden bent, is het klaar. Met 4 jaar garantie.' },
+            ].map((step, i) => (
+              <div class="reveal-up flex gap-5" style={`--delay: ${(i + 2) * 0.05}s`}>
+                <div class="shrink-0">
+                  <span class="text-3xl font-heading font-bold text-[#e0e0e0]">{step.number}</span>
+                </div>
+                <div>
+                  <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">{step.title}</h3>
+                  <p class="text-[#777] text-sm leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="reveal-scale">
+          <img src="/images/keuken.jpeg" alt="Projectbouw 010 werkwijze" class="rounded-xl w-full object-cover aspect-[3/4]" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USPs Row -->
+  <section class="py-12 bg-[#f4f4f4]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { value: '15+', label: 'Jaar Ervaring' },
-          { value: '500+', label: 'Projecten Gerealiseerd' },
-          { value: '9.3', label: 'Gemiddelde Beoordeling' },
-          { value: '4 jr', label: 'Garantie op Werk' },
-        ].map((s, i) => (
-          <div class="reveal-up" style={`--delay: ${i * 0.1}s`}>
-            <p class="text-4xl sm:text-5xl font-heading font-bold text-[#111]">{s.value}</p>
-            <p class="text-[#777] text-sm mt-2">{s.label}</p>
+          { icon: 'lucide:shield-check', text: '4 Jaar Garantie' },
+          { icon: 'lucide:clock', text: 'Reactie Binnen 24 Uur' },
+          { icon: 'lucide:calculator', text: 'All-in Prijzen' },
+          { icon: 'lucide:star', text: '9.3 Beoordeling' },
+        ].map((usp, i) => (
+          <div class="reveal-up flex items-center gap-3" style={`--delay: ${i * 0.05}s`}>
+            <div class="w-10 h-10 bg-[#111] rounded-xl flex items-center justify-center shrink-0">
+              <Icon name={usp.icon} class="w-5 h-5 text-white" />
+            </div>
+            <p class="text-[#111] font-semibold text-sm sm:text-base">{usp.text}</p>
           </div>
         ))}
       </div>
@@ -95,8 +174,8 @@ import { Icon } from 'astro-icon/components';
   <!-- CTA -->
   <section class="py-16 lg:py-24 bg-[#111]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase mb-4">Samenwerken?</h2>
-      <p class="reveal-up text-gray-400 mb-8 max-w-lg mx-auto" style="--delay: 0.1s">
+      <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white uppercase mb-4">Samenwerken?</h2>
+      <p class="reveal-up text-gray-400 mb-10 max-w-lg mx-auto text-lg" style="--delay: 0.1s">
         Neem contact met ons op en ontdek wat Projectbouw 010 voor u kan betekenen.
       </p>
       <div class="reveal-up flex flex-col sm:flex-row gap-4 justify-center" style="--delay: 0.2s">
