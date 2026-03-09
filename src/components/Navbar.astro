@@ -9,11 +9,14 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
-const dienstenColumns = [
-  diensten.filter((_, i) => i < 5),
-  diensten.filter((_, i) => i >= 5 && i < 10),
-  diensten.filter((_, i) => i >= 10),
+const bouwDiensten = ['Verbouw', 'Aanbouw', 'Uitbouw', 'Opbouw'];
+const bouwLinks = [
+  { naam: 'Verbouw', slug: 'aanbouw' },
+  ...diensten.filter((d) => ['aanbouw', 'uitbouw', 'opbouw'].includes(d.slug)),
 ];
+const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw'].includes(d.slug));
+const overigeCol1 = overigeDiensten.slice(0, Math.ceil(overigeDiensten.length / 2));
+const overigeCol2 = overigeDiensten.slice(Math.ceil(overigeDiensten.length / 2));
 ---
 
 <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
@@ -74,7 +77,7 @@ const dienstenColumns = [
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden max-h-[calc(100vh-5rem)] overflow-y-auto">
+    <div id="mobile-menu" class="lg:hidden hidden overflow-y-auto pb-6 bg-[#111]/95 backdrop-blur-md" style="max-height: calc(100vh - 5rem); max-height: calc(100dvh - 5rem); -webkit-overflow-scrolling: touch;">
       <div class="py-4 space-y-1 border-t border-white/10">
         <a
           href="/"
@@ -93,7 +96,18 @@ const dienstenColumns = [
             <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform duration-200" id="diensten-chevron" />
           </button>
           <div id="diensten-mobile-list" class="hidden pl-4">
-            {diensten.map((d) => (
+            <!-- Bouw diensten uitgelicht -->
+            {bouwLinks.map((d) => (
+              <a
+                href={`/diensten/${d.slug}`}
+                class="block px-4 py-2.5 text-white font-heading font-bold uppercase hover:text-gray-300 transition-colors duration-200"
+              >
+                {d.naam}
+              </a>
+            ))}
+            <div class="border-t border-white/10 my-2 mx-4"></div>
+            <!-- Overige diensten -->
+            {overigeDiensten.map((d) => (
               <a
                 href={`/diensten/${d.slug}`}
                 class="block px-4 py-2 text-gray-400 hover:text-white text-sm transition-colors duration-200"
@@ -126,19 +140,26 @@ const dienstenColumns = [
 
   <!-- Full-width Diensten dropdown panel (animated) -->
   <div id="diensten-dropdown" class="w-full bg-[#111]/95 backdrop-blur-md border-t border-white/10 overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; opacity: 0;">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-3 gap-x-12 items-start">
-        {dienstenColumns.map((col) => (
-          <ul class="space-y-4">
-            {col.map((d) => (
-              <li>
-                <a href={`/diensten/${d.slug}`} class="text-gray-300 hover:text-white transition-colors duration-200 text-lg block">
-                  {d.naam}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ))}
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex gap-12">
+        <!-- Bouw diensten: groot links -->
+        <ul class="space-y-4 border-r border-white/10 pr-12">
+          {bouwLinks.map((d) => (
+            <li>
+              <a href={`/diensten/${d.slug}`} class="text-white hover:text-gray-300 transition-colors duration-200 text-xl font-heading font-bold uppercase block">
+                {d.naam}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <!-- Overige diensten: 2 kolommen rechts -->
+        <div class="grid grid-cols-2 gap-x-12 gap-y-4 flex-1">
+          {overigeDiensten.map((d) => (
+            <a href={`/diensten/${d.slug}`} class="text-gray-300 hover:text-white transition-colors duration-200 text-base block">
+              {d.naam}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </div>

@@ -208,17 +208,17 @@ const schemaOrg = JSON.stringify({
             Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt en weet precies waar u aan toe bent. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
           </p>
 
-          <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8">
             <div>
-              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">15+</p>
+              <p class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111]">15+</p>
               <p class="text-[#666] text-xs mt-1">Jaar Ervaring</p>
             </div>
             <div>
-              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">500+</p>
+              <p class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111]">500+</p>
               <p class="text-[#666] text-xs mt-1">Projecten</p>
             </div>
             <div>
-              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">4<span class="text-lg ml-1">jr</span></p>
+              <p class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111]">4<span class="text-lg ml-1">jr</span></p>
               <p class="text-[#666] text-xs mt-1">Garantie</p>
             </div>
           </div>
@@ -430,13 +430,13 @@ const schemaOrg = JSON.stringify({
           { quote: "Wat een prachtig resultaat. Dit bedrijf doet er alles aan om haar klanten tevreden te stellen.", name: "Touria Asri", source: "Google Review" },
           { quote: "Great service and excellent results. They delivered exactly what they promised. Finished in two days instead of three.", name: "MJ Saloum", source: "Google Review" },
         ].map((review) => (
-          <div class="w-[400px] shrink-0 glass rounded-xl p-6">
+          <div class="w-[300px] sm:w-[400px] shrink-0 glass rounded-xl p-5 sm:p-6">
             <div class="flex gap-0.5 mb-3">
               {Array.from({ length: 5 }).map(() => (
                 <Icon name="lucide:star" class="w-4 h-4 fill-white text-white" />
               ))}
             </div>
-            <p class="text-white text-base leading-relaxed mb-4">"{review.quote}"</p>
+            <p class="text-white text-sm sm:text-base leading-relaxed mb-4">"{review.quote}"</p>
             <div class="flex items-center gap-2">
               <span class="text-white font-medium text-sm">{review.name}</span>
               <span class="text-[#777] text-xs">— {review.source}</span>
@@ -458,7 +458,7 @@ const schemaOrg = JSON.stringify({
           { quote: "Mike is super vriendelijk, denkt mee in oplossingen, handelt snel en komt zijn afspraken na. Heel professioneel.", name: "Verified Klant", source: "Trustoo Review" },
           { quote: "Groot renovatieproject laten uitvoeren. Huis compleet gestript en netjes opgebouwd. Zeer tevreden met het resultaat.", name: "Verified Klant", source: "Trustoo Review" },
         ].map((review) => (
-          <div class="w-[400px] shrink-0 glass rounded-xl p-6">
+          <div class="w-[300px] sm:w-[400px] shrink-0 glass rounded-xl p-5 sm:p-6">
             <div class="flex gap-0.5 mb-3">
               {Array.from({ length: 5 }).map(() => (
                 <Icon name="lucide:star" class="w-4 h-4 fill-white text-white" />
@@ -476,20 +476,20 @@ const schemaOrg = JSON.stringify({
   </section>
 
   <!-- CTA Banner (donkere sectie) -->
-  <section class="relative py-28 lg:py-40 bg-[#1c1c1c] overflow-hidden">
+  <section class="relative py-20 sm:py-28 lg:py-40 bg-[#1c1c1c] overflow-hidden">
     <!-- Outlined PROJECTBOUW 010 achter de content -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-      <p class="font-heading font-bold uppercase text-[15vw] lg:text-[12vw] whitespace-nowrap leading-none cta-outline-text">PROJECTBOUW 010</p>
+      <p class="font-heading font-bold uppercase text-[20vw] sm:text-[15vw] lg:text-[12vw] whitespace-nowrap leading-none cta-outline-text">PROJECTBOUW 010</p>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase mb-6">Klaar Om Te Verbouwen?</h2>
-      <p class="reveal-up text-gray-300 text-lg sm:text-xl mb-12 max-w-2xl mx-auto" style="--delay: 0.1s">Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
-      <div class="reveal-up flex flex-col sm:flex-row gap-4 justify-center" style="--delay: 0.2s">
-        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-10 py-5 font-bold rounded text-xl transition-colors duration-200 text-center hover:bg-gray-200">
+      <h2 class="reveal-up text-3xl sm:text-4xl lg:text-6xl font-heading font-bold text-white uppercase mb-6">Klaar Om Te Verbouwen?</h2>
+      <p class="reveal-up text-gray-300 text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto" style="--delay: 0.1s">Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
+      <div class="reveal-up flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center" style="--delay: 0.2s">
+        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-6 sm:px-10 py-4 sm:py-5 font-bold rounded text-base sm:text-xl transition-colors duration-200 text-center hover:bg-gray-200">
           Gratis Offerte Aanvragen
         </a>
-        <a href="tel:0653999433" class="border-2 border-white/40 hover:border-white hover:bg-white/5 text-white px-10 py-5 font-bold rounded text-xl transition-all duration-200 flex items-center justify-center gap-3">
-          <Icon name="lucide:phone" class="w-6 h-6" />
+        <a href="tel:0653999433" class="border-2 border-white/40 hover:border-white hover:bg-white/5 text-white px-6 sm:px-10 py-4 sm:py-5 font-bold rounded text-base sm:text-xl transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3">
+          <Icon name="lucide:phone" class="w-5 h-5 sm:w-6 sm:h-6" />
           06-53999433
         </a>
       </div>
