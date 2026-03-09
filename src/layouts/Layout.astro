@@ -1,6 +1,4 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource-variable/playfair-display';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -8,11 +6,15 @@ import CookieConsent from '../components/CookieConsent.astro';
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  schemaOrg?: string;
 }
 
 const {
-  title = 'Projectbouw 010 | Renovatie & Verbouwing Rotterdam',
+  title = 'Aannemer Rotterdam | Renovatie & Verbouwing | Projectbouw010',
   description = 'Projectbouw 010 is uw specialist in renovaties en verbouwingen in Rotterdam. Vakmanschap, betrouwbaarheid en persoonlijke aanpak.',
+  canonicalUrl,
+  schemaOrg,
 } = Astro.props;
 ---
 
@@ -26,6 +28,12 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- Google Fonts: Oswald + Source Sans 3 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -33,8 +41,10 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:site_name" content="Projectbouw 010" />
+
+    {schemaOrg && <script type="application/ld+json" set:html={schemaOrg} />}
   </head>
-  <body class="bg-primary text-white font-sans antialiased">
+  <body class="bg-white text-[#111111] font-sans antialiased">
     <Navbar />
     <main>
       <slot />
@@ -43,51 +53,85 @@ const {
     <CookieConsent />
 
     <script>
-      // Reveal animations using IntersectionObserver
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-      );
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-      document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .fade-in').forEach((el) => {
-        revealObserver.observe(el);
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Lenis smooth scroll
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      // Connect Lenis to GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Disable Lenis on forms to prevent scroll issues
+      document.querySelectorAll('form, input, textarea, select').forEach((el) => {
+        el.addEventListener('focus', () => lenis.stop(), true);
+        el.addEventListener('blur', () => lenis.start(), true);
+      });
+
+      // GSAP reveal animations
+      const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .fade-in');
+      revealElements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const delay = parseFloat(htmlEl.style.getPropertyValue('--delay') || '0');
+
+        let fromVars: gsap.TweenVars = { opacity: 0 };
+        if (el.classList.contains('reveal-up') || el.classList.contains('fade-in')) {
+          fromVars.y = 40;
+        } else if (el.classList.contains('reveal-left')) {
+          fromVars.x = -40;
+        } else if (el.classList.contains('reveal-right')) {
+          fromVars.x = 40;
+        } else if (el.classList.contains('reveal-scale')) {
+          fromVars.scale = 0.92;
+        }
+
+        gsap.from(htmlEl, {
+          ...fromVars,
+          duration: 0.8,
+          delay,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: htmlEl,
+            start: 'top 88%',
+            once: true,
+          },
+        });
       });
 
       // Counter animation for stats
       document.querySelectorAll('[data-count]').forEach((el) => {
         const target = parseInt(el.getAttribute('data-count') || '0', 10);
-        const counterObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                let current = 0;
-                const step = Math.max(1, Math.floor(target / 40));
-                const interval = setInterval(() => {
-                  current += step;
-                  if (current >= target) {
-                    current = target;
-                    clearInterval(interval);
-                  }
-                  (entry.target as HTMLElement).textContent = current.toString();
-                }, 30);
-                counterObserver.unobserve(entry.target);
-              }
+        const obj = { val: 0 };
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 90%',
+          once: true,
+          onEnter: () => {
+            gsap.to(obj, {
+              val: target,
+              duration: 1.5,
+              ease: 'power2.out',
+              onUpdate: () => {
+                (el as HTMLElement).textContent = Math.round(obj.val).toString();
+              },
             });
           },
-          { threshold: 0.5 }
-        );
-        counterObserver.observe(el);
+        });
       });
 
       // Pause marquee on hover
-      document.querySelectorAll('.marquee-track').forEach((track) => {
+      document.querySelectorAll('.marquee-track, .marquee-track-reverse').forEach((track) => {
         const parent = track.parentElement;
         if (parent) {
           parent.addEventListener('mouseenter', () => {
@@ -106,53 +150,21 @@ const {
         overflow-x: clip;
       }
 
-      /* Reveal animations */
-      .reveal-up,
-      .reveal-left,
-      .reveal-right,
-      .reveal-scale,
-      .fade-in {
-        opacity: 0;
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        transition-delay: var(--delay, 0s);
+      /* Reduced motion: disable animations */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
-
-      .reveal-up,
-      .fade-in {
-        transform: translateY(32px);
-      }
-      .reveal-left {
-        transform: translateX(-40px);
-      }
-      .reveal-right {
-        transform: translateX(40px);
-      }
-      .reveal-scale {
-        transform: scale(0.92);
-      }
-
-      .reveal-up.is-visible,
-      .reveal-left.is-visible,
-      .reveal-right.is-visible,
-      .reveal-scale.is-visible,
-      .fade-in.is-visible {
-        opacity: 1;
-        transform: translateY(0) translateX(0) scale(1);
-      }
-
-      /* Legacy delay classes for compatibility */
-      .fade-in-delay-1 { --delay: 0.1s; }
-      .fade-in-delay-2 { --delay: 0.2s; }
-      .fade-in-delay-3 { --delay: 0.3s; }
-      .fade-in-delay-4 { --delay: 0.4s; }
-      .fade-in-delay-5 { --delay: 0.5s; }
 
       /* Glassmorphism utility */
       .glass {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       /* Outlined text utility */
@@ -162,7 +174,7 @@ const {
         color: transparent;
       }
       .text-outline-dark {
-        -webkit-text-stroke: 1px rgba(30, 34, 40, 0.12);
+        -webkit-text-stroke: 1px rgba(17, 17, 17, 0.12);
         -webkit-text-fill-color: transparent;
         color: transparent;
       }
@@ -182,6 +194,20 @@ const {
       @keyframes marqueeReverse {
         0% { transform: translateX(-50%); }
         100% { transform: translateX(0); }
+      }
+
+      /* Lenis */
+      html.lenis, html.lenis body {
+        height: auto;
+      }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      .lenis.lenis-stopped {
+        overflow: hidden;
       }
     </style>
   </body>

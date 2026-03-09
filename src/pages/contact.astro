@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout
+  title="Contact | Projectbouw 010 Rotterdam"
+  description="Neem contact op met Projectbouw 010 in Rotterdam. Bel, WhatsApp, e-mail of kom langs. Wij reageren binnen 24 uur."
+>
+  <!-- Hero -->
+  <section class="relative pt-32 pb-16 overflow-hidden bg-[#111]">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="reveal-up text-white/60 font-medium tracking-widest uppercase text-sm mb-4">Neem contact op</p>
+      <h1 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase" style="--delay: 0.1s">
+        Contact
+      </h1>
+      <p class="reveal-up text-gray-400 text-lg max-w-xl mt-4" style="--delay: 0.2s">
+        Heeft u een vraag of wilt u een project bespreken? Neem gerust contact met ons op.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact cards -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="tel:0653999433" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0s">
+          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
+            <Icon name="lucide:phone" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+          </div>
+          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">Bel ons direct</h3>
+          <p class="text-[#777]">06-53999433</p>
+        </a>
+
+        <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.1s">
+          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
+            <Icon name="lucide:message-circle" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+          </div>
+          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">WhatsApp</h3>
+          <p class="text-[#777]">Stuur een bericht</p>
+        </a>
+
+        <a href="mailto:info@projectbouw010.nl" class="reveal-up rounded-xl border border-[#e0e0e0] p-8 hover:border-[#111] transition-all duration-300 group" style="--delay: 0.2s">
+          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#111] transition-colors">
+            <Icon name="lucide:mail" class="w-6 h-6 text-[#111] group-hover:text-white transition-colors" />
+          </div>
+          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">E-mail</h3>
+          <p class="text-[#777]">info@projectbouw010.nl</p>
+        </a>
+
+        <div class="reveal-up rounded-xl border border-[#e0e0e0] p-8" style="--delay: 0.3s">
+          <div class="w-14 h-14 bg-[#f4f4f4] rounded-xl flex items-center justify-center mb-6">
+            <Icon name="lucide:map-pin" class="w-6 h-6 text-[#111]" />
+          </div>
+          <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">Adres</h3>
+          <p class="text-[#777]">Theodoor Colenbranderhof 5<br />3059 LS Rotterdam</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="py-8 lg:py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal-up rounded-xl overflow-hidden aspect-[16/7]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2461.7!2d4.4777!3d51.9244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRotterdam!5e0!3m2!1snl!2snl!4v1"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Locatie Projectbouw 010 Rotterdam"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 lg:py-20 bg-[#111]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase mb-4">Liever direct een offerte?</h2>
+      <p class="reveal-up text-gray-400 mb-8 max-w-lg mx-auto" style="--delay: 0.1s">
+        Vul ons offerteformulier in en ontvang binnen 24 uur een vrijblijvende offerte op maat.
+      </p>
+      <a href="/offerte-aanvragen" class="reveal-up inline-block bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 hover:bg-gray-200" style="--delay: 0.2s">
+        Offerte Aanvragen
+      </a>
+    </div>
+  </section>
+</Layout>

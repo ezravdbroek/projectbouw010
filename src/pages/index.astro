@@ -1,224 +1,263 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { diensten } from '../data/diensten';
+import { projecten } from '../data/projecten';
+
+const uitgelicht = projecten.filter((p) => p.uitgelicht);
+
+const schemaOrg = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HomeImprovement',
+  name: 'Projectbouw 010',
+  description: 'Specialist in renovaties en verbouwingen in Rotterdam.',
+  url: 'https://projectbouw010.nl',
+  telephone: '+31653999433',
+  email: 'info@projectbouw010.nl',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Theodoor Colenbranderhof 5',
+    addressLocality: 'Rotterdam',
+    addressRegion: 'Zuid-Holland',
+    addressCountry: 'NL',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '9.3',
+    ratingCount: '173',
+    bestRating: '10',
+  },
+});
 ---
 
-<Layout>
-  <!-- Hero Section — Split-screen -->
+<Layout title="Aannemer Rotterdam | Renovatie & Verbouwing | Projectbouw010" schemaOrg={schemaOrg}>
+  <!-- Hero Section — Full viewport video -->
   <section class="relative min-h-screen flex items-center overflow-hidden">
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-      <span class="text-[12rem] sm:text-[28rem] lg:text-[40rem] font-heading font-bold text-outline leading-none">010</span>
-    </div>
+    <!-- Video background -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/images/hero.jpg"
+      class="absolute inset-0 w-full h-full object-cover"
+    >
+      <source src="/images/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#111]/70 via-[#111]/50 to-[#111]"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32 lg:py-0">
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-        <div class="lg:col-span-3">
-          <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-4">Renovatie & Verbouwing Rotterdam</p>
-          <h1 class="reveal-up text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight" style="--delay: 0.1s">
-            Vakmanschap dat<br />staat als een huis.
-          </h1>
-          <p class="reveal-up text-gray-300 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed" style="--delay: 0.2s">
-            Met de jarenlange ervaring van Mike en zijn team is jouw project in vertrouwde handen. Kwaliteit, precisie en veelzijdigheid – dát is Projectbouw010.
-          </p>
-          <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.3s">
-            <a href="/offerte" class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center">
-              Offerte Aanvragen
-            </a>
-            <a href="#projecten" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center">
-              Bekijk Projecten
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-2 reveal-scale" style="--delay: 0.2s">
-          <div class="relative">
-            <img src="/images/hero.jpg" alt="Projectbouw 010 - Renovatie werkzaamheden" class="hidden sm:block w-full rounded-2xl object-cover aspect-[3/4] shadow-2xl" loading="eager" />
-            <img src="/images/hero-telefoon.jpeg" alt="Projectbouw 010 - Renovatie werkzaamheden" class="sm:hidden w-full rounded-2xl object-cover aspect-[3/4] shadow-2xl" loading="eager" />
-            <div class="absolute -inset-3 border border-white/10 rounded-2xl -z-10"></div>
-          </div>
-        </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-24">
+      <p class="reveal-up text-white/70 font-medium tracking-widest uppercase text-sm mb-6">Renovatie & Verbouwing Rotterdam</p>
+      <h1 class="reveal-up text-hero font-heading font-bold text-white uppercase leading-[0.95] mb-8" style="--delay: 0.1s">
+        Vakmanschap<br />dat staat als<br />een huis.
+      </h1>
+      <p class="reveal-up text-gray-300 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed" style="--delay: 0.2s">
+        Met 15+ jaar ervaring is jouw project in vertrouwde handen. Kwaliteit, precisie en veelzijdigheid — dat is Projectbouw 010.
+      </p>
+      <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.3s">
+        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
+          Offerte Aanvragen
+        </a>
+        <a href="/projecten" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center">
+          Bekijk Projecten
+        </a>
       </div>
 
       <!-- Stats strip -->
-      <div class="reveal-up mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:flex sm:flex-wrap sm:justify-start sm:gap-8 lg:gap-16" style="--delay: 0.4s">
+      <div class="reveal-up mt-16 lg:mt-24 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 lg:gap-16 border-t border-white/10 pt-8" style="--delay: 0.4s">
         <div>
-          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block"><span data-count="10">0</span>+</span>
-          <span class="text-gray-400 text-xs sm:text-sm">Jaar Ervaring</span>
+          <span class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">15+</span>
+          <span class="text-[#777] text-sm">Jaar Ervaring</span>
         </div>
-        <div class="w-px h-10 bg-white/10 hidden sm:block self-center"></div>
         <div>
-          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block"><span data-count="250">0</span>+</span>
-          <span class="text-gray-400 text-xs sm:text-sm">Projecten</span>
+          <span class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">500+</span>
+          <span class="text-[#777] text-sm">Projecten</span>
         </div>
-        <div class="w-px h-10 bg-white/10 hidden sm:block self-center"></div>
         <div>
-          <span class="text-2xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">9.3</span>
-          <span class="text-gray-400 text-xs sm:text-sm">Trustoo Score</span>
+          <span class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">9.3</span>
+          <span class="text-[#777] text-sm">Beoordeling</span>
+        </div>
+        <div>
+          <span class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white block">4 <span class="text-lg">jr</span></span>
+          <span class="text-[#777] text-sm">Garantie</span>
         </div>
       </div>
     </div>
 
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-      <Icon name="lucide:chevron-down" class="w-6 h-6 text-white/50" />
+      <Icon name="lucide:chevron-down" class="w-6 h-6 text-white/40" />
     </div>
   </section>
 
-  <!-- Diensten Section — Bento Grid -->
-  <section id="diensten" class="py-20 lg:py-28">
+  <!-- Bouw Sectie — 4 expandable panels -->
+  <section class="py-20 lg:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-16">
-        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Wat wij doen</p>
-        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white" style="--delay: 0.1s">Onze Diensten</h2>
+      <div class="mb-12">
+        <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Bouwprojecten</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">Wat Wij Bouwen</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Aanbouw & Uitbouw — large -->
-        <div class="reveal-scale sm:col-span-2 lg:col-span-2 lg:row-span-2 relative rounded-xl overflow-hidden group cursor-pointer aspect-[4/3] lg:aspect-auto">
-          <img src="/images/uitbouw.jpeg" alt="Aanbouw & Uitbouw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
-          <div class="relative h-full flex flex-col justify-end p-6 lg:p-8">
-            <h3 class="text-white font-heading font-bold text-2xl lg:text-3xl mb-2">Aanbouw & Uitbouw</h3>
-            <p class="text-gray-300 text-sm lg:text-base max-w-sm">Meer ruimte nodig? Wij realiseren uw aanbouw of uitbouw vakkundig en op maat.</p>
-          </div>
-        </div>
-
+      <!-- Desktop: 4 expandable panels -->
+      <div class="hidden lg:flex gap-2 h-[500px] bouw-panels">
         {[
-          { img: '/images/badkamer.jpeg', title: 'Badkamer Renovatie', desc: 'Complete badkamer renovatie met hoogwaardige materialen en modern design.' },
-          { img: '/images/keuken.jpeg', title: 'Keukenrenovatie', desc: 'Uw droomkeuken op maat gemaakt. Van ontwerp tot installatie.' },
-          { img: '/images/1.jpg', title: 'Stalen Deuren', desc: 'Industriele stalen deuren en kozijnen voor een stijlvolle uitstraling.' },
-          { img: '/images/2.jpg', title: 'Stucwerk & Tegelwerk', desc: 'Professioneel stucwerk en tegelwerk voor een perfect afgewerkt resultaat.' },
-          { img: '/images/3.jpg', title: 'Traprenovatie', desc: 'Geef uw trap een nieuw leven met onze vakkundige traprenovaties.' },
+          { naam: 'Aanbouw', slug: 'aanbouw', img: '/images/aanbouw.jpg', desc: 'Meer leefruimte nodig? Wij realiseren uw aanbouw vakkundig en op maat.' },
+          { naam: 'Uitbouw', slug: 'uitbouw', img: '/images/uitbouw.jpeg', desc: 'Vergroot uw woonkamer of keuken met een stijlvolle uitbouw.' },
+          { naam: 'Opbouw', slug: 'opbouw', img: '/images/1.jpg', desc: 'Een extra verdieping op uw woning, vakkundig opgebouwd.' },
+          { naam: 'Verbouw', slug: 'aanbouw', img: '/images/cinewall.jpeg', desc: 'Complete verbouwing van A tot Z, volledig naar uw wensen.' },
         ].map((item, i) => (
-          <div class="reveal-up relative rounded-xl overflow-hidden group cursor-pointer aspect-[4/3]" style={`--delay: ${(i + 1) * 0.05}s`}>
-            <img src={item.img} alt={item.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
-            <div class="relative h-full flex flex-col justify-end p-5">
-              <h3 class="text-white font-semibold text-lg">{item.title}</h3>
-              <p class="text-gray-300 text-xs mt-1 line-clamp-2">{item.desc}</p>
+          <a
+            href={`/diensten/${item.slug}`}
+            class="bouw-panel relative rounded-xl overflow-hidden cursor-pointer group"
+            style={`--delay: ${i * 0.05}s`}
+          >
+            <img src={item.img} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111]/90 via-[#111]/40 to-[#111]/10 group-hover:from-[#111]/95 transition-all duration-500"></div>
+            <div class="relative h-full flex flex-col justify-end p-8">
+              <span class="text-white/40 font-heading font-bold text-6xl absolute top-6 left-8 transition-all duration-500">0{i + 1}</span>
+              <h3 class="text-white font-heading font-bold text-2xl uppercase panel-title transition-transform duration-500">{item.naam}</h3>
+              <div class="panel-desc transition-all duration-500 overflow-hidden">
+                <div class="overflow-hidden">
+                  <p class="text-gray-300 text-sm leading-relaxed max-w-xs mt-2">{item.desc}</p>
+                  <span class="mt-3 text-white/70 text-sm font-medium flex items-center gap-1">
+                    Meer info <Icon name="lucide:arrow-right" class="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile: vertical cards -->
+      <div class="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { naam: 'Aanbouw', slug: 'aanbouw', img: '/images/aanbouw.jpg' },
+          { naam: 'Uitbouw', slug: 'uitbouw', img: '/images/uitbouw.jpeg' },
+          { naam: 'Opbouw', slug: 'opbouw', img: '/images/1.jpg' },
+          { naam: 'Verbouw', slug: 'aanbouw', img: '/images/cinewall.jpeg' },
+        ].map((item, i) => (
+          <a href={`/diensten/${item.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[16/9]" style={`--delay: ${i * 0.05}s`}>
+            <img src={item.img} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-[#111]/30 to-transparent"></div>
+            <div class="relative h-full flex items-end p-5">
+              <h3 class="text-white font-heading font-bold text-xl uppercase">{item.naam}</h3>
+            </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Over Ons Section — Side by side with overlap -->
-  <section id="over-ons" class="py-20 lg:py-28 bg-primary-800/30">
+  <!-- Diensten Section — 2x4 Grid (lichte sectie) -->
+  <section id="diensten" class="py-20 lg:py-28 bg-[#f4f4f4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
-        <!-- Text block (overlaps photo on desktop) -->
-        <div class="reveal-left lg:relative lg:z-10 lg:-mr-16 order-2 lg:order-1">
-          <div class="glass rounded-xl p-8 lg:p-10">
-            <p class="text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Over Projectbouw 010</p>
-            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white mb-6">
-              Vakmanschap &<br />Betrouwbaarheid
-            </h2>
-            <p class="text-gray-300 leading-relaxed mb-4">
-              Projectbouw 010, opgericht door Mike, is een aannemersbedrijf gevestigd in Rotterdam. Wij zijn gespecialiseerd in renovaties en verbouwingen voor particulieren. Van een complete badkamerrenovatie tot een stijlvolle uitbouw — wij leveren kwaliteit waar u op kunt vertrouwen.
-            </p>
-            <p class="text-gray-300 leading-relaxed mb-8">
-              Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt en weet precies waar u aan toe bent. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
-            </p>
+      <div class="flex items-end justify-between mb-16">
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Onze specialiteiten</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">Onze Diensten</h2>
+        </div>
+        <p class="reveal-up hidden sm:block text-[#777] text-sm max-w-xs text-right" style="--delay: 0.2s">
+          Van badkamerrenovatie tot stucwerk — wij zijn uw specialist.
+        </p>
+      </div>
 
-            <div class="grid grid-cols-3 gap-4">
-              <div>
-                <p class="text-4xl lg:text-5xl font-heading font-bold text-white"><span data-count="10">0</span>+</p>
-                <p class="text-gray-400 text-xs mt-1">Jaar Ervaring</p>
-              </div>
-              <div>
-                <p class="text-4xl lg:text-5xl font-heading font-bold text-white"><span data-count="250">0</span>+</p>
-                <p class="text-gray-400 text-xs mt-1">Projecten</p>
-              </div>
-              <div>
-                <p class="text-4xl lg:text-5xl font-heading font-bold text-white">4<span class="text-lg ml-1">jr</span></p>
-                <p class="text-gray-400 text-xs mt-1">Garantie</p>
-              </div>
+      <!-- 8 diensten in 2x4 grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {diensten
+          .filter((d) => ['badkamer-renovatie', 'keukenrenovatie', 'stukadoor', 'tegelzetter', 'cinewall', 'pvc-vloer-leggen', 'toilet-renovatie', 'beton-cire'].includes(d.slug))
+          .map((d, i) => (
+          <a href={`/diensten/${d.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.04}s`}>
+            <img src={d.afbeelding} alt={d.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111]/85 via-[#111]/25 to-transparent group-hover:from-[#111]/95 transition-all duration-300"></div>
+            <div class="relative h-full flex items-end p-4 sm:p-5">
+              <h3 class="text-white font-heading font-bold text-base sm:text-lg uppercase">{d.naam}</h3>
             </div>
-          </div>
-        </div>
+          </a>
+        ))}
+      </div>
 
-        <!-- Photo -->
-        <div class="reveal-right order-1 lg:order-2" style="--delay: 0.1s">
-          <img src="/images/over.jpeg" alt="Projectbouw 010 op locatie" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
-        </div>
+      <!-- Bekijk alle diensten knop -->
+      <div class="reveal-up text-center mt-10" style="--delay: 0.3s">
+        <a href="/diensten/badkamer-renovatie" class="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 hover:bg-[#333]">
+          Bekijk Alle Diensten
+          <Icon name="lucide:arrow-right" class="w-5 h-5" />
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Projecten — Scroll-linked horizontal gallery -->
-  <section id="projecten" class="project-section relative">
-    <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 w-full">
-        <div class="flex items-end justify-between">
-          <div>
-            <p class="text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Ons werk</p>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white">Uitgelichte Projecten</h2>
+  <!-- Over Ons — Warm section -->
+  <section class="py-20 lg:py-28 bg-[#f7f5f0]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Photo -->
+        <div class="reveal-left">
+          <img src="/images/cinewall.jpeg" alt="Projectbouw 010 op locatie" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+        </div>
+
+        <!-- Text -->
+        <div class="reveal-right" style="--delay: 0.1s">
+          <p class="text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Over Projectbouw 010</p>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-6">
+            Vakmanschap &<br />Betrouwbaarheid
+          </h2>
+          <p class="text-[#333] leading-relaxed mb-4">
+            Projectbouw 010, opgericht door Mike Gouri, is een aannemersbedrijf gevestigd in Rotterdam. Wij zijn gespecialiseerd in renovaties en verbouwingen voor particulieren. Van een complete badkamerrenovatie tot een stijlvolle uitbouw — wij leveren kwaliteit waar u op kunt vertrouwen.
+          </p>
+          <p class="text-[#333] leading-relaxed mb-8">
+            Onze aanpak is persoonlijk en transparant. U heeft altijd een vast aanspreekpunt en weet precies waar u aan toe bent. Geen verrassingen, wel een resultaat dat uw verwachtingen overtreft.
+          </p>
+
+          <div class="grid grid-cols-3 gap-4 mb-8">
+            <div>
+              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">15+</p>
+              <p class="text-[#666] text-xs mt-1">Jaar Ervaring</p>
+            </div>
+            <div>
+              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">500+</p>
+              <p class="text-[#666] text-xs mt-1">Projecten</p>
+            </div>
+            <div>
+              <p class="text-4xl lg:text-5xl font-heading font-bold text-[#111]">4<span class="text-lg ml-1">jr</span></p>
+              <p class="text-[#666] text-xs mt-1">Garantie</p>
+            </div>
           </div>
-          <a href="/offerte" class="hidden sm:flex items-center gap-2 text-white/70 hover:text-white font-medium hover:gap-3 transition-all">
-            Bekijk onze diensten
+
+          <a href="/over-ons" class="inline-flex items-center gap-2 text-[#111] hover:gap-3 font-semibold transition-all duration-200">
+            Meer over ons
             <Icon name="lucide:arrow-right" class="w-4 h-4" />
           </a>
         </div>
       </div>
-
-      <div class="project-track-container overflow-hidden w-full">
-        <div class="flex gap-6 px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]" id="project-track">
-          {[
-            { img: '/images/badkamer.jpeg', title: 'Badkamer Renovatie', location: 'Rotterdam-Zuid' },
-            { img: '/images/keuken.jpeg', title: 'Keuken Op Maat', location: 'Kralingen' },
-            { img: '/images/uitbouw.jpeg', title: 'Complete Uitbouw', location: 'Hillegersberg' },
-            { img: '/images/1.jpg', title: 'Stalen Deuren', location: 'Rotterdam-West' },
-            { img: '/images/2.jpg', title: 'Stucwerk & Tegelwerk', location: 'Capelle a/d IJssel' },
-            { img: '/images/3.jpg', title: 'Traprenovatie', location: 'Schiedam' },
-          ].map((project) => (
-            <div class="w-[300px] sm:w-[360px] lg:w-[420px] shrink-0 group">
-              <div class="rounded-xl overflow-hidden aspect-[3/4] mb-4">
-                <img src={project.img} alt={project.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-              </div>
-              <div class="flex items-center justify-between">
-                <div>
-                  <h3 class="text-white font-semibold text-lg">{project.title}</h3>
-                  <p class="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
-                    <Icon name="lucide:map-pin" class="w-3 h-3" />
-                    {project.location}
-                  </p>
-                </div>
-                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
-                  <Icon name="lucide:arrow-right" class="w-4 h-4 text-white group-hover:text-primary transition-colors" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- Werkwijze — Vertical Timeline -->
-  <section class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
-        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white" style="--delay: 0.1s">Onze Werkwijze</h2>
+  <!-- Werkwijze — Mobile: vertical with photo bg -->
+  <section id="werkwijze-mobile" class="relative py-20 lg:hidden overflow-hidden">
+    <img src="/images/cinewall.jpeg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+    <div class="absolute inset-0 bg-[#111]/85 backdrop-blur-sm"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <p class="reveal-up text-white/60 font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase" style="--delay: 0.1s">Onze Werkwijze</h2>
       </div>
-
-      <div class="relative max-w-4xl mx-auto">
-        <div class="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-white/10 lg:-translate-x-px"></div>
-
+      <div class="space-y-8">
         {[
-          { number: '01', title: 'Contact', description: 'Neem vrijblijvend contact met ons op. Wij bespreken uw wensen en plannen.' },
-          { number: '02', title: 'Offerte', description: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten.' },
-          { number: '03', title: 'Uitvoering', description: 'Ons vakkundig team gaat aan de slag. U wordt continu op de hoogte gehouden.' },
-          { number: '04', title: 'Oplevering', description: 'Samen lopen we het resultaat na. Pas als u tevreden bent, is het project klaar.' },
+          { number: '01', title: 'Contact', icon: 'lucide:phone', description: 'Neem vrijblijvend contact met ons op. Wij bespreken uw wensen en plannen en komen langs voor een opname.' },
+          { number: '02', title: 'Offerte', icon: 'lucide:file-text', description: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten. Transparant en eerlijk.' },
+          { number: '03', title: 'Uitvoering', icon: 'lucide:hammer', description: 'Ons vakkundig team gaat aan de slag. U wordt continu op de hoogte gehouden van de voortgang.' },
+          { number: '04', title: 'Oplevering', icon: 'lucide:check-circle', description: 'Samen lopen we het resultaat na. Pas als u tevreden bent, is het project klaar.' },
         ].map((step, i) => (
-          <div class={`relative flex items-start gap-8 lg:gap-0 mb-16 last:mb-0 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-            <div class="absolute left-4 lg:left-1/2 w-3 h-3 bg-white rounded-full -translate-x-1.5 lg:-translate-x-1.5 mt-2 z-10"></div>
-            <div class={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-16 lg:text-right' : 'lg:pl-16 lg:ml-auto'}`}>
-              <div class={`reveal-${i % 2 === 0 ? 'right' : 'left'}`} style={`--delay: ${i * 0.1}s`}>
-                <span class="text-6xl lg:text-7xl font-heading font-bold text-outline">{step.number}</span>
-                <h3 class="text-white font-heading font-bold text-xl lg:text-2xl mt-2 mb-3">{step.title}</h3>
-                <p class="text-gray-400 leading-relaxed">{step.description}</p>
+          <div class="reveal-up flex gap-6" style={`--delay: ${i * 0.1}s`}>
+            <div class="shrink-0">
+              <span class="text-5xl font-heading font-bold text-white/20">{step.number}</span>
+            </div>
+            <div>
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-3">
+                <Icon name={step.icon} class="w-5 h-5 text-white" />
               </div>
+              <h3 class="text-white font-heading font-bold text-xl uppercase mb-2">{step.title}</h3>
+              <p class="text-gray-300 leading-relaxed">{step.description}</p>
             </div>
           </div>
         ))}
@@ -226,20 +265,155 @@ import { Icon } from 'astro-icon/components';
     </div>
   </section>
 
-  <!-- Reviews — Double Marquee -->
-  <section class="py-20 lg:py-28 bg-primary-800/30 overflow-hidden">
+  <!-- Werkwijze — Desktop: GSAP horizontal pin-scroll with photo bg -->
+  <section id="werkwijze" class="hidden lg:block werkwijze-section">
+    <div class="relative h-screen flex items-center overflow-hidden werkwijze-pin">
+      <img src="/images/cinewall.jpeg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-[#111]/80 backdrop-blur-sm"></div>
+      <div class="relative werkwijze-track flex items-center gap-0 w-max" id="werkwijze-track">
+        <!-- Title card -->
+        <div class="w-screen h-screen flex items-center shrink-0">
+          <div class="max-w-7xl mx-auto px-8 w-full">
+            <p class="text-white/60 font-medium tracking-widest uppercase text-sm mb-3">Hoe wij werken</p>
+            <h2 class="text-5xl lg:text-6xl font-heading font-bold text-white uppercase mb-6">Onze<br />Werkwijze</h2>
+            <p class="text-gray-400 max-w-md text-lg">Van eerste contact tot oplevering — wij begeleiden u bij elke stap.</p>
+          </div>
+        </div>
+
+        {[
+          { number: '01', title: 'Contact', icon: 'lucide:phone', description: 'Neem vrijblijvend contact met ons op. Wij bespreken uw wensen en plannen en komen langs voor een opname.' },
+          { number: '02', title: 'Offerte', icon: 'lucide:file-text', description: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten. Transparant en eerlijk.' },
+          { number: '03', title: 'Uitvoering', icon: 'lucide:hammer', description: 'Ons vakkundig team gaat aan de slag. U wordt continu op de hoogte gehouden van de voortgang.' },
+          { number: '04', title: 'Oplevering', icon: 'lucide:check-circle', description: 'Samen lopen we het resultaat na. Pas als u tevreden bent, is het project klaar.' },
+        ].map((step) => (
+          <div class="w-[28vw] h-screen flex items-center shrink-0 px-6">
+            <div class="glass rounded-2xl p-10 w-full">
+              <span class="text-7xl font-heading font-bold text-white/20 block mb-6">{step.number}</span>
+              <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                <Icon name={step.icon} class="w-6 h-6 text-white" />
+              </div>
+              <h3 class="text-white font-heading font-bold text-2xl uppercase mb-4">{step.title}</h3>
+              <p class="text-gray-400 leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projecten — Foto Collage -->
+  <section id="projecten" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Ons werk</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">Recente Projecten</h2>
+        </div>
+        <a href="/projecten" class="reveal-up hidden sm:flex items-center gap-2 text-[#111] hover:gap-3 font-medium transition-all" style="--delay: 0.2s">
+          Alle projecten
+          <Icon name="lucide:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Collage grid: 3 kolommen, alle cellen gevuld -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+        {projecten.map((p, i) => (
+          <a href={`/projecten/${p.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.05}s`}>
+            <img src={p.afbeeldingen[0]} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <span class="text-white/60 text-xs font-medium uppercase tracking-wider">{p.categorie}</span>
+              <h3 class="text-white font-heading font-bold text-lg uppercase mt-1">{p.titel}</h3>
+              <p class="text-gray-300 text-xs flex items-center gap-1 mt-0.5">
+                <Icon name="lucide:map-pin" class="w-3 h-3" />
+                {p.locatie}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <a href="/projecten" class="sm:hidden reveal-up inline-flex items-center gap-2 text-[#111] font-medium mt-8">
+        Alle projecten
+        <Icon name="lucide:arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
+  </section>
+
+  <!-- Team — Ervaring & Expertise -->
+  <section class="relative py-24 lg:py-36 bg-[#2a2a2a] overflow-hidden">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-12 gap-4 items-center min-h-[500px] lg:min-h-[650px]">
+        <!-- Left photos (3 overlapping, bigger, more to the edge) -->
+        <div class="col-span-3 relative hidden lg:block h-[620px]">
+          <div class="reveal-left absolute -top-6 -left-8 w-56 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-10 rotate-[-4deg]">
+            <img src="/images/1.jpg" alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="reveal-left absolute top-1/2 -translate-y-1/2 left-16 w-60 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-20 rotate-[2deg]" style="--delay: 0.1s">
+            <img src="/images/badkamer.jpeg" alt="Badkamer renovatie" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="reveal-left absolute -bottom-6 left-0 w-52 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-30 rotate-[-2deg]" style="--delay: 0.2s">
+            <img src="/images/2.jpg" alt="Stucwerk" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Center text -->
+        <div class="col-span-12 lg:col-span-6 text-center py-8">
+          <p class="reveal-up text-white/50 font-medium tracking-widest uppercase text-sm mb-4">Ons team</p>
+          <h2 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase leading-tight mb-8" style="--delay: 0.1s">
+            Vakmanschap<br />& Expertise
+          </h2>
+          <p class="reveal-up text-gray-400 text-lg max-w-lg mx-auto mb-10 leading-relaxed" style="--delay: 0.2s">
+            Een vast team van ervaren vakmensen — van tegelzetters en stukadoors tot timmerlieden. Wij werken in eigen beheer, zodat u altijd kunt rekenen op dezelfde kwaliteit en persoonlijke aanpak.
+          </p>
+          <a href="/over-ons" class="reveal-up inline-block border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200" style="--delay: 0.3s">
+            Leer meer over ons
+          </a>
+
+          <!-- Mobile: photo row -->
+          <div class="lg:hidden grid grid-cols-3 gap-3 mt-12">
+            <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]">
+              <img src="/images/1.jpg" alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]" style="--delay: 0.05s">
+              <img src="/images/badkamer.jpeg" alt="Badkamer renovatie" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]" style="--delay: 0.1s">
+              <img src="/images/2.jpg" alt="Stucwerk" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right photos (3 overlapping, bigger, more to the edge) -->
+        <div class="col-span-3 relative hidden lg:block h-[620px]">
+          <div class="reveal-right absolute -top-6 -right-8 w-56 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-10 rotate-[4deg]">
+            <img src="/images/keuken.jpeg" alt="Keuken renovatie" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="reveal-right absolute top-1/2 -translate-y-1/2 right-16 w-60 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-20 rotate-[-2deg]" style="--delay: 0.1s">
+            <img src="/images/uitbouw.jpeg" alt="Uitbouw project" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="reveal-right absolute -bottom-6 right-0 w-52 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-30 rotate-[2deg]" style="--delay: 0.2s">
+            <img src="/images/3.jpg" alt="Afwerking" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews — Double Marquee (donkere sectie) -->
+  <section class="py-20 lg:py-28 bg-[#111] overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
       <div class="text-center">
-        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Klantbeoordelingen</p>
-        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4" style="--delay: 0.1s">Wat Onze Klanten Zeggen</h2>
+        <p class="reveal-up text-white/60 font-medium tracking-widest uppercase text-sm mb-3">Klantbeoordelingen</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white uppercase mb-4" style="--delay: 0.1s">Wat Onze Klanten Zeggen</h2>
         <div class="reveal-up flex items-center justify-center gap-3 flex-wrap" style="--delay: 0.2s">
           <div class="flex gap-0.5">
             {Array.from({ length: 5 }).map(() => (
-              <Icon name="lucide:star" class="w-5 h-5 fill-[#FBBC04] text-[#FBBC04]" />
+              <Icon name="lucide:star" class="w-5 h-5 fill-white text-white" />
             ))}
           </div>
           <span class="text-white font-semibold text-lg">9.3</span>
-          <span class="text-gray-400">gemiddelde score op Trustoo (173 reviews)</span>
+          <span class="text-[#777]">gemiddelde score op Trustoo (173+ reviews)</span>
         </div>
       </div>
     </div>
@@ -259,13 +433,13 @@ import { Icon } from 'astro-icon/components';
           <div class="w-[400px] shrink-0 glass rounded-xl p-6">
             <div class="flex gap-0.5 mb-3">
               {Array.from({ length: 5 }).map(() => (
-                <Icon name="lucide:star" class="w-4 h-4 fill-[#FBBC04] text-[#FBBC04]" />
+                <Icon name="lucide:star" class="w-4 h-4 fill-white text-white" />
               ))}
             </div>
-            <p class="text-white text-sm leading-relaxed mb-4">"{review.quote}"</p>
+            <p class="text-white text-base leading-relaxed mb-4">"{review.quote}"</p>
             <div class="flex items-center gap-2">
               <span class="text-white font-medium text-sm">{review.name}</span>
-              <span class="text-gray-500 text-xs">— {review.source}</span>
+              <span class="text-[#777] text-xs">— {review.source}</span>
             </div>
           </div>
         ))}
@@ -287,13 +461,13 @@ import { Icon } from 'astro-icon/components';
           <div class="w-[400px] shrink-0 glass rounded-xl p-6">
             <div class="flex gap-0.5 mb-3">
               {Array.from({ length: 5 }).map(() => (
-                <Icon name="lucide:star" class="w-4 h-4 fill-[#FBBC04] text-[#FBBC04]" />
+                <Icon name="lucide:star" class="w-4 h-4 fill-white text-white" />
               ))}
             </div>
-            <p class="text-white text-sm leading-relaxed mb-4">"{review.quote}"</p>
+            <p class="text-white text-base leading-relaxed mb-4">"{review.quote}"</p>
             <div class="flex items-center gap-2">
               <span class="text-white font-medium text-sm">{review.name}</span>
-              <span class="text-gray-500 text-xs">— {review.source}</span>
+              <span class="text-[#777] text-xs">— {review.source}</span>
             </div>
           </div>
         ))}
@@ -301,118 +475,77 @@ import { Icon } from 'astro-icon/components';
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="relative py-24 lg:py-32 overflow-hidden">
-    <div class="absolute inset-0 bg-white/[0.03]" style="clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%)"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">Klaar Om<br />Te Beginnen?</h2>
-          <p class="reveal-up text-gray-300 text-lg mb-10 max-w-lg" style="--delay: 0.1s">Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
-        </div>
-        <div class="reveal-up flex flex-col sm:flex-row gap-4 lg:justify-end" style="--delay: 0.2s">
-          <a href="/offerte" class="bg-white hover:bg-gray-200 text-primary px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center">Gratis Offerte Aanvragen</a>
-          <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 flex items-center justify-center gap-2">
-            <Icon name="lucide:phone" class="w-5 h-5" />
-            06-53999433
-          </a>
-        </div>
-      </div>
+  <!-- CTA Banner (donkere sectie) -->
+  <section class="relative py-28 lg:py-40 bg-[#1c1c1c] overflow-hidden">
+    <!-- Outlined PROJECTBOUW 010 achter de content -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+      <p class="font-heading font-bold uppercase text-[15vw] lg:text-[12vw] whitespace-nowrap leading-none cta-outline-text">PROJECTBOUW 010</p>
     </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <p class="reveal-up text-gray-400 font-medium tracking-widest uppercase text-sm mb-3">Neem contact op</p>
-        <h2 class="reveal-up text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4" style="--delay: 0.1s">Heeft U Een Vraag?</h2>
-        <p class="reveal-up text-gray-400 max-w-xl" style="--delay: 0.2s">Neem direct contact op via telefoon, WhatsApp of e-mail. Of vraag een offerte aan via ons formulier.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <a href="tel:0653999433" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0s">
-          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
-            <Icon name="lucide:phone" class="w-6 h-6 text-white" />
-          </div>
-          <h3 class="text-white font-semibold text-lg mb-1">Bel ons direct</h3>
-          <p class="text-gray-400">06-53999433</p>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="reveal-up text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white uppercase mb-6">Klaar Om Te Verbouwen?</h2>
+      <p class="reveal-up text-gray-300 text-lg sm:text-xl mb-12 max-w-2xl mx-auto" style="--delay: 0.1s">Vraag vandaag nog een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
+      <div class="reveal-up flex flex-col sm:flex-row gap-4 justify-center" style="--delay: 0.2s">
+        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-10 py-5 font-bold rounded text-xl transition-colors duration-200 text-center hover:bg-gray-200">
+          Gratis Offerte Aanvragen
         </a>
-
-        <a href="https://wa.me/31653999433" target="_blank" rel="noopener noreferrer" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0.1s">
-          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
-            <Icon name="lucide:message-circle" class="w-6 h-6 text-white" />
-          </div>
-          <h3 class="text-white font-semibold text-lg mb-1">WhatsApp</h3>
-          <p class="text-gray-400">Stuur een bericht</p>
+        <a href="tel:0653999433" class="border-2 border-white/40 hover:border-white hover:bg-white/5 text-white px-10 py-5 font-bold rounded text-xl transition-all duration-200 flex items-center justify-center gap-3">
+          <Icon name="lucide:phone" class="w-6 h-6" />
+          06-53999433
         </a>
-
-        <a href="mailto:info@projectbouw010.nl" class="reveal-up glass rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group" style="--delay: 0.2s">
-          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
-            <Icon name="lucide:mail" class="w-6 h-6 text-white" />
-          </div>
-          <h3 class="text-white font-semibold text-lg mb-1">E-mail</h3>
-          <p class="text-gray-400">info@projectbouw010.nl</p>
-        </a>
-
-        <div class="reveal-up glass rounded-xl p-8" style="--delay: 0.3s">
-          <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-            <Icon name="lucide:map-pin" class="w-6 h-6 text-white" />
-          </div>
-          <h3 class="text-white font-semibold text-lg mb-1">Locatie</h3>
-          <p class="text-gray-400">Rotterdam, Zuid-Holland</p>
-        </div>
       </div>
     </div>
   </section>
 </Layout>
 
-<style>
-  /* Project section: tall container for scroll-linked animation on desktop */
-  .project-section {
-    height: 350vh;
-  }
-  @media (max-width: 640px) {
-    .project-section {
-      height: auto;
-    }
-    .project-section .sticky {
-      position: relative;
-      height: auto;
-    }
-    .project-track-container {
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .project-track-container::-webkit-scrollbar {
-      display: none;
-    }
-  }
-</style>
-
 <script>
-  // Scroll-linked horizontal scroll for projects
-  const section = document.querySelector('.project-section') as HTMLElement;
-  const track = document.getElementById('project-track') as HTMLElement;
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-  if (section && track && window.innerWidth > 640) {
-    // Calculate max scroll from the last card's right edge
-    const lastCard = track.lastElementChild as HTMLElement;
-    const trackLeft = track.getBoundingClientRect().left + window.scrollX;
-    const lastCardRight = lastCard.offsetLeft + lastCard.offsetWidth + parseInt(getComputedStyle(track).paddingRight || '0');
-    const maxScroll = Math.max(0, lastCardRight - window.innerWidth + trackLeft);
+  // Werkwijze horizontal pin-scroll (desktop only)
+  const werkwijzePin = document.querySelector('.werkwijze-pin') as HTMLElement;
+  const werkwijzeTrack = document.getElementById('werkwijze-track') as HTMLElement;
 
-    const updateScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = section.offsetHeight - window.innerHeight;
-      const scrollProgress = Math.max(0, Math.min(1, -rect.top / sectionHeight));
-      track.style.transform = `translateX(-${scrollProgress * maxScroll}px)`;
-    };
+  if (werkwijzePin && werkwijzeTrack && window.innerWidth >= 1024) {
+    const totalScroll = werkwijzeTrack.scrollWidth - window.innerWidth;
 
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    updateScroll();
+    gsap.to(werkwijzeTrack, {
+      x: -totalScroll,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: werkwijzePin,
+        start: 'top top',
+        end: () => `+=${totalScroll}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
   }
 </script>
+
+<style>
+  /* Bouw expandable panels */
+  .bouw-panels .bouw-panel {
+    flex: 1;
+    transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bouw-panels:hover .bouw-panel {
+    flex: 0.6;
+  }
+  .bouw-panels .bouw-panel:hover {
+    flex: 2.5;
+  }
+  .bouw-panel .panel-desc {
+    max-height: 0;
+  }
+  .bouw-panels .bouw-panel:hover .panel-desc {
+    max-height: 120px;
+  }
+
+  /* CTA outlined background text */
+  .cta-outline-text {
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.06);
+  }
+</style>

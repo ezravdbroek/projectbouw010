@@ -4,28 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#1E2228',
-          50: '#f6f7f8',
-          100: '#e8eaed',
-          200: '#d1d4d9',
-          300: '#a9aeb7',
-          400: '#7e8593',
-          500: '#5c6472',
-          600: '#434a56',
-          700: '#353b45',
-          800: '#2a2f37',
-          900: '#1E2228',
-        },
-        accent: {
-          DEFAULT: '#FFFFFF',
-          light: '#F5F5F5',
-          dark: '#E0E0E0',
-        },
+        dark: '#111111',
+        'dark-card': '#1c1c1c',
+        light: '#ffffff',
+        'light-alt': '#f4f4f4',
+        warm: '#f7f5f0',
+        'text-dark': '#111111',
+        'text-muted': '#777777',
+        border: '#e0e0e0',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+        heading: ['Oswald', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        hero: 'clamp(3rem, 7vw, 6rem)',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out forwards',

@@ -1,26 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { diensten } from '../data/diensten';
 
-const diensten = [
-  'Aanbouw & Uitbouw',
-  'Badkamer Renovatie',
-  'Keukenrenovatie',
-  'Stalen Deuren',
-  'Stucwerk & Tegelwerk',
-  'Traprenovatie',
-];
+const footerDiensten = diensten.slice(0, 8);
 ---
 
-<footer class="bg-primary-900 border-t border-white/10 overflow-hidden">
-  <!-- Large outlined text -->
-  <div class="py-8 border-b border-white/5">
-    <p class="text-center text-5xl sm:text-7xl lg:text-8xl font-heading font-bold text-outline tracking-wider select-none">
-      PROJECTBOUW 010
-    </p>
-  </div>
-
+<footer class="bg-[#111] border-t border-white/10 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       <!-- Logo & beschrijving -->
       <div>
         <div class="flex items-center gap-3 mb-4">
@@ -64,13 +51,25 @@ const diensten = [
       <div>
         <h3 class="text-white font-semibold mb-4">Diensten</h3>
         <ul class="space-y-2">
-          {diensten.map((dienst) => (
+          {footerDiensten.map((d) => (
             <li>
-              <a href="/#diensten" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-                {dienst}
+              <a href={`/diensten/${d.slug}`} class="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+                {d.naam}
               </a>
             </li>
           ))}
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-4">Pagina's</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Home</a></li>
+          <li><a href="/over-ons" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Over Ons</a></li>
+          <li><a href="/projecten" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Projecten</a></li>
+          <li><a href="/contact" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Contact</a></li>
+          <li><a href="/offerte-aanvragen" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Offerte Aanvragen</a></li>
         </ul>
       </div>
 
@@ -79,25 +78,25 @@ const diensten = [
         <h3 class="text-white font-semibold mb-4">Contact</h3>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <Icon name="lucide:phone" class="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+            <Icon name="lucide:phone" class="w-4 h-4 text-white mt-0.5 shrink-0" />
             <a href="tel:0653999433" class="text-gray-400 hover:text-white text-sm transition-colors">
               06-53999433
             </a>
           </li>
           <li class="flex items-start gap-3">
-            <Icon name="lucide:mail" class="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+            <Icon name="lucide:mail" class="w-4 h-4 text-white mt-0.5 shrink-0" />
             <a href="mailto:info@projectbouw010.nl" class="text-gray-400 hover:text-white text-sm transition-colors">
               info@projectbouw010.nl
             </a>
           </li>
           <li class="flex items-start gap-3">
-            <Icon name="lucide:map-pin" class="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
-            <span class="text-gray-400 text-sm">Rotterdam, Zuid-Holland</span>
+            <Icon name="lucide:map-pin" class="w-4 h-4 text-white mt-0.5 shrink-0" />
+            <span class="text-gray-400 text-sm">Theodoor Colenbranderhof 5<br />3059 LS Rotterdam</span>
           </li>
         </ul>
         <a
-          href="/offerte"
-          class="inline-block mt-6 bg-white hover:bg-gray-200 text-primary px-5 py-2.5 text-sm font-semibold rounded transition-colors duration-200"
+          href="/offerte-aanvragen"
+          class="inline-block mt-6 bg-white text-[#111] px-5 py-2.5 text-sm font-semibold rounded transition-colors duration-200 hover:bg-gray-200"
         >
           Gratis Offerte
         </a>
@@ -109,7 +108,7 @@ const diensten = [
       <p class="text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Projectbouw 010. Alle rechten voorbehouden.
       </p>
-      <p class="text-gray-500 text-sm">KVK: 78491762</p>
+      <p class="text-gray-500 text-sm">KVK: 86943030</p>
     </div>
   </div>
 </footer>

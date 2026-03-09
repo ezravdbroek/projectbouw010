@@ -4,28 +4,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebouwd in Astro 5 met Tailwind CSS, deployed op Cloudflare Pages. Donker thema (#1E2228) met witte tekst en witte accenten. Geen goud/kleur-accenten behalve Google-sterren (#FBBC04) bij reviews.
+Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike Gouri). Website gebouwd in Astro 5 met Tailwind CSS, deployed op Cloudflare Pages. Puur zwart-wit-grijs design — geen kleuraccenten. Typografie, witruimte en warme foto's bepalen de sfeer.
 
 ### Bedrijfsinfo
 - **Naam:** Projectbouw 010
-- **Eigenaar:** Mike
+- **Eigenaar:** Mike Gouri
 - **Telefoon:** 06-53999433
 - **Email:** info@projectbouw010.nl
 - **Website:** projectbouw010.nl
+- **Adres:** Theodoor Colenbranderhof 5, 3059 LS Rotterdam
+- **KVK:** 86943030
 - **Regio:** Rotterdam e.o.
-- **Diensten:** Aanbouw, Uitbouw, Opbouw, Badkamer Renovatie, Keukenrenovatie, Stukadoor, Cinewall, Pvc Vloer Leggen, Toilet Renovatie, Stalen Deuren, Verlaagd Plafond, Traprenovatie, Tegelzetter
+- **Diensten:** Aanbouw, Uitbouw, Opbouw, Badkamer Renovatie, Keukenrenovatie, Stukadoor, Cinewall, PVC Vloer Leggen, Toilet Renovatie, Stalen Deuren, Verlaagd Plafond, Traprenovatie, Tegelzetter, Beton Ciré
 - **Reviews:** Trustoo 9.3 (173+ reviews), Google reviews
 
 ### Branding regels
-- Primaire kleur: `#1E2228` (donker antraciet)
-- Tekst: wit op donker, grijs-tinten voor secundaire tekst
-- Accenten: wit knoppen, wit icons — **GEEN goud/kleur-accenten**
-- Uitzondering: Google review-sterren gebruiken `#FBBC04`
-- Fonts: Inter (body), Playfair Display (headings)
+- Basis bg: `#ffffff` (wit — content secties)
+- Donkere secties: `#111111` (nav, footer, hero banners, reviews, CTA's)
+- Donkere kaarten: `#1c1c1c` (kaartjes op donkere bg)
+- Lichte alt: `#f4f4f4` (afwisseling lichte secties)
+- Warme sectie: `#f7f5f0` (over-ons op homepage)
+- Tekst donker: `#111111`
+- Tekst muted: `#777777`
+- Borders: `#e0e0e0`
+- **Geen kleuraccenten** — puur zwart-wit-grijs
+- Fonts: **Oswald** (headings, weight 600-700, uppercase), **Source Sans 3** (body, weight 400-600)
+- Font loading: Google Fonts `<link>` tags (geen npm packages)
+- Hero font-size: `clamp(3rem, 7vw, 6rem)` via `text-hero` Tailwind class
 - Icons: Lucide via astro-icon — **NOOIT emoji's gebruiken**
 - Logo: `/public/images/logo.png` (het "010" logo) — alleen afbeelding, geen tekst ernaast
-- Stijl: luxe, professioneel, minimalistisch donker
-- **GEEN witte/lichte secties** — alles blijft donker. Subtiele variatie via `bg-primary-800/30` is ok, maar geen `bg-white`, `bg-gray-100`, of `bg-[#f5f5f5]`
+- Stijl: luxe, professioneel, minimalistisch met zwart-wit contrast
+- CTA knoppen: `bg-[#111] text-white` op lichte secties, `bg-white text-[#111]` op donkere secties
+- Review sterren: wit (geen kleur)
+- Hover underline nav: wit
 
 ## Commands
 
@@ -36,52 +47,54 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 
 ## Architecture
 
-- **File-based routing:** Pages in `src/pages/` map directly to routes (e.g., `index.astro` → `/`)
-- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell with fonts, meta tags, IntersectionObserver for reveal animations, counter animation, marquee pause-on-hover
+- **File-based routing:** Pages in `src/pages/` map directly to routes
+- **Data files:** `src/data/diensten.ts` (14 diensten met slug, naam, omschrijving, afbeelding, kenmerken), `src/data/projecten.ts` (6 projecten met slug, titel, locatie, categorie, afbeeldingen, uitgelicht flag)
+- **Layouts:** `src/layouts/Layout.astro` is the base HTML shell with Google Fonts, meta tags, GSAP + Lenis initialization, reveal animations, counter animation, marquee pause-on-hover
 - **Components:** `src/components/` contains reusable `.astro` components
-- **Assets:** `src/assets/` for source assets; `public/images/` for served images (logo.png, hero.jpg, hero-telefoon.jpeg, over.jpeg, badkamer.jpeg, keuken.jpeg, uitbouw.jpeg, 1.jpg, 2.jpg, 3.jpg)
+- **Assets:** `public/images/` for served images (logo.png, hero.jpg, hero.mp4, hero-telefoon.jpeg, over.jpeg, badkamer.jpeg, keuken.jpeg, uitbouw.jpeg, 1.jpg, 2.jpg, 3.jpg)
 - **API:** `src/pages/api/offerte.ts` — Postmark email endpoint (prerender = false)
 
 ### Key components
-- `Navbar.astro` — Sticky nav with Diensten dropdown (3-column, hover on desktop, accordion on mobile), hamburger → X on mobile, `.nav-link` hover underline animation
-- `Footer.astro` — Large outlined "PROJECTBOUW 010" header text, 3-column layout (logo+socials, diensten, contact+offerte CTA)
-- `CookieConsent.astro` — Cookie banner with localStorage persistence
-
-### Deleted components (now inlined in index.astro)
-- ~~`ServiceCard.astro`~~ — Replaced by bento grid items in diensten section
-- ~~`ProcessStep.astro`~~ — Replaced by vertical timeline items in werkwijze section
-- ~~`TestimonialCard.astro`~~ — Replaced by marquee cards in reviews section
+- `Navbar.astro` — Sticky nav with Diensten dropdown (3-column, dynamisch uit data, hover on desktop, accordion on mobile), hamburger -> X on mobile, `.nav-link` hover underline animation (wit)
+- `Footer.astro` — Large outlined "PROJECTBOUW 010" header text, 4-column layout (logo+socials, diensten, pagina's, contact+offerte CTA), bg `#111`
+- `CookieConsent.astro` — Cookie banner with localStorage persistence, bg `#1c1c1c`
 
 ### Pages
 - `index.astro` — Homepage secties:
-  1. **Hero** — Split-screen (grid-cols-5: 3+2), "010" outlined background text, stats strip (grid-cols-3 on mobile)
-  2. **Diensten** — Bento grid (3-kolom), eerste kaart 2-kolom+2-rij, alle kaarten met achtergrondafbeeldingen
-  3. **Over Ons** — Grid layout met overlappend glassmorphism tekstblok (`lg:-mr-16`), foto rechts
-  4. **Projecten** — Scroll-linked horizontale galerij (350vh sticky section op desktop, horizontaal scrollbaar op mobiel)
-  5. **Werkwijze** — Verticale timeline, alternerende links/rechts, grote outlined nummers
-  6. **Reviews** — Dubbele marquee (2 rijen, tegengestelde richting), glassmorphism kaarten
-  7. **CTA Banner** — Asymmetrisch met subtle diagonale accent (clip-path)
-  8. **Contact** — 4 glassmorphism blokken (telefoon, WhatsApp, email, locatie)
-- `offerte.astro` — Offerte formulier met file uploads (huidige + gewenste situatie), Postmark integratie, links-uitgelijnde hero
+  1. **Hero** — Full-viewport video background (hero.mp4 + hero.jpg poster), gradient overlay, Oswald headline, 2 CTA's (wit + outline), stats strip (15+, 500+, 9.3, 4jr)
+  2. **Diensten** — `bg-[#f4f4f4]`, grid (2/3/4 kolommen) van alle 14 diensten uit data, foto achtergrond + gradient + naam
+  3. **Over Ons** — Warme sectie (`bg-[#f7f5f0]`), 2 kolommen, donkere tekst, stats, link naar /over-ons
+  4. **Werkwijze** — Desktop: `bg-[#111]` GSAP horizontale pin-scroll, mobiel: `bg-white` verticaal gestapeld
+  5. **Projecten Preview** — `bg-white`, asymmetrisch grid (1 groot + 2 kleiner) van uitgelichte projecten
+  6. **Reviews** — `bg-[#111]`, dubbele marquee, glassmorphism kaarten, witte sterren
+  7. **CTA Banner** — `bg-[#1c1c1c]`, "Klaar om te verbouwen?" met witte offerte-knop
+- `over-ons.astro` — Verhaal Mike Gouri, waarden (`bg-[#f4f4f4]`), stats
+- `projecten/index.astro` — Portfolio grid met categorie-filter (filter: zwart actief)
+- `projecten/[slug].astro` — Individueel project met galerij, details, sidebar CTA
+- `diensten/[slug].astro` — Individuele dienstpagina met kenmerken, sidebar CTA, gerelateerde diensten
+- `contact.astro` — Contactkaarten met border, Google Maps embed
+- `offerte-aanvragen.astro` — Formulier met file uploads, alle 14 diensten in dropdown, Postmark integratie
 - `api/offerte.ts` — Server endpoint voor Postmark email
 
-### Animation system (defined in Layout.astro `<style is:global>`)
-- **Reveal animations:** `.reveal-up`, `.reveal-left`, `.reveal-right`, `.reveal-scale` — start hidden, animate to visible via IntersectionObserver adding `.is-visible`
-- **Stagger delays:** Via CSS `--delay` custom property, e.g. `style="--delay: 0.2s"`
-- **Counter animation:** Elements with `data-count` attribute animate from 0 to target value
-- **Marquee:** `.marquee-track` (left) en `.marquee-track-reverse` (right), 40s linear infinite, pauze on hover
-- **Glassmorphism:** `.glass` utility — `rgba(255,255,255,0.05)` bg + `backdrop-filter: blur(12px)` + white/10 border
+### Animation system (GSAP + Lenis)
+- **Lenis:** Smooth scroll, disabled on form focus
+- **GSAP + ScrollTrigger:** Reveal animations for `.reveal-up`, `.reveal-left`, `.reveal-right`, `.reveal-scale` — uses `gsap.from()` with ScrollTrigger
+- **Stagger delays:** Via CSS `--delay` custom property, picked up by GSAP
+- **Counter animation:** Elements with `data-count` attribute animate via GSAP `onUpdate`
+- **Werkwijze pin-scroll:** GSAP ScrollTrigger horizontal pin on desktop (>= 1024px)
+- **Marquee:** `.marquee-track` (left) en `.marquee-track-reverse` (right), 40s linear infinite, pause on hover
+- **Glassmorphism:** `.glass` utility — `rgba(255,255,255,0.05)` bg + `backdrop-filter: blur(12px)` + white/8 border (alleen op donkere secties)
 - **Outlined text:** `.text-outline` (wit stroke op transparant) en `.text-outline-dark` (donkere stroke)
-
-### Scroll-linked horizontal gallery (Projecten sectie)
-- Desktop (>640px): Section is 350vh, sticky container, JavaScript translateX op scroll
-- Mobiel (≤640px): Section auto height, overflow-x auto met touch scrolling, hidden scrollbar
-- Project kaarten: `w-[300px] sm:w-[360px] lg:w-[420px]`, aspect-[3/4]
+- **Reduced motion:** `prefers-reduced-motion` fallback disables all animations
 
 ### Important patterns
-- **Hamburger → X:** Uses absolutely positioned bars with translateY for spacing, rotate for X shape. Default: `translateY(-6px)`, `translateY(0)`, `translateY(6px)`. Open: `rotate(45deg)`, `opacity:0`, `rotate(-45deg)`
-- **Overflow prevention:** `overflow-x-hidden` op html + body voorkomt horizontale scroll op mobiel
-- **Diensten dropdown:** max-height animatie (niet display:none/block) voor smooth open/close
+- **Hamburger -> X:** Absolutely positioned bars with translateY, rotate for X shape
+- **Overflow prevention:** `overflow-x: clip` op html + body
+- **Diensten dropdown:** max-height animatie voor smooth open/close
+- **GSAP imports:** In client-side `<script>` tags, niet in Astro frontmatter
+- **Lichte secties:** `bg-white` of `bg-[#f4f4f4]` met donkere tekst (`text-[#111]`, `text-[#333]`)
+- **Donkere secties:** `bg-[#111]` met witte tekst en `bg-white text-[#111]` CTA knoppen
+- **Sidebar CTA's:** `border border-[#e0e0e0]` op lichte pagina's (geen glass effect)
 
 ## Conventions
 
@@ -91,7 +104,10 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 - ES Modules (`"type": "module"` in package.json)
 - Tailwind for styling (utility classes), global styles in Layout.astro `<style is:global>`
 - Cloudflare Pages adapter (`@astrojs/cloudflare`), output: `static`
-- Secties afwisselen met `bg-primary-800/30` voor subtiel contrast — **nooit wit/licht**
+- Headings: Oswald, font-bold (600-700), uppercase
+- Secties afwisselen: wit / `#f4f4f4` / `#f7f5f0` voor licht, `#111` / `#1c1c1c` voor donker
+- CTA knoppen: context-afhankelijk zwart of wit (geen kleuraccenten)
+- Data-driven content: diensten en projecten uit `src/data/` bestanden
 
 ## Werkregels voor het bouwen van deze website
 
@@ -118,7 +134,6 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 - Afbeeldingen altijd met `alt` tekst
 - Links en knoppen moeten visueel duidelijk klikbaar zijn
 - Kleurcontrast moet voldoende zijn (donkere tekst op lichte achtergrond of vice versa)
-- Laad geen externe fonts/scripts tenzij de gebruiker erom vraagt
 - Horizontale overflow testen op mobiel — voorkom dat gebruikers kunnen uitzoomen/zijwaarts scrollen
 
 ### Bij problemen
@@ -130,6 +145,6 @@ Projectbouw 010 — aannemersbedrijf in Rotterdam (eigenaar: Mike). Website gebo
 ## Configuration
 
 - `astro.config.mjs` — Astro config with Tailwind, sitemap, icon integrations + Cloudflare adapter
-- `tailwind.config.mjs` — Custom colors (primary #1E2228), fonts (Inter, Playfair Display), marquee animations
+- `tailwind.config.mjs` — Custom colors (dark #111, dark-card #1c1c1c, light-alt #f4f4f4, warm #f7f5f0, border #e0e0e0), fonts (Oswald, Source Sans 3), hero font-size, marquee animations
 - `tsconfig.json` — Extends `astro/tsconfigs/strict`
 - `.env` — `POSTMARK_API_KEY` (niet in repo, moet door gebruiker worden ingesteld)
