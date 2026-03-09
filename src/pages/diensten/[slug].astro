@@ -28,7 +28,7 @@ const werkwijzeStappen = [
   title={`${dienst.naam} | Projectbouw 010 Rotterdam`}
   description={dienst.omschrijving}
 >
-  <!-- Hero — Full width image -->
+  <!-- Hero — Full width image (ONGEWIJZIGD) -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0">
       <img src={dienst.afbeelding} alt={dienst.naam} class="w-full h-full object-cover" loading="eager" />
@@ -60,26 +60,27 @@ const werkwijzeStappen = [
     </div>
   </section>
 
-  <!-- Kenmerken — Grid -->
+  <!-- Beschrijving + Foto -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
-          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Wat wij voor u doen</p>
-          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-8" style="--delay: 0.1s">
-            Onze Aanpak
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Over deze dienst</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-6" style="--delay: 0.1s">
+            {dienst.naam} door<br />Projectbouw 010
           </h2>
-          <div class="space-y-5">
-            {dienst.kenmerken.map((k, i) => (
-              <div class="reveal-up flex items-start gap-4" style={`--delay: ${(i + 2) * 0.05}s`}>
-                <div class="w-10 h-10 bg-[#f4f4f4] rounded-xl flex items-center justify-center shrink-0">
-                  <Icon name="lucide:check" class="w-5 h-5 text-[#111]" />
-                </div>
-                <div>
-                  <p class="text-[#111] font-medium text-lg">{k}</p>
-                </div>
-              </div>
-            ))}
+          <p class="reveal-up text-[#555] text-lg leading-relaxed mb-8" style="--delay: 0.15s">
+            {dienst.beschrijving}
+          </p>
+          <div class="reveal-up grid grid-cols-2 gap-4" style="--delay: 0.2s">
+            <div class="bg-[#f4f4f4] rounded-xl p-5 text-center">
+              <p class="text-2xl font-heading font-bold text-[#111]">500+</p>
+              <p class="text-[#777] text-sm mt-1">Projecten</p>
+            </div>
+            <div class="bg-[#f4f4f4] rounded-xl p-5 text-center">
+              <p class="text-2xl font-heading font-bold text-[#111]">9.3</p>
+              <p class="text-[#777] text-sm mt-1">Beoordeling</p>
+            </div>
           </div>
         </div>
         <div class="reveal-scale">
@@ -89,38 +90,143 @@ const werkwijzeStappen = [
     </div>
   </section>
 
-  <!-- Werkwijze -->
+  <!-- Kenmerken als kaarten -->
   <section class="py-16 lg:py-24 bg-[#f4f4f4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Hoe het werkt</p>
-        <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">Onze Werkwijze</h2>
+        <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Wat wij voor u doen</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">
+          Onze Aanpak
+        </h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {werkwijzeStappen.map((step, i) => (
-          <div class="reveal-up bg-white rounded-xl p-8 relative" style={`--delay: ${i * 0.08}s`}>
-            <span class="text-5xl font-heading font-bold text-[#f4f4f4] absolute top-4 right-6">{step.number}</span>
-            <div class="w-12 h-12 bg-[#111] rounded-xl flex items-center justify-center mb-5">
-              <Icon name={step.icon} class="w-5 h-5 text-white" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {dienst.kenmerken.map((k, i) => (
+          <div class="reveal-up bg-white rounded-xl p-8 flex items-start gap-5" style={`--delay: ${i * 0.08}s`}>
+            <div class="w-12 h-12 bg-[#111] rounded-xl flex items-center justify-center shrink-0">
+              <Icon name="lucide:check" class="w-5 h-5 text-white" />
             </div>
-            <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-2">{step.title}</h3>
-            <p class="text-[#777] text-sm leading-relaxed">{step.desc}</p>
+            <div>
+              <p class="text-[#111] font-heading font-bold text-lg uppercase">{k}</p>
+              <p class="text-[#777] text-sm mt-1 leading-relaxed">Vakkundig uitgevoerd door ons ervaren team met oog voor detail en kwaliteit.</p>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- USP's + CTA -->
+  <!-- Voordelen -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Voordelen</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-4" style="--delay: 0.1s">
+            Waarom Kiezen Voor<br />{dienst.naam}?
+          </h2>
+          <p class="reveal-up text-[#777] text-lg mb-8" style="--delay: 0.15s">
+            Ontdek de voordelen van {dienst.naam.toLowerCase()} door Projectbouw 010.
+          </p>
+          <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.2s">
+            <a href="/offerte-aanvragen" class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
+              Gratis Offerte
+            </a>
+          </div>
+        </div>
+        <div class="space-y-5">
+          {dienst.voordelen.map((v, i) => (
+            <div class="reveal-up bg-[#f4f4f4] rounded-xl p-6" style={`--delay: ${(i + 2) * 0.06}s`}>
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-[#111] rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                  <span class="text-white font-heading font-bold text-sm">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <div>
+                  <h3 class="text-[#111] font-heading font-bold text-lg uppercase mb-1">{v.titel}</h3>
+                  <p class="text-[#777] text-sm leading-relaxed">{v.tekst}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Werkwijze -->
   <section class="py-16 lg:py-24 bg-[#111]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="reveal-up text-white/50 font-medium tracking-widest uppercase text-sm mb-3">Hoe het werkt</p>
+        <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase" style="--delay: 0.1s">Onze Werkwijze</h2>
+        <p class="reveal-up text-gray-400 max-w-2xl mx-auto mt-4" style="--delay: 0.15s">
+          Van het eerste contact tot de oplevering — wij zorgen voor een soepel en transparant proces.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {werkwijzeStappen.map((step, i) => (
+          <div class="reveal-up bg-[#1c1c1c] rounded-xl p-8 relative" style={`--delay: ${i * 0.08}s`}>
+            <span class="text-5xl font-heading font-bold text-white/[0.15] absolute top-4 right-6">{step.number}</span>
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-5">
+              <Icon name={step.icon} class="w-5 h-5 text-white" />
+            </div>
+            <h3 class="text-white font-heading font-bold text-lg uppercase mb-2">{step.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div>
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Veelgestelde vragen</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-4" style="--delay: 0.1s">
+            Alles Over<br />{dienst.naam}
+          </h2>
+          <p class="reveal-up text-[#777] text-lg mb-8" style="--delay: 0.15s">
+            Heeft u nog vragen? Neem gerust contact op — wij helpen u graag verder.
+          </p>
+          <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.2s">
+            <a href="/contact" class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333] flex items-center justify-center gap-2">
+              <Icon name="lucide:message-circle" class="w-5 h-5" />
+              Stel Uw Vraag
+            </a>
+          </div>
+        </div>
+        <div class="space-y-4">
+          {dienst.faq.map((item, i) => (
+            <div class="reveal-up" style={`--delay: ${(i + 2) * 0.06}s`}>
+              <div class="faq-item border border-[#e0e0e0] rounded-xl">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 cursor-pointer hover:bg-[#f4f4f4] transition-colors rounded-xl text-left">
+                  <span class="text-[#111] font-semibold text-base pr-4">{item.vraag}</span>
+                  <Icon name="lucide:chevron-down" class="faq-icon w-5 h-5 text-[#777] shrink-0 transition-transform duration-300" />
+                </button>
+                <div class="faq-panel" style="height: 0; overflow: hidden; transition: height 0.3s ease;">
+                  <div class="px-6 pb-6 text-[#777] leading-relaxed">
+                    {item.antwoord}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USPs + CTA -->
+  <section class="py-16 lg:py-24 bg-[#f4f4f4]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="reveal-up text-white/50 font-medium tracking-widest uppercase text-sm mb-3">Waarom wij</p>
-          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-white uppercase mb-8" style="--delay: 0.1s">
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Waarom wij</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase mb-8" style="--delay: 0.1s">
             Waarom Projectbouw 010?
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
               { icon: 'lucide:shield-check', title: '4 Jaar Garantie', desc: 'Op al onze werkzaamheden' },
               { icon: 'lucide:clock', title: 'Binnen 24 Uur', desc: 'Reactie op uw aanvraag' },
@@ -128,20 +234,20 @@ const werkwijzeStappen = [
               { icon: 'lucide:star', title: '9.3 Beoordeling', desc: '173+ klantreviews' },
             ].map((usp, i) => (
               <div class="reveal-up flex items-start gap-4" style={`--delay: ${(i + 2) * 0.05}s`}>
-                <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                <div class="w-10 h-10 bg-[#111] rounded-xl flex items-center justify-center shrink-0">
                   <Icon name={usp.icon} class="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p class="text-white font-semibold">{usp.title}</p>
-                  <p class="text-gray-400 text-sm">{usp.desc}</p>
+                  <p class="text-[#111] font-semibold">{usp.title}</p>
+                  <p class="text-[#777] text-sm">{usp.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div class="reveal-up text-center lg:text-left" style="--delay: 0.3s">
-          <div class="bg-[#1c1c1c] rounded-xl p-10">
+        <div class="reveal-up" style="--delay: 0.3s">
+          <div class="bg-[#111] rounded-xl p-10">
             <h3 class="text-white font-heading font-bold text-2xl uppercase mb-3">
               {dienst.naam} nodig?
             </h3>
@@ -170,9 +276,15 @@ const werkwijzeStappen = [
   </section>
 
   <!-- Gerelateerde diensten -->
-  <section class="py-16 lg:py-20 bg-[#f4f4f4]">
+  <section class="py-16 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="reveal-up text-2xl sm:text-3xl font-heading font-bold text-[#111] uppercase mb-8">Andere Diensten</h2>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="reveal-up text-2xl sm:text-3xl font-heading font-bold text-[#111] uppercase">Andere Diensten</h2>
+        <a href="/#diensten" class="reveal-up text-[#777] hover:text-[#111] transition-colors text-sm font-medium flex items-center gap-1">
+          Alle diensten
+          <Icon name="lucide:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {gerelateerd.map((d, i) => (
           <a href={`/diensten/${d.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.05}s`}>
@@ -187,3 +299,46 @@ const werkwijzeStappen = [
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.parentElement!;
+      const panel = item.querySelector('.faq-panel') as HTMLElement;
+      const icon = trigger.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = panel.style.height !== '0px' && panel.style.height !== '';
+
+      // Sluit alle andere items eerst
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) {
+          const otherPanel = other.querySelector('.faq-panel') as HTMLElement;
+          const otherIcon = other.querySelector('.faq-icon') as HTMLElement;
+          if (otherPanel.style.height !== '0px' && otherPanel.style.height !== '') {
+            otherPanel.style.height = otherPanel.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+              otherPanel.style.height = '0px';
+            });
+            otherIcon.style.transform = '';
+          }
+        }
+      });
+
+      // Toggle huidige item
+      if (isOpen) {
+        panel.style.height = panel.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          panel.style.height = '0px';
+        });
+        icon.style.transform = '';
+      } else {
+        panel.style.height = panel.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+        panel.addEventListener('transitionend', () => {
+          if (panel.style.height !== '0px') {
+            panel.style.height = 'auto';
+          }
+        }, { once: true });
+      }
+    });
+  });
+</script>
