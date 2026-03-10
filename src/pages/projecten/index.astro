@@ -174,8 +174,18 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
   let showAll = false;
   let currentFilter = 'all';
 
+  // Build a set of cards to show for "Alles": 1 per category
+  const initialCards = new Set<HTMLElement>();
+  const seenCats = new Set<string>();
+  cards.forEach((card) => {
+    const cat = card.getAttribute('data-categorie') || '';
+    if (!seenCats.has(cat)) {
+      seenCats.add(cat);
+      initialCards.add(card);
+    }
+  });
+
   function applyFilter() {
-    let visibleCount = 0;
     let totalMatching = 0;
     const useLimit = currentFilter === 'all' && !showAll;
 
@@ -185,12 +195,11 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
 
       if (matches) {
         totalMatching++;
-        if (!useLimit || visibleCount < INITIAL_LIMIT) {
+        if (!useLimit || initialCards.has(card)) {
           card.style.display = '';
           // Reset GSAP inline styles so filtered cards are immediately visible
           card.style.opacity = '1';
           card.style.transform = 'none';
-          visibleCount++;
         } else {
           card.style.display = 'none';
         }
@@ -201,7 +210,7 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
 
     // Show/hide "toon meer" button — only for "Alles"
     if (toonMeerWrapper) {
-      if (useLimit && totalMatching > INITIAL_LIMIT) {
+      if (useLimit && totalMatching > initialCards.size) {
         toonMeerWrapper.style.display = '';
       } else {
         toonMeerWrapper.style.display = 'none';
