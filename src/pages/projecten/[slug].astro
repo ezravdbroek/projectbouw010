@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon/components';
 import { projecten } from '../../data/projecten';
 import type { GetStaticPaths } from 'astro';
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}', { eager: true });
 
 function getImage(path: string) {
   const img = images[path];

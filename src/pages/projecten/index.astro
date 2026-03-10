@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { projecten } from '../../data/projecten';
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}', { eager: true });
 
 function getImage(path: string) {
   const img = images[path];
@@ -166,7 +166,7 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
 </style>
 
 <script>
-  const INITIAL_LIMIT = 20;
+  const INITIAL_LIMIT = 8;
   const buttons = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project-card') as NodeListOf<HTMLElement>;
   const toonMeerBtn = document.getElementById('toon-meer-btn');
@@ -177,6 +177,7 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
   function applyFilter() {
     let visibleCount = 0;
     let totalMatching = 0;
+    const useLimit = currentFilter === 'all' && !showAll;
 
     cards.forEach((card) => {
       const cat = card.getAttribute('data-categorie');
@@ -184,8 +185,11 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
 
       if (matches) {
         totalMatching++;
-        if (showAll || visibleCount < INITIAL_LIMIT) {
+        if (!useLimit || visibleCount < INITIAL_LIMIT) {
           card.style.display = '';
+          // Reset GSAP inline styles so filtered cards are immediately visible
+          card.style.opacity = '1';
+          card.style.transform = 'none';
           visibleCount++;
         } else {
           card.style.display = 'none';
@@ -195,9 +199,9 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
       }
     });
 
-    // Show/hide "toon meer" button
+    // Show/hide "toon meer" button — only for "Alles"
     if (toonMeerWrapper) {
-      if (!showAll && totalMatching > INITIAL_LIMIT) {
+      if (useLimit && totalMatching > INITIAL_LIMIT) {
         toonMeerWrapper.style.display = '';
       } else {
         toonMeerWrapper.style.display = 'none';

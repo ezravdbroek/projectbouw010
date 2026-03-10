@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}', { eager: true });
 
 function getImage(path: string) {
   const img = images[path];
@@ -43,7 +43,7 @@ function getImage(path: string) {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div class="reveal-left">
           <div class="relative">
-            <Image src={getImage('/src/assets/images/over.jpeg')} alt="Mike Gouri - Projectbouw 010" class="rounded-xl w-full object-cover aspect-[4/3]" />
+            <Image src={getImage('/src/assets/images/badkamer8.jpeg')} alt="Mike Gouri - Projectbouw 010" class="rounded-xl w-full object-cover aspect-[4/3]" />
             <div class="absolute -bottom-6 -right-6 bg-[#111] text-white p-6 rounded-xl hidden lg:block">
               <p class="text-3xl font-heading font-bold">15+</p>
               <p class="text-gray-400 text-sm">Jaar Ervaring</p>

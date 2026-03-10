@@ -6,7 +6,7 @@ import { diensten } from '../../data/diensten';
 import { projecten } from '../../data/projecten';
 import type { GetStaticPaths } from 'astro';
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png,webp}', { eager: true });
 
 function getImage(path: string) {
   const img = images[path];
@@ -24,6 +24,22 @@ export const getStaticPaths: GetStaticPaths = () => {
 const { dienst } = Astro.props;
 
 const gerelateerd = diensten.filter((d) => d.slug !== dienst.slug).slice(0, 4);
+
+// Map dienst slug to project categorie
+const categorieMap: Record<string, string> = {
+  'badkamer-renovatie': 'Badkamer',
+  'keukenrenovatie': 'Keuken',
+  'stukadoor': 'Stucwerk',
+  'uitbouw': 'Uitbouw',
+  'stalen-deuren': 'Stalen Deuren',
+  'cinewall': 'Cinewall',
+  'verlaagd-plafond': 'Verlaagd Plafond',
+  'traprenovatie': 'Traprenovatie',
+};
+const projectCategorie = categorieMap[dienst.slug];
+const dienstProjecten = projectCategorie
+  ? projecten.filter((p) => p.categorie === projectCategorie).slice(0, 6)
+  : [];
 
 const werkwijzeStappen = [
   { number: '01', title: 'Contact & Opname', icon: 'lucide:phone', desc: 'Wij bespreken uw wensen en komen langs voor een opname op locatie.' },
@@ -98,6 +114,48 @@ const werkwijzeStappen = [
       </div>
     </div>
   </section>
+
+  <!-- Portfolio -->
+  {dienstProjecten.length > 0 && (
+    <section class="py-16 lg:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="reveal-up text-[#777] font-medium tracking-widest uppercase text-sm mb-3">Recente projecten</p>
+          <h2 class="reveal-up text-3xl sm:text-4xl font-heading font-bold text-[#111] uppercase" style="--delay: 0.1s">
+            {dienst.naam} Projecten
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {dienstProjecten.map((project, i) => (
+            <a
+              href={`/projecten/${project.slug}`}
+              class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]"
+              style={`--delay: ${i * 0.05}s`}
+            >
+              <Image src={getImage(project.afbeeldingen[0])} alt={project.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-[#111]/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <h3 class="text-white font-heading font-bold text-xl uppercase mt-1">{project.titel}</h3>
+                <p class="text-gray-300 text-sm flex items-center gap-1 mt-1">
+                  <Icon name="lucide:map-pin" class="w-3 h-3" />
+                  {project.locatie}
+                </p>
+              </div>
+              <div class="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Icon name="lucide:arrow-right" class="w-4 h-4 text-white" />
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-10">
+          <a href="/projecten" class="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-semibold rounded text-base transition-colors duration-200 hover:bg-[#333]">
+            Alle Projecten Bekijken
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Kenmerken als kaarten -->
   <section class="py-16 lg:py-24 bg-[#f4f4f4]">
