@@ -120,40 +120,22 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
 
 <!-- Mobile Menu (outside header, full screen overlay) -->
 <div id="mobile-menu" class="lg:hidden fixed inset-0 z-[65] bg-[#111] hidden" style="-webkit-overflow-scrolling: touch;">
-  <div class="overflow-y-auto h-full pt-24 pb-10 px-6">
+  <!-- Hoofdmenu -->
+  <div id="mobile-main-panel" class="overflow-y-auto h-full pt-24 pb-10 px-6 transition-transform duration-300">
     <div class="space-y-2">
       <a href="/" class="block py-4 text-white text-2xl font-heading font-bold uppercase border-b border-white/10">
         Home
       </a>
 
-      <!-- Mobile Diensten accordion -->
+      <!-- Diensten -> opent subpaneel -->
       <div class="border-b border-white/10">
         <button
           id="diensten-mobile-toggle"
           class="w-full flex items-center justify-between py-4 text-white text-2xl font-heading font-bold uppercase"
         >
           <span>Diensten</span>
-          <Icon name="lucide:chevron-down" class="w-5 h-5 transition-transform duration-200" id="diensten-chevron" />
+          <Icon name="lucide:chevron-right" class="w-5 h-5" />
         </button>
-        <div id="diensten-mobile-list" class="hidden pb-4">
-          {bouwLinks.map((d) => (
-            <a
-              href={`/diensten/${d.slug}`}
-              class="block py-2.5 text-white font-heading font-bold text-lg uppercase hover:text-gray-300 transition-colors duration-200"
-            >
-              {d.naam}
-            </a>
-          ))}
-          <div class="border-t border-white/10 my-3"></div>
-          {overigeDiensten.map((d) => (
-            <a
-              href={`/diensten/${d.slug}`}
-              class="block py-2 text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              {d.naam}
-            </a>
-          ))}
-        </div>
       </div>
 
       {navLinks.slice(1).map((link) => (
@@ -185,6 +167,40 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
       <a href="https://www.facebook.com/projectbouw010" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
         <Icon name="lucide:facebook" class="w-6 h-6" />
       </a>
+    </div>
+  </div>
+
+  <!-- Diensten subpaneel -->
+  <div id="mobile-diensten-panel" class="absolute inset-0 overflow-y-auto h-full pt-24 pb-10 px-6 bg-[#111] transition-transform duration-300 translate-x-full">
+    <button
+      id="diensten-mobile-back"
+      class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
+    >
+      <Icon name="lucide:chevron-left" class="w-5 h-5" />
+      <span class="text-base font-medium">Terug</span>
+    </button>
+    <p class="text-white/50 font-medium tracking-widest uppercase text-xs mb-4">Diensten</p>
+
+    <div class="space-y-1">
+      {bouwLinks.map((d) => (
+        <a
+          href={`/diensten/${d.slug}`}
+          class="block py-3 text-white font-heading font-bold text-xl uppercase hover:text-gray-300 transition-colors duration-200 border-b border-white/10"
+        >
+          {d.naam}
+        </a>
+      ))}
+    </div>
+
+    <div class="space-y-1 mt-2">
+      {overigeDiensten.map((d) => (
+        <a
+          href={`/diensten/${d.slug}`}
+          class="block py-3 text-gray-300 hover:text-white transition-colors duration-200 text-base border-b border-white/5"
+        >
+          {d.naam}
+        </a>
+      ))}
     </div>
   </div>
 </div>
@@ -234,6 +250,13 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
       bar2.style.opacity = '1';
       bar3.style.transform = 'translateY(6px)';
       document.body.style.overflow = '';
+      // Reset diensten subpaneel
+      const mp = document.getElementById('mobile-main-panel');
+      const dp = document.getElementById('mobile-diensten-panel');
+      if (mp && dp) {
+        mp.style.transform = '';
+        dp.style.transform = '';
+      }
     }
     updateNavbar();
   });
@@ -297,15 +320,21 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
     });
   }
 
-  // Mobile diensten accordion
+  // Mobile diensten sub-panel
   const dienstenToggle = document.getElementById('diensten-mobile-toggle');
-  const dienstenList = document.getElementById('diensten-mobile-list');
-  const dienstenChevron = document.getElementById('diensten-chevron');
+  const mainPanel = document.getElementById('mobile-main-panel');
+  const dienstenPanel = document.getElementById('mobile-diensten-panel');
+  const dienstenBack = document.getElementById('diensten-mobile-back');
 
-  if (dienstenToggle && dienstenList && dienstenChevron) {
+  if (dienstenToggle && mainPanel && dienstenPanel && dienstenBack) {
     dienstenToggle.addEventListener('click', () => {
-      dienstenList.classList.toggle('hidden');
-      dienstenChevron.style.transform = dienstenList.classList.contains('hidden') ? '' : 'rotate(180deg)';
+      mainPanel.style.transform = 'translateX(-100%)';
+      dienstenPanel.style.transform = 'translateX(0)';
+    });
+
+    dienstenBack.addEventListener('click', () => {
+      mainPanel.style.transform = '';
+      dienstenPanel.style.transform = '';
     });
   }
 </script>
