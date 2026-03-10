@@ -1,7 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { projecten } from '../../data/projecten';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+
+function getImage(path: string) {
+  const img = images[path];
+  if (!img) return path;
+  return img.default;
+}
 
 const categorieen = [...new Set(projecten.map((p) => p.categorie))];
 const uitgelicht = projecten.filter((p) => p.uitgelicht);
@@ -14,7 +23,7 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
   <!-- Hero — Full width with image -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/badkamer.jpeg" alt="Projectbouw 010 projecten" class="w-full h-full object-cover" loading="eager" />
+      <Image src={getImage('/src/assets/images/badkamer.jpeg')} alt="Projectbouw 010 projecten" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-[#111]/60 via-[#111]/70 to-[#111]"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,9 +83,9 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
             href={`/projecten/${project.slug}`}
             class="reveal-up project-card relative rounded-xl overflow-hidden group aspect-[4/3]"
             data-categorie={project.categorie}
-            style={`--delay: ${i * 0.05}s`}
+            style={`--delay: ${Math.min(i, 20) * 0.05}s`}
           >
-            <img src={project.afbeeldingen[0]} alt={project.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(project.afbeeldingen[0])} alt={project.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-[#111]/20 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6">
               <span class="text-white/60 text-xs font-medium uppercase tracking-wider">{project.categorie}</span>
@@ -91,6 +100,14 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
             </div>
           </a>
         ))}
+      </div>
+
+      <!-- Toon meer knop -->
+      <div class="text-center mt-12" id="toon-meer-wrapper">
+        <button id="toon-meer-btn" class="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-semibold rounded text-base transition-colors duration-200 hover:bg-[#333]">
+          Toon Meer Projecten
+          <Icon name="lucide:chevron-down" class="w-4 h-4" />
+        </button>
       </div>
     </div>
   </section>
@@ -120,7 +137,7 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
           <div class="grid grid-cols-2 gap-4">
             {uitgelicht.slice(0, 2).map((p) => (
               <a href={`/projecten/${p.slug}`} class="relative rounded-xl overflow-hidden group aspect-square">
-                <img src={p.afbeeldingen[0]} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                <Image src={getImage(p.afbeeldingen[0])} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 to-transparent"></div>
                 <div class="absolute bottom-3 left-3 right-3">
                   <p class="text-white font-heading font-bold text-sm uppercase">{p.titel}</p>
@@ -149,23 +166,60 @@ const uitgelicht = projecten.filter((p) => p.uitgelicht);
 </style>
 
 <script>
+  const INITIAL_LIMIT = 20;
   const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+  const cards = document.querySelectorAll('.project-card') as NodeListOf<HTMLElement>;
+  const toonMeerBtn = document.getElementById('toon-meer-btn');
+  const toonMeerWrapper = document.getElementById('toon-meer-wrapper');
+  let showAll = false;
+  let currentFilter = 'all';
+
+  function applyFilter() {
+    let visibleCount = 0;
+    let totalMatching = 0;
+
+    cards.forEach((card) => {
+      const cat = card.getAttribute('data-categorie');
+      const matches = currentFilter === 'all' || cat === currentFilter;
+
+      if (matches) {
+        totalMatching++;
+        if (showAll || visibleCount < INITIAL_LIMIT) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Show/hide "toon meer" button
+    if (toonMeerWrapper) {
+      if (!showAll && totalMatching > INITIAL_LIMIT) {
+        toonMeerWrapper.style.display = '';
+      } else {
+        toonMeerWrapper.style.display = 'none';
+      }
+    }
+  }
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       buttons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-      cards.forEach((card) => {
-        const cat = card.getAttribute('data-categorie');
-        if (filter === 'all' || cat === filter) {
-          (card as HTMLElement).style.display = '';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
+      currentFilter = btn.getAttribute('data-filter') || 'all';
+      showAll = false;
+      applyFilter();
     });
   });
+
+  toonMeerBtn?.addEventListener('click', () => {
+    showAll = true;
+    applyFilter();
+  });
+
+  // Initial apply
+  applyFilter();
 </script>

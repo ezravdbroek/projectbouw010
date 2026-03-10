@@ -4,6 +4,7 @@ export interface Dienst {
   omschrijving: string;
   beschrijving: string;
   afbeelding: string;
+  heroAfbeelding?: string;
   kenmerken: string[];
   voordelen: { titel: string; tekst: string }[];
   faq: { vraag: string; antwoord: string }[];
@@ -15,7 +16,7 @@ export const diensten: Dienst[] = [
     naam: 'Aanbouw',
     omschrijving: 'Meer leefruimte nodig? Wij realiseren uw aanbouw vakkundig en op maat, volledig afgestemd op uw woning en wensen.',
     beschrijving: 'Een aanbouw is dé manier om uw woning te vergroten zonder te verhuizen. Of het nu gaat om een extra woonkamer, een ruimere keuken of een praktische bijkeuken — wij realiseren uw aanbouw van fundament tot afwerking. Ons team verzorgt het complete traject: van de eerste tekening en vergunningsaanvraag tot de oplevering. Wij werken uitsluitend met hoogwaardige materialen en zorgen dat de aanbouw naadloos aansluit op uw bestaande woning, zowel constructief als esthetisch.',
-    afbeelding: '/images/aanbouw.jpg',
+    afbeelding: '/src/assets/images/aanbouw.jpg',
     kenmerken: ['Constructieberekeningen', 'Vergunningsaanvraag', 'Fundament tot afwerking', 'Volledig ontzorgd'],
     voordelen: [
       { titel: 'Meer Woonruimte', tekst: 'Vergroot uw woning met extra vierkante meters zonder de kosten en stress van een verhuizing.' },
@@ -34,7 +35,7 @@ export const diensten: Dienst[] = [
     naam: 'Uitbouw',
     omschrijving: 'Vergroot uw woonkamer of keuken met een stijlvolle uitbouw. Van ontwerp tot oplevering verzorgen wij alles.',
     beschrijving: 'Met een uitbouw haalt u letterlijk meer ruimte en licht in uw woning. Een uitbouw aan de achterzijde van uw woning is een populaire keuze om de woonkamer of keuken flink te vergroten. Denk aan grote schuifpuien, een lichtstraat of vouwpui die uw woning opent naar de tuin. Wij realiseren uitbouwen die perfect aansluiten op de bestaande architectuur en voldoen aan alle bouwkundige eisen. Het resultaat: een lichte, ruime leefomgeving die uw wooncomfort enorm vergroot.',
-    afbeelding: '/images/uitbouw.jpeg',
+    afbeelding: '/src/assets/images/uitbouw.jpeg',
     kenmerken: ['Meer lichtinval', 'Waardeverhoging woning', 'Naadloze aansluiting', 'Isolatie conform normen'],
     voordelen: [
       { titel: 'Meer Licht & Ruimte', tekst: 'Grote glaspartijen zorgen voor een overvloed aan natuurlijk licht in uw woning.' },
@@ -53,7 +54,7 @@ export const diensten: Dienst[] = [
     naam: 'Opbouw',
     omschrijving: 'Een extra verdieping op uw woning? Wij bouwen vakkundig op met respect voor de bestaande constructie.',
     beschrijving: 'Een opbouw is de ideale oplossing wanneer u meer ruimte nodig heeft maar uw grondoppervlak beperkt is. Door een extra verdieping toe te voegen creëert u ruimte voor een slaapkamer, kantoor of badkamer zonder dat uw tuin kleiner wordt. Ons team heeft uitgebreide ervaring met opbouwen en zorgt dat de bestaande constructie veilig wordt belast. Wij handelen het complete traject af: van constructieberekeningen en vergunningen tot de dakafdichting en binnenafwerking.',
-    afbeelding: '/images/1.jpg',
+    afbeelding: '/src/assets/images/opbouw.jpeg',
     kenmerken: ['Extra slaapkamer of kantoor', 'Constructief veilig', 'Dakafwerking inclusief', 'Vergunningstraject'],
     voordelen: [
       { titel: 'Maximale Benutting', tekst: 'Benut de volledige potentie van uw kavel door naar boven te bouwen.' },
@@ -72,7 +73,7 @@ export const diensten: Dienst[] = [
     naam: 'Badkamer Renovatie',
     omschrijving: 'Complete badkamerrenovatie met hoogwaardige materialen en modern design. Van sloop tot en met installatie.',
     beschrijving: 'Uw badkamer is een ruimte waar u elke dag begint en eindigt — daarom verdient het de beste aanpak. Bij een complete badkamerrenovatie verzorgen wij alles: van het slopen van de oude badkamer tot het plaatsen van het laatste sanitair. Wij werken met topmerken en besteden extra aandacht aan waterdichtheid, ventilatie en functionaliteit. Of u nu droomt van een luxe inloopdouche, een vrijstaand bad of een compact maar slim ingedeeld geheel — wij maken het werkelijkheid.',
-    afbeelding: '/images/badkamer.jpeg',
+    afbeelding: '/src/assets/images/badkamer.jpeg',
     kenmerken: ['Complete sloop en afvoer', 'Leidingwerk en installatie', 'Tegelwerk en afwerking', 'Sanitair plaatsing'],
     voordelen: [
       { titel: 'Alles-in-één', tekst: 'Eén aannemer voor het complete traject: sloop, leidingen, tegels, sanitair en afwerking.' },
@@ -91,7 +92,7 @@ export const diensten: Dienst[] = [
     naam: 'Keukenrenovatie',
     omschrijving: 'Uw droomkeuken op maat gemaakt. Van ontwerp en installatie tot de laatste afwerking.',
     beschrijving: 'De keuken is het hart van uw woning. Een goed ontworpen keuken combineert functionaliteit met stijl en maakt koken en samenzijn een plezier. Wij verzorgen complete keukenrenovaties: van het verwijderen van de oude keuken en het aanpassen van leidingwerk tot het plaatsen en aansluiten van uw nieuwe keuken. Wij werken nauw samen met u om een keuken te realiseren die past bij uw levensstijl, smaak en budget. Met oog voor detail en praktische indeling.',
-    afbeelding: '/images/keuken.jpeg',
+    afbeelding: '/src/assets/images/keuken.jpeg',
     kenmerken: ['Op maat ontwerp', 'Leidingwerk aanpassing', 'Tegelwerk en spatwand', 'Apparatuur installatie'],
     voordelen: [
       { titel: 'Persoonlijk Ontwerp', tekst: 'Samen met u ontwerpen wij een keuken die perfect past bij uw wensen en leefstijl.' },
@@ -110,7 +111,7 @@ export const diensten: Dienst[] = [
     naam: 'Stukadoor',
     omschrijving: 'Professioneel stucwerk voor wanden en plafonds. Glad, sierpleister of betonlook — wij beheersen alle technieken.',
     beschrijving: 'Stucwerk geeft uw wanden en plafonds een strakke, professionele uitstraling. Of u nu kiest voor glad stucwerk, een warme sierpleister of de stoere betonlook — onze ervaren stukadoors beheersen alle technieken. Wij werken snel, stofvrij en netjes, en leveren altijd een vlekkeloos resultaat. Naast nieuwbouw stucen wij ook bestaande wanden over, herstellen scheuren en brengen speciale afwerkingen aan. Een goed gestucte muur maakt het verschil in elk interieur.',
-    afbeelding: '/images/stukadoor.jpg',
+    afbeelding: '/src/assets/images/stukadoor.jpg',
     kenmerken: ['Glad stucwerk', 'Sierpleister', 'Betonlook', 'Wanden en plafonds'],
     voordelen: [
       { titel: 'Strakke Afwerking', tekst: 'Spiegelglad stucwerk voor een moderne, strakke uitstraling in elke ruimte.' },
@@ -129,7 +130,8 @@ export const diensten: Dienst[] = [
     naam: 'Cinewall',
     omschrijving: 'Een stijlvolle cinewall op maat voor uw woonkamer. Kabels weggewerkt, strak afgewerkt.',
     beschrijving: 'Een cinewall is dé manier om uw televisie stijlvol te integreren in uw interieur. Alle kabels worden weggewerkt in de wand, waardoor u een strakke, opgeruimde look krijgt. Wij bouwen uw cinewall volledig op maat: van de constructie en elektra tot de afwerking met stuc, verf of decoratief materiaal. Optioneel voegen wij sfeervolle LED-verlichting toe voor een echte bioscoop-ervaring. Het resultaat is een eye-catcher in uw woonkamer die tegelijkertijd praktisch en stijlvol is.',
-    afbeelding: '/images/cinewall.jpeg',
+    afbeelding: '/src/assets/images/cinewall1.jpeg',
+    heroAfbeelding: '/src/assets/images/cinewall5.jpeg',
     kenmerken: ['TV-wand op maat', 'Kabels weggewerkt', 'LED-verlichting optioneel', 'Strak afgewerkt'],
     voordelen: [
       { titel: 'Geen Zichtbare Kabels', tekst: 'Alle kabels, stopcontacten en aansluitingen worden onzichtbaar weggewerkt.' },
@@ -148,7 +150,7 @@ export const diensten: Dienst[] = [
     naam: 'PVC Vloer Leggen',
     omschrijving: 'Professioneel PVC vloeren leggen. Duurzaam, onderhoudsvriendelijk en in diverse stijlen verkrijgbaar.',
     beschrijving: 'PVC vloeren zijn de ideale combinatie van stijl, comfort en praktisch gemak. Ze zijn waterdicht, geluiddempend, warm aan de voeten en verkrijgbaar in eindeloos veel dessins — van houtlook tot betonlook. Wij leggen uw PVC vloer vakkundig: de ondergrond wordt eerst perfect geëgaliseerd, waarna de vloer strak en naadloos wordt gelegd. Met de juiste plinten en overgangsprofielen zorgen wij voor een compleet afgewerkt resultaat dat jarenlang meegaat.',
-    afbeelding: '/images/vloer.jpeg',
+    afbeelding: '/src/assets/images/vloer.jpeg',
     kenmerken: ['Egaliseren ondergrond', 'Professionele plaatsing', 'Diverse dessins', 'Plinten afwerking'],
     voordelen: [
       { titel: 'Waterdicht', tekst: 'PVC vloeren zijn volledig waterdicht — ideaal voor keuken, badkamer en hal.' },
@@ -167,7 +169,7 @@ export const diensten: Dienst[] = [
     naam: 'Toilet Renovatie',
     omschrijving: 'Complete toilet renovatie inclusief tegelwerk, sanitair en leidingwerk. Klein maar fijn, tot in de puntjes afgewerkt.',
     beschrijving: 'Een toilet is klein, maar de impact van een renovatie is groot. Wij transformeren uw toilet van verouderd naar modern en fris. Bij een complete toiletrenovatie vervangen wij alles: van de tegels en het sanitair tot het leidingwerk en de verlichting. Wij denken slim mee over de indeling om de beschikbare ruimte optimaal te benutten. Met een zwevend toilet, stijlvolle tegels en de juiste verlichting creëren wij een ruimte die er strak en verzorgd uitziet.',
-    afbeelding: '/images/badkamer.jpeg',
+    afbeelding: '/src/assets/images/badkamer.jpeg',
     kenmerken: ['Complete renovatie', 'Tegelwerk', 'Sanitair installatie', 'Leidingwerk'],
     voordelen: [
       { titel: 'Compleet Vernieuwd', tekst: 'Van vloer tot plafond alles nieuw voor een fris, modern resultaat.' },
@@ -186,7 +188,8 @@ export const diensten: Dienst[] = [
     naam: 'Stalen Deuren',
     omschrijving: 'Industriele stalen deuren en kozijnen voor een stijlvolle uitstraling. Op maat gemaakt en vakkundig geplaatst.',
     beschrijving: 'Stalen deuren geven uw interieur direct een industriële, moderne uitstraling. Ze laten licht door terwijl ze ruimtes visueel scheiden. Wij plaatsen stalen deuren en kozijnen die op maat gemaakt worden voor uw specifieke situatie. Of het nu gaat om een enkele taatsdeur, dubbele openslaande deuren of een compleet stalen kozijn met zijlichten — wij adviseren u over de beste optie en zorgen voor een perfecte plaatsing. Het resultaat: een tijdloze eye-catcher in uw woning.',
-    afbeelding: '/images/1.jpg',
+    afbeelding: '/src/assets/images/stalen-deur1.jpeg',
+    heroAfbeelding: '/src/assets/images/stalen-deur3.jpeg',
     kenmerken: ['Op maat gemaakt', 'Diverse stijlen', 'Inclusief kozijn', 'Vakkundige plaatsing'],
     voordelen: [
       { titel: 'Licht & Openheid', tekst: 'Stalen deuren met glas laten maximaal licht door en geven een open gevoel.' },
@@ -205,7 +208,8 @@ export const diensten: Dienst[] = [
     naam: 'Verlaagd Plafond',
     omschrijving: 'Een verlaagd plafond voor een strakke, moderne uitstraling. Inclusief spotjes en afwerking.',
     beschrijving: 'Een verlaagd plafond transformeert elke ruimte. Het creëert een strakke, moderne uitstraling en biedt praktische voordelen zoals inbouwspots, geluidsisolatie en het wegwerken van leidingen of kabels. Wij plaatsen verlaagde plafonds van gipsplaat of MDF, strak afgewerkt en klaar om te schilderen. Onze elektricien zorgt voor de perfecte plaatsing van spots en eventuele sfeerverlichting. Het resultaat: een professioneel ogend plafond dat uw interieur naar een hoger niveau tilt.',
-    afbeelding: '/images/plafon_verlaagd.jpg',
+    afbeelding: '/src/assets/images/verlaag_plafond1.jpeg',
+    heroAfbeelding: '/src/assets/images/verlaag_plafond3.jpeg',
     kenmerken: ['Gipsplaten of MDF', 'Spotjes inbouw', 'Geluidsisolatie', 'Strakke afwerking'],
     voordelen: [
       { titel: 'Strakke Look', tekst: 'Een perfect vlak plafond geeft elke ruimte een verzorgde, moderne uitstraling.' },
@@ -224,7 +228,8 @@ export const diensten: Dienst[] = [
     naam: 'Traprenovatie',
     omschrijving: 'Geef uw trap een nieuw leven. Van bekleding tot complete vervanging, wij maken er iets moois van.',
     beschrijving: 'Uw trap is het eerste wat u ziet als u binnenkomt — een verouderde trap trekt de uitstraling van uw hele hal omlaag. Met een traprenovatie geven wij uw trap een complete metamorfose. Of u kiest voor het bekleden met hout, laminaat of vinyl, of voor een complete vervanging met een nieuwe trap — wij leveren altijd een resultaat dat er strak en modern uitziet. Inclusief nieuwe leuning, antislip afwerking en eventuele LED-verlichting onder de treden voor extra sfeer.',
-    afbeelding: '/images/3.jpg',
+    afbeelding: '/src/assets/images/trap.jpeg',
+    heroAfbeelding: '/src/assets/images/trap3.jpeg',
     kenmerken: ['Trap bekleden', 'Trapleuning vernieuwen', 'Diverse materialen', 'Antislip afwerking'],
     voordelen: [
       { titel: 'Grote Impact', tekst: 'Een gerenoveerde trap verandert de uitstraling van uw hele hal en entree.' },
@@ -243,7 +248,7 @@ export const diensten: Dienst[] = [
     naam: 'Tegelzetter',
     omschrijving: 'Professioneel tegelwerk voor badkamer, keuken, vloer en wand. Strak gelegd met oog voor detail.',
     beschrijving: 'Goed tegelwerk maakt het verschil in elke ruimte. Onze tegelzetters zijn echte vakmensen die met precisie en oog voor detail werken. Van kleine mozaïektegels tot XXL formaten, van vloertegels in de woonkamer tot wandtegels in de badkamer — wij leggen het allemaal strak en waterdicht. De juiste voorbereiding is essentieel: wij egaliseren, gronden en waterdichten voordat de eerste tegel wordt gelegd. Het resultaat: tegelwerk dat er jarenlang perfect uit blijft zien.',
-    afbeelding: '/images/tegelzetter.jpg',
+    afbeelding: '/src/assets/images/tegelzetter.jpg',
     kenmerken: ['Wand- en vloertegels', 'Mozaiek en grootformaat', 'Waterdichte afwerking', 'Diverse patronen'],
     voordelen: [
       { titel: 'Vakmanschap', tekst: 'Ervaren tegelzetters die met millimeterprecisie werken voor een strak resultaat.' },
@@ -262,7 +267,7 @@ export const diensten: Dienst[] = [
     naam: 'Beton Ciré',
     omschrijving: 'Exclusieve beton ciré afwerking voor vloeren, wanden en meubels. Een naadloze, strakke uitstraling met industrieel karakter.',
     beschrijving: 'Beton ciré is een exclusieve afwerkingstechniek die een naadloos, betonachtig oppervlak creëert. Het is toepasbaar op vloeren, wanden, aanrechtbladen, meubels en zelfs in douches. Het materiaal is waterdicht, slijtvast en verkrijgbaar in tientallen kleurtinten — van warm grijs tot antraciet. Onze specialisten brengen beton ciré met de hand aan in meerdere lagen, waardoor elk oppervlak uniek is. Het resultaat is een stoere, industriële uitstraling met een zachte, aangenamme textuur.',
-    afbeelding: '/images/beton_circe.jpg',
+    afbeelding: '/src/assets/images/beton_circe.jpg',
     kenmerken: ['Naadloze afwerking', 'Vloeren en wanden', 'Waterdicht', 'Diverse kleurtinten'],
     voordelen: [
       { titel: 'Naadloos Oppervlak', tekst: 'Geen voegen of naden — een doorlopend, strak oppervlak in elke ruimte.' },

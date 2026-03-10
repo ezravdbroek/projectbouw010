@@ -1,8 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { diensten } from '../data/diensten';
 import { projecten } from '../data/projecten';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+
+function getImage(path: string) {
+  const img = images[path];
+  if (!img) return path;
+  return img.default;
+}
 
 const uitgelicht = projecten.filter((p) => p.uitgelicht);
 
@@ -100,17 +109,17 @@ const schemaOrg = JSON.stringify({
       <!-- Desktop: 4 expandable panels -->
       <div class="hidden lg:flex gap-2 h-[500px] bouw-panels">
         {[
-          { naam: 'Aanbouw', slug: 'aanbouw', img: '/images/aanbouw.jpg', desc: 'Meer leefruimte nodig? Wij realiseren uw aanbouw vakkundig en op maat.' },
-          { naam: 'Uitbouw', slug: 'uitbouw', img: '/images/uitbouw.jpeg', desc: 'Vergroot uw woonkamer of keuken met een stijlvolle uitbouw.' },
-          { naam: 'Opbouw', slug: 'opbouw', img: '/images/1.jpg', desc: 'Een extra verdieping op uw woning, vakkundig opgebouwd.' },
-          { naam: 'Verbouw', slug: 'aanbouw', img: '/images/verbouw.jpeg', desc: 'Complete verbouwing van A tot Z, volledig naar uw wensen.' },
+          { naam: 'Aanbouw', slug: 'aanbouw', img: '/src/assets/images/aanbouw.jpg', desc: 'Meer leefruimte nodig? Wij realiseren uw aanbouw vakkundig en op maat.' },
+          { naam: 'Uitbouw', slug: 'uitbouw', img: '/src/assets/images/uitbouw.jpeg', desc: 'Vergroot uw woonkamer of keuken met een stijlvolle uitbouw.' },
+          { naam: 'Opbouw', slug: 'opbouw', img: '/src/assets/images/1.jpg', desc: 'Een extra verdieping op uw woning, vakkundig opgebouwd.' },
+          { naam: 'Verbouw', slug: 'aanbouw', img: '/src/assets/images/verbouw.jpeg', desc: 'Complete verbouwing van A tot Z, volledig naar uw wensen.' },
         ].map((item, i) => (
           <a
             href={`/diensten/${item.slug}`}
             class="bouw-panel relative rounded-xl overflow-hidden cursor-pointer group"
             style={`--delay: ${i * 0.05}s`}
           >
-            <img src={item.img} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(item.img)} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/90 via-[#111]/40 to-[#111]/10 group-hover:from-[#111]/95 transition-all duration-500"></div>
             <div class="relative h-full flex flex-col justify-end p-8">
               <span class="text-white/40 font-heading font-bold text-6xl absolute top-6 left-8 transition-all duration-500">0{i + 1}</span>
@@ -131,13 +140,13 @@ const schemaOrg = JSON.stringify({
       <!-- Mobile: vertical cards -->
       <div class="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
         {[
-          { naam: 'Aanbouw', slug: 'aanbouw', img: '/images/aanbouw.jpg' },
-          { naam: 'Uitbouw', slug: 'uitbouw', img: '/images/uitbouw.jpeg' },
-          { naam: 'Opbouw', slug: 'opbouw', img: '/images/1.jpg' },
-          { naam: 'Verbouw', slug: 'aanbouw', img: '/images/verbouw.jpeg' },
+          { naam: 'Aanbouw', slug: 'aanbouw', img: '/src/assets/images/aanbouw.jpg' },
+          { naam: 'Uitbouw', slug: 'uitbouw', img: '/src/assets/images/uitbouw.jpeg' },
+          { naam: 'Opbouw', slug: 'opbouw', img: '/src/assets/images/1.jpg' },
+          { naam: 'Verbouw', slug: 'aanbouw', img: '/src/assets/images/verbouw.jpeg' },
         ].map((item, i) => (
           <a href={`/diensten/${item.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[16/9]" style={`--delay: ${i * 0.05}s`}>
-            <img src={item.img} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(item.img)} alt={item.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-[#111]/30 to-transparent"></div>
             <div class="relative h-full flex items-end p-5">
               <h3 class="text-white font-heading font-bold text-xl uppercase">{item.naam}</h3>
@@ -174,7 +183,7 @@ const schemaOrg = JSON.stringify({
           .filter((d) => ['badkamer-renovatie', 'keukenrenovatie', 'stukadoor', 'tegelzetter', 'cinewall', 'pvc-vloer-leggen', 'toilet-renovatie', 'beton-cire'].includes(d.slug))
           .map((d, i) => (
           <a href={`/diensten/${d.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.04}s`}>
-            <img src={d.afbeelding} alt={d.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(d.afbeelding)} alt={d.naam} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/85 via-[#111]/25 to-transparent group-hover:from-[#111]/95 transition-all duration-300"></div>
             <div class="relative h-full flex items-end p-4 sm:p-5">
               <h3 class="text-white font-heading font-bold text-base sm:text-lg uppercase">{d.naam}</h3>
@@ -199,7 +208,7 @@ const schemaOrg = JSON.stringify({
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Photo -->
         <div class="reveal-left">
-          <img src="/images/over.jpeg" alt="Projectbouw 010 op locatie" class="rounded-xl w-full object-cover aspect-[4/3]" loading="lazy" />
+          <Image src={getImage('/src/assets/images/over.jpeg')} alt="Projectbouw 010 op locatie" class="rounded-xl w-full object-cover aspect-[4/3]" />
         </div>
 
         <!-- Text -->
@@ -241,7 +250,7 @@ const schemaOrg = JSON.stringify({
 
   <!-- Werkwijze — Mobile: vertical with photo bg -->
   <section id="werkwijze-mobile" class="relative py-20 lg:hidden overflow-hidden">
-    <img src="/images/hoe-wij-werken.jpeg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+    <Image src={getImage('/src/assets/images/hoe-wij-werken.jpeg')} alt="" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-[#111]/85 backdrop-blur-sm"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
       <div class="mb-12">
@@ -275,7 +284,7 @@ const schemaOrg = JSON.stringify({
   <!-- Werkwijze — Desktop: GSAP horizontal pin-scroll with photo bg -->
   <section id="werkwijze" class="hidden lg:block werkwijze-section">
     <div class="relative h-screen flex items-center overflow-hidden werkwijze-pin">
-      <img src="/images/hoe-wij-werken.jpeg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+      <Image src={getImage('/src/assets/images/hoe-wij-werken.jpeg')} alt="" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-[#111]/80 backdrop-blur-sm"></div>
       <div class="relative werkwijze-track flex items-center gap-0 w-max" id="werkwijze-track">
         <!-- Title card -->
@@ -326,7 +335,7 @@ const schemaOrg = JSON.stringify({
       <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
         {projecten.map((p, i) => (
           <a href={`/projecten/${p.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.05}s`}>
-            <img src={p.afbeeldingen[0]} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(p.afbeeldingen[0])} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
               <span class="text-white/60 text-xs font-medium uppercase tracking-wider">{p.categorie}</span>
@@ -354,13 +363,13 @@ const schemaOrg = JSON.stringify({
         <!-- Left photos (3 overlapping, bigger, more to the edge) -->
         <div class="col-span-3 relative hidden lg:block h-[620px]">
           <div class="reveal-left absolute -top-6 -left-8 w-56 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-10 rotate-[-4deg]">
-            <img src="/images/1.jpg" alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/1.jpg')} alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" />
           </div>
           <div class="reveal-left absolute top-1/2 -translate-y-1/2 left-16 w-60 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-20 rotate-[2deg]" style="--delay: 0.1s">
-            <img src="/images/badkamer.jpeg" alt="Badkamer renovatie" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/badkamer.jpeg')} alt="Badkamer renovatie" class="w-full h-full object-cover" />
           </div>
           <div class="reveal-left absolute -bottom-6 left-0 w-52 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-30 rotate-[-2deg]" style="--delay: 0.2s">
-            <img src="/images/2.jpg" alt="Stucwerk" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/2.jpg')} alt="Stucwerk" class="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -380,13 +389,13 @@ const schemaOrg = JSON.stringify({
           <!-- Mobile: photo row -->
           <div class="lg:hidden grid grid-cols-3 gap-3 mt-12">
             <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]">
-              <img src="/images/1.jpg" alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" loading="lazy" />
+              <Image src={getImage('/src/assets/images/1.jpg')} alt="Projectbouw 010 aan het werk" class="w-full h-full object-cover" />
             </div>
             <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]" style="--delay: 0.05s">
-              <img src="/images/badkamer.jpeg" alt="Badkamer renovatie" class="w-full h-full object-cover" loading="lazy" />
+              <Image src={getImage('/src/assets/images/badkamer.jpeg')} alt="Badkamer renovatie" class="w-full h-full object-cover" />
             </div>
             <div class="reveal-up rounded-lg overflow-hidden aspect-[3/4]" style="--delay: 0.1s">
-              <img src="/images/2.jpg" alt="Stucwerk" class="w-full h-full object-cover" loading="lazy" />
+              <Image src={getImage('/src/assets/images/2.jpg')} alt="Stucwerk" class="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -394,13 +403,13 @@ const schemaOrg = JSON.stringify({
         <!-- Right photos (3 overlapping, bigger, more to the edge) -->
         <div class="col-span-3 relative hidden lg:block h-[620px]">
           <div class="reveal-right absolute -top-6 -right-8 w-56 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-10 rotate-[4deg]">
-            <img src="/images/keuken.jpeg" alt="Keuken renovatie" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/keuken.jpeg')} alt="Keuken renovatie" class="w-full h-full object-cover" />
           </div>
           <div class="reveal-right absolute top-1/2 -translate-y-1/2 right-16 w-60 rounded-xl overflow-hidden shadow-2xl aspect-[3/4] z-20 rotate-[-2deg]" style="--delay: 0.1s">
-            <img src="/images/uitbouw.jpeg" alt="Uitbouw project" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/uitbouw.jpeg')} alt="Uitbouw project" class="w-full h-full object-cover" />
           </div>
           <div class="reveal-right absolute -bottom-6 right-0 w-52 rounded-xl overflow-hidden shadow-2xl aspect-[4/3] z-30 rotate-[2deg]" style="--delay: 0.2s">
-            <img src="/images/3.jpg" alt="Afwerking" class="w-full h-full object-cover" loading="lazy" />
+            <Image src={getImage('/src/assets/images/3.jpg')} alt="Afwerking" class="w-full h-full object-cover" />
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ export const pseoServices: PseoService[] = [
     slug: 'aanbouw',
     naam: 'Aanbouw',
     meervoud: 'aanbouwen',
-    afbeelding: '/images/aanbouw.jpg',
+    afbeelding: '/src/assets/images/aanbouw.jpg',
     gerelateerdeSlug: 'aanbouw',
     intro: 'Droomt u van meer leefruimte? Een aanbouw is dé manier om uw woning te vergroten zonder te verhuizen. Projectbouw 010 realiseert uw aanbouw van fundament tot afwerking. Wij verzorgen het complete traject: van de eerste tekening en vergunningsaanvraag tot de oplevering. Met hoogwaardige materialen en jarenlange ervaring zorgen wij dat de aanbouw naadloos aansluit op uw bestaande woning.',
     kenmerken: [
@@ -80,7 +80,7 @@ export const pseoServices: PseoService[] = [
     slug: 'uitbouw',
     naam: 'Uitbouw',
     meervoud: 'uitbouwen',
-    afbeelding: '/images/uitbouw.jpeg',
+    afbeelding: '/src/assets/images/uitbouw.jpeg',
     gerelateerdeSlug: 'uitbouw',
     intro: 'Met een uitbouw haalt u letterlijk meer ruimte en licht in uw woning. Een uitbouw aan de achterzijde is een populaire keuze om de woonkamer of keuken flink te vergroten. Denk aan grote schuifpuien, een lichtstraat of vouwpui die uw woning opent naar de tuin. Projectbouw 010 realiseert uitbouwen die perfect aansluiten op de bestaande architectuur en voldoen aan alle bouwkundige eisen.',
     kenmerken: [
@@ -110,7 +110,7 @@ export const pseoServices: PseoService[] = [
     slug: 'opbouw',
     naam: 'Opbouw',
     meervoud: 'opbouwen',
-    afbeelding: '/images/1.jpg',
+    afbeelding: '/src/assets/images/opbouw.jpeg',
     gerelateerdeSlug: 'opbouw',
     intro: 'Een opbouw is de ideale oplossing wanneer u meer ruimte nodig heeft maar uw grondoppervlak beperkt is. Door een extra verdieping toe te voegen creëert u ruimte voor een slaapkamer, kantoor of badkamer zonder dat uw tuin kleiner wordt. Projectbouw 010 heeft uitgebreide ervaring met opbouwen en zorgt dat de bestaande constructie veilig wordt belast.',
     kenmerken: [
@@ -140,7 +140,7 @@ export const pseoServices: PseoService[] = [
     slug: 'badkamer-renovatie',
     naam: 'Badkamer Renovatie',
     meervoud: 'badkamerrenovaties',
-    afbeelding: '/images/badkamer.jpeg',
+    afbeelding: '/src/assets/images/badkamer.jpeg',
     gerelateerdeSlug: 'badkamer-renovatie',
     intro: 'Droomt u van een nieuwe badkamer? Projectbouw 010 is uw specialist voor complete badkamerrenovaties. Van de eerste sloopwerkzaamheden tot het plaatsen van het laatste sanitair — wij verzorgen het volledige traject. Met jarenlange ervaring en vakmanschap transformeren wij uw verouderde badkamer in een moderne, luxe ruimte die perfect aansluit bij uw wensen.',
     kenmerken: [
@@ -170,7 +170,7 @@ export const pseoServices: PseoService[] = [
     slug: 'keukenrenovatie',
     naam: 'Keukenrenovatie',
     meervoud: 'keukenrenovaties',
-    afbeelding: '/images/keuken.jpeg',
+    afbeelding: '/src/assets/images/keuken.jpeg',
     gerelateerdeSlug: 'keukenrenovatie',
     intro: 'De keuken is het hart van uw woning. Een goed ontworpen keuken combineert functionaliteit met stijl en maakt koken en samenzijn een plezier. Projectbouw 010 verzorgt complete keukenrenovaties: van het verwijderen van de oude keuken en het aanpassen van leidingwerk tot het plaatsen en aansluiten van uw nieuwe keuken. Met oog voor detail en praktische indeling.',
     kenmerken: [
@@ -200,7 +200,7 @@ export const pseoServices: PseoService[] = [
     slug: 'stukadoor',
     naam: 'Stukadoor',
     meervoud: 'stucwerkzaamheden',
-    afbeelding: '/images/stukadoor.jpg',
+    afbeelding: '/src/assets/images/stukadoor.jpg',
     gerelateerdeSlug: 'stukadoor',
     intro: 'Stucwerk geeft uw wanden en plafonds een strakke, professionele uitstraling. Of u nu kiest voor glad stucwerk, een warme sierpleister of de stoere betonlook — onze ervaren stukadoors beheersen alle technieken. Projectbouw 010 werkt snel, stofvrij en netjes, en levert altijd een vlekkeloos resultaat. Een goed gestucte muur maakt het verschil in elk interieur.',
     kenmerken: [
@@ -230,7 +230,7 @@ export const pseoServices: PseoService[] = [
     slug: 'cinewall',
     naam: 'Cinewall',
     meervoud: 'cinewalls',
-    afbeelding: '/images/cinewall.jpeg',
+    afbeelding: '/src/assets/images/cinewall1.jpeg',
     gerelateerdeSlug: 'cinewall',
     intro: 'Een cinewall is dé manier om uw televisie stijlvol te integreren in uw interieur. Alle kabels worden weggewerkt in de wand, waardoor u een strakke, opgeruimde look krijgt. Projectbouw 010 bouwt uw cinewall volledig op maat: van de constructie en elektra tot de afwerking met stuc, verf of decoratief materiaal. Optioneel voegen wij sfeervolle LED-verlichting toe.',
     kenmerken: [
@@ -260,7 +260,7 @@ export const pseoServices: PseoService[] = [
     slug: 'pvc-vloer-leggen',
     naam: 'PVC Vloer Leggen',
     meervoud: 'PVC vloeren',
-    afbeelding: '/images/vloer.jpeg',
+    afbeelding: '/src/assets/images/vloer.jpeg',
     gerelateerdeSlug: 'pvc-vloer-leggen',
     intro: 'PVC vloeren zijn de ideale combinatie van stijl, comfort en praktisch gemak. Ze zijn waterdicht, geluiddempend, warm aan de voeten en verkrijgbaar in eindeloos veel dessins. Projectbouw 010 legt uw PVC vloer vakkundig: de ondergrond wordt eerst perfect geëgaliseerd, waarna de vloer strak en naadloos wordt gelegd. Met de juiste plinten en overgangsprofielen zorgen wij voor een compleet afgewerkt resultaat.',
     kenmerken: [
@@ -290,7 +290,7 @@ export const pseoServices: PseoService[] = [
     slug: 'wc-renovatie',
     naam: 'WC Renovatie',
     meervoud: 'toiletrenovaties',
-    afbeelding: '/images/badkamer.jpeg',
+    afbeelding: '/src/assets/images/badkamer.jpeg',
     gerelateerdeSlug: 'toilet-renovatie',
     intro: 'Een verouderd toilet? Projectbouw 010 transformeert uw WC in een stijlvolle, moderne ruimte. Ondanks de beperkte afmetingen maken wij er iets bijzonders van. Met slim ruimtegebruik, moderne materialen en vakkundige afwerking creëren wij een toilet dat er fris, schoon en verzorgd uitziet. Van tegelwerk en sanitair tot verlichting — wij denken aan elk detail.',
     kenmerken: [
@@ -320,7 +320,7 @@ export const pseoServices: PseoService[] = [
     slug: 'stalen-deuren',
     naam: 'Stalen Deuren',
     meervoud: 'stalen deuren',
-    afbeelding: '/images/1.jpg',
+    afbeelding: '/src/assets/images/stalen-deur1.jpeg',
     gerelateerdeSlug: 'stalen-deuren',
     intro: 'Stalen deuren geven uw interieur direct een industriële, moderne uitstraling. Ze laten licht door terwijl ze ruimtes visueel scheiden. Projectbouw 010 plaatst stalen deuren en kozijnen die op maat gemaakt worden voor uw specifieke situatie. Of het nu gaat om een taatsdeur, dubbele openslaande deuren of een compleet stalen kozijn met zijlichten — wij zorgen voor een perfecte plaatsing.',
     kenmerken: [
@@ -350,7 +350,7 @@ export const pseoServices: PseoService[] = [
     slug: 'verlaagd-plafond',
     naam: 'Verlaagd Plafond',
     meervoud: 'verlaagde plafonds',
-    afbeelding: '/images/plafon_verlaagd.jpg',
+    afbeelding: '/src/assets/images/verlaag_plafond1.jpeg',
     gerelateerdeSlug: 'verlaagd-plafond',
     intro: 'Een verlaagd plafond transformeert elke ruimte. Het creëert een strakke, moderne uitstraling en biedt praktische voordelen zoals inbouwspots, geluidsisolatie en het wegwerken van leidingen. Projectbouw 010 plaatst verlaagde plafonds van gipsplaat of MDF, strak afgewerkt en klaar om te schilderen. Onze elektricien zorgt voor de perfecte plaatsing van spots en sfeerverlichting.',
     kenmerken: [
@@ -380,7 +380,7 @@ export const pseoServices: PseoService[] = [
     slug: 'traprenovatie',
     naam: 'Traprenovatie',
     meervoud: 'traprenovaties',
-    afbeelding: '/images/3.jpg',
+    afbeelding: '/src/assets/images/trap.jpeg',
     gerelateerdeSlug: 'traprenovatie',
     intro: 'Uw trap is het eerste wat u ziet als u binnenkomt. Een verouderde trap trekt de uitstraling van uw hele hal omlaag. Met een traprenovatie geeft Projectbouw 010 uw trap een complete metamorfose. Of u kiest voor het bekleden met hout, laminaat of vinyl, of voor een complete vervanging — wij leveren altijd een strak en modern resultaat. Inclusief nieuwe leuning en antislip afwerking.',
     kenmerken: [
@@ -410,7 +410,7 @@ export const pseoServices: PseoService[] = [
     slug: 'tegelzetter',
     naam: 'Tegelzetter',
     meervoud: 'tegelwerkzaamheden',
-    afbeelding: '/images/tegelzetter.jpg',
+    afbeelding: '/src/assets/images/tegelzetter.jpg',
     gerelateerdeSlug: 'tegelzetter',
     intro: 'Goed tegelwerk maakt het verschil in elke ruimte. De tegelzetters van Projectbouw 010 zijn echte vakmensen die met precisie en oog voor detail werken. Van kleine mozaïektegels tot XXL formaten, van vloertegels in de woonkamer tot wandtegels in de badkamer — wij leggen het allemaal strak en waterdicht. De juiste voorbereiding is essentieel: wij egaliseren, gronden en waterdichten voordat de eerste tegel wordt gelegd.',
     kenmerken: [
@@ -440,7 +440,7 @@ export const pseoServices: PseoService[] = [
     slug: 'beton-cire',
     naam: 'Beton Ciré',
     meervoud: 'beton ciré toepassingen',
-    afbeelding: '/images/beton_circe.jpg',
+    afbeelding: '/src/assets/images/beton_circe.jpg',
     gerelateerdeSlug: 'beton-cire',
     intro: 'Beton ciré is een exclusieve afwerkingstechniek die een naadloos, betonachtig oppervlak creëert. Het is toepasbaar op vloeren, wanden, aanrechtbladen en zelfs in douches. Het materiaal is waterdicht, slijtvast en verkrijgbaar in tientallen kleurtinten. De specialisten van Projectbouw 010 brengen beton ciré met de hand aan in meerdere lagen, waardoor elk oppervlak uniek is.',
     kenmerken: [
@@ -470,7 +470,7 @@ export const pseoServices: PseoService[] = [
     slug: 'complete-huisrenovatie',
     naam: 'Complete Huisrenovatie',
     meervoud: 'huisrenovaties',
-    afbeelding: '/images/cinewall.jpeg',
+    afbeelding: '/src/assets/images/cinewall.jpeg',
     gerelateerdeSlug: 'aanbouw',
     intro: 'Een complete huisrenovatie is een ingrijpend maar waardevol project. Projectbouw 010 is uw partner voor de totale transformatie van uw woning. Van keuken en badkamer tot woonkamer, slaapkamers en alles daartussen — wij renoveren uw huis van A tot Z. Met één vast aanspreekpunt, een strakke planning en vakmanschap op elk vlak zorgen wij voor een resultaat dat uw verwachtingen overtreft.',
     kenmerken: [

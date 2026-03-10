@@ -23,7 +23,17 @@
       "WebFetch(domain:nanterre.nl)",
       "Bash(grep -n \"pseo\\\\|pSEO\" /c/Users/Shabad/Desktop/projecten/projectbouw010/src/pages/index.astro /c/Users/Shabad/Desktop/projecten/projectbouw010/src/pages/diensten/[slug].astro 2>/dev/null || echo \"No pSEO references found in those files\")",
       "Bash(ls -la C:/Users/Shabad/Desktop/projecten/projectbouw010/public/images/ | sort -t. -k2)",
-      "Bash(ls C:/Users/Shabad/Desktop/projecten/projectbouw010/public/images/verb*)"
+      "Bash(ls C:/Users/Shabad/Desktop/projecten/projectbouw010/public/images/verb*)",
+      "Bash(ls C:/Users/Shabad/Desktop/projecten/projectbouw010/public/images/trap*)",
+      "Bash(cd public/images && ls *.jpeg *.jpg *.png | grep -v 'hero.jpg' | while read f; do rm \"$f\"; done && ls)",
+      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/cinewall* 2>/dev/null && ls /c/Users/Shabad/Desktop/projecten/projectbouw010/public/images/cinewall* 2>/dev/null)",
+      "Bash(find /c/Users/Shabad/Desktop/projecten/projectbouw010 -maxdepth 2 -iname \"cinewall*\" -o -iname \"stalen*\" 2>/dev/null | grep -v node_modules | grep -v dist)",
+      "Bash(find /c/Users/Shabad/Desktop/projecten/projectbouw010 -iname \"cinewall*\" 2>/dev/null | grep -v node_modules | grep -v dist)",
+      "Bash(cp /c/Users/Shabad/Desktop/projecten/projectbouw010/public/images/stalen-deur*.jpeg /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/ && ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/stalen-deur* | sort)",
+      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/cinewall* | sort)",
+      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/plafon* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/plafond* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/verlaagd* 2>/dev/null | sort)",
+      "Bash(find /c/Users/Shabad/Desktop/projecten/projectbouw010 -iname \"plafon*\" -o -iname \"plafond*\" -o -iname \"verlaagd*\" 2>/dev/null | grep -v node_modules | grep -v dist | grep -v .git | sort)",
+      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/verlaag* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/opbouw* 2>/dev/null | sort)"
     ]
   }
 }

@@ -1,14 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { diensten } from '../data/diensten';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+
+function getImage(path: string) {
+  const img = images[path];
+  if (!img) return path;
+  return img.default;
+}
 ---
 
 <Layout title="Gratis Offerte Aanvragen | Projectbouw 010" description="Vraag een gratis en vrijblijvende offerte aan voor uw renovatie of verbouwing in Rotterdam. Reactie binnen 24 uur.">
   <!-- Hero — Full width with image -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/hero.jpg" alt="Verbouwing werkzaamheden" class="w-full h-full object-cover" loading="eager" />
+      <Image src={getImage('/src/assets/images/hero.jpg')} alt="Verbouwing werkzaamheden" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-[#111]/60 via-[#111]/70 to-[#111]"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

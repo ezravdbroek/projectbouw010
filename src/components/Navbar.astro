@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { diensten } from '../data/diensten';
+import logoImg from '../assets/images/logo.png';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -49,7 +51,7 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <img src="/images/logo.png" alt="Projectbouw 010" class="h-10 w-auto" />
+        <Image src={logoImg} alt="Projectbouw 010" class="h-10 w-auto" />
       </a>
 
       <!-- Desktop Navigation -->

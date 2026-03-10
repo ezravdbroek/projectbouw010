@@ -1,8 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { projecten } from '../../data/projecten';
 import type { GetStaticPaths } from 'astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/**/*.{jpeg,jpg,png}', { eager: true });
+
+function getImage(path: string) {
+  const img = images[path];
+  if (!img) return path;
+  return img.default;
+}
 
 export const getStaticPaths: GetStaticPaths = () => {
   return projecten.map((p) => ({
@@ -23,7 +32,7 @@ const andere = projecten.filter((p) => p.slug !== project.slug).slice(0, 3);
   <!-- Hero — Full width image -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0">
-      <img src={project.afbeeldingen[0]} alt={project.titel} class="w-full h-full object-cover" loading="eager" />
+      <Image src={getImage(project.afbeeldingen[0])} alt={project.titel} class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-[#111]/60 via-[#111]/70 to-[#111]"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +79,7 @@ const andere = projecten.filter((p) => p.slug !== project.slug).slice(0, 3);
           <div class="space-y-4">
             {project.afbeeldingen.map((img, i) => (
               <div class="reveal-up overflow-hidden rounded-xl" style={`--delay: ${(i + 2) * 0.05}s`}>
-                <img src={img} alt={`${project.titel} foto ${i + 1}`} class="w-full object-cover aspect-video" loading="lazy" />
+                <Image src={getImage(img)} alt={`${project.titel} foto ${i + 1}`} class="w-full object-cover aspect-video" />
               </div>
             ))}
           </div>
@@ -168,7 +177,7 @@ const andere = projecten.filter((p) => p.slug !== project.slug).slice(0, 3);
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {andere.map((p, i) => (
           <a href={`/projecten/${p.slug}`} class="reveal-up relative rounded-xl overflow-hidden group aspect-[4/3]" style={`--delay: ${i * 0.05}s`}>
-            <img src={p.afbeeldingen[0]} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <Image src={getImage(p.afbeeldingen[0])} alt={p.titel} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#111]/80 via-[#111]/20 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-5">
               <span class="text-white/60 text-xs font-medium uppercase tracking-wider">{p.categorie}</span>
