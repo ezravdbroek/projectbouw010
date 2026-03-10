@@ -20,7 +20,8 @@
       "WebFetch(domain:www.vnzoaec.com)",
       "WebFetch(domain:weitz.com)",
       "WebFetch(domain:level10gc.com)",
-      "WebFetch(domain:nanterre.nl)"
+      "WebFetch(domain:nanterre.nl)",
+      "Bash(grep -n \"pseo\\\\|pSEO\" /c/Users/Shabad/Desktop/projecten/projectbouw010/src/pages/index.astro /c/Users/Shabad/Desktop/projecten/projectbouw010/src/pages/diensten/[slug].astro 2>/dev/null || echo \"No pSEO references found in those files\")"
     ]
   }
 }
