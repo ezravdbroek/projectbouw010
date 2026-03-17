@@ -173,14 +173,16 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Collect file attachments
-    const attachments: { filename: string; content: Buffer }[] = [];
+    // Collect file attachments (base64, compatible with Cloudflare Workers)
+    const attachments: { filename: string; content: string }[] = [];
     const fotosHuidig = formData.getAll('fotos-huidig') as File[];
     const fotosGewenst = formData.getAll('fotos-gewenst') as File[];
     for (const file of [...fotosHuidig, ...fotosGewenst]) {
       if (file && file.size > 0) {
-        const buffer = Buffer.from(await file.arrayBuffer());
-        attachments.push({ filename: file.name, content: buffer });
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+        attachments.push({ filename: file.name, content: btoa(binary) });
       }
     }
 
