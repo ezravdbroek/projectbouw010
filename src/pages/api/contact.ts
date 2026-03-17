@@ -1,8 +1,7 @@
 import type { APIRoute } from 'astro';
+import { LOGO_BASE64 } from '../../lib/email-logo';
 
 export const prerender = false;
-
-const LOGO_URL = 'https://projectbouw010.nl/images/logo.png';
 const BEDRIJF_NAAM = 'Projectbouw 010';
 const BEDRIJF_TEL = '06-53999433';
 const BEDRIJF_EMAIL = 'info@projectbouw010.nl';
@@ -19,7 +18,7 @@ function baseLayout(content: string): string {
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
         <tr><td style="background:#111111;padding:32px 40px;border-radius:8px 8px 0 0;text-align:center;">
-          <img src="${LOGO_URL}" alt="Projectbouw 010" height="48" style="display:block;margin:0 auto;" />
+          <img src="${LOGO_BASE64}" alt="Projectbouw 010" height="48" style="display:block;margin:0 auto;" />
         </td></tr>
         <tr><td style="background:#ffffff;padding:40px;border-left:1px solid #e0e0e0;border-right:1px solid #e0e0e0;">
           ${content}
