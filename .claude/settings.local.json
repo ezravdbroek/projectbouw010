@@ -33,7 +33,9 @@
       "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/cinewall* | sort)",
       "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/plafon* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/plafond* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/verlaagd* 2>/dev/null | sort)",
       "Bash(find /c/Users/Shabad/Desktop/projecten/projectbouw010 -iname \"plafon*\" -o -iname \"plafond*\" -o -iname \"verlaagd*\" 2>/dev/null | grep -v node_modules | grep -v dist | grep -v .git | sort)",
-      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/verlaag* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/opbouw* 2>/dev/null | sort)"
+      "Bash(ls /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/verlaag* /c/Users/Shabad/Desktop/projecten/projectbouw010/src/assets/images/opbouw* 2>/dev/null | sort)",
+      "Bash(git config:*)",
+      "Bash(gh auth:*)"
     ]
   }
 }
