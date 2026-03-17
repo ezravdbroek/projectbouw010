@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://projectbouw010.nl/sitemap-index.xml
