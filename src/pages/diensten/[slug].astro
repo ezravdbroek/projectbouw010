@@ -42,6 +42,58 @@ const dienstProjecten = projectCategorie
   ? projecten.filter((p) => p.categorie === projectCategorie).slice(0, 6)
   : [];
 
+const canonicalUrl = new URL(`/diensten/${dienst.slug}`, Astro.site).href;
+
+const schemaOrg = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: dienst.naam,
+      description: dienst.omschrijving,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: 'Projectbouw 010',
+        telephone: '+31653999433',
+        email: 'info@projectbouw010.nl',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Theodoor Colenbranderhof 5',
+          addressLocality: 'Rotterdam',
+          postalCode: '3059 LS',
+          addressCountry: 'NL',
+        },
+      },
+      areaServed: { '@type': 'City', name: 'Rotterdam' },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '9.3',
+        ratingCount: '173',
+        bestRating: '10',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://projectbouw010.nl' },
+        { '@type': 'ListItem', position: 2, name: 'Diensten', item: 'https://projectbouw010.nl/#diensten' },
+        { '@type': 'ListItem', position: 3, name: dienst.naam, item: canonicalUrl },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: dienst.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.vraag,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.antwoord,
+        },
+      })),
+    },
+  ],
+});
+
 const werkwijzeStappen = [
   { number: '01', title: 'Contact & Opname', icon: 'lucide:phone', desc: 'Wij bespreken uw wensen en komen langs voor een opname op locatie.' },
   { number: '02', title: 'Offerte Op Maat', icon: 'lucide:file-text', desc: 'U ontvangt een duidelijke, all-in offerte zonder verborgen kosten.' },
@@ -53,6 +105,8 @@ const werkwijzeStappen = [
 <Layout
   title={`${dienst.naam} | Projectbouw 010 Rotterdam`}
   description={dienst.omschrijving}
+  canonicalUrl={canonicalUrl}
+  schemaOrg={schemaOrg}
 >
   <!-- Hero — Full width image (ONGEWIJZIGD) -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">

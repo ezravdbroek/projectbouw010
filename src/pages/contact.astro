@@ -10,11 +10,41 @@ function getImage(path: string) {
   if (!img) return path;
   return img.default;
 }
+
+const schemaOrg = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Projectbouw 010',
+  description: 'Specialist in renovaties en verbouwingen in Rotterdam.',
+  url: 'https://projectbouw010.nl',
+  telephone: '+31653999433',
+  email: 'info@projectbouw010.nl',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Theodoor Colenbranderhof 5',
+    addressLocality: 'Rotterdam',
+    postalCode: '3059 LS',
+    addressCountry: 'NL',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '07:00',
+    closes: '20:00',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '9.3',
+    ratingCount: '173',
+    bestRating: '10',
+  },
+});
 ---
 
 <Layout
   title="Contact | Projectbouw 010 Rotterdam"
   description="Neem contact op met Projectbouw 010 in Rotterdam. Bel, WhatsApp, e-mail of kom langs. Wij reageren binnen 24 uur."
+  schemaOrg={schemaOrg}
 >
   <!-- Hero — Full width with image -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">

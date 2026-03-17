@@ -23,11 +23,44 @@ export const getStaticPaths: GetStaticPaths = () => {
 const { project } = Astro.props;
 
 const andere = projecten.filter((p) => p.slug !== project.slug).slice(0, 3);
+
+const canonicalUrl = new URL(`/projecten/${project.slug}`, Astro.site).href;
+
+const schemaOrg = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CreativeWork',
+      name: project.titel,
+      description: project.omschrijving,
+      locationCreated: {
+        '@type': 'Place',
+        name: project.locatie,
+      },
+      creator: {
+        '@type': 'LocalBusiness',
+        name: 'Projectbouw 010',
+        url: 'https://projectbouw010.nl',
+        telephone: '+31653999433',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://projectbouw010.nl' },
+        { '@type': 'ListItem', position: 2, name: 'Projecten', item: 'https://projectbouw010.nl/projecten' },
+        { '@type': 'ListItem', position: 3, name: project.titel, item: canonicalUrl },
+      ],
+    },
+  ],
+});
 ---
 
 <Layout
   title={`${project.titel} — ${project.locatie} | Projectbouw 010`}
   description={project.omschrijving}
+  canonicalUrl={canonicalUrl}
+  schemaOrg={schemaOrg}
 >
   <!-- Hero — Full width image -->
   <section class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
