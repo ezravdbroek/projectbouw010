@@ -18,16 +18,16 @@ const bouwLinks = [
 const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw'].includes(d.slug));
 ---
 
-<!-- Top Bar (desktop only) -->
-<div id="topbar" class="max-lg:hidden fixed top-0 left-0 w-full z-[60] bg-[#0a0a0a] border-b border-white/10 text-sm transition-transform duration-300">
+<!-- Top Bar -->
+<div id="topbar" class="fixed top-0 left-0 w-full z-[60] bg-[#0a0a0a] border-b border-white/10 text-sm transition-transform duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-10">
     <div class="flex items-center gap-4">
       <a href="tel:0653999433" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
         <Icon name="lucide:phone" class="w-3.5 h-3.5" />
         06-53999433
       </a>
-      <span class="text-white/20">|</span>
-      <a href="mailto:info@projectbouw010.nl" class="text-gray-400 hover:text-white transition-colors">
+      <span class="hidden sm:inline text-white/20">|</span>
+      <a href="mailto:info@projectbouw010.nl" class="hidden sm:inline text-gray-400 hover:text-white transition-colors">
         info@projectbouw010.nl
       </a>
     </div>
@@ -46,7 +46,7 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
 </div>
 
 <!-- Main Navbar -->
-<header id="navbar" class="fixed top-0 left-0 w-full z-[70] transition-all duration-300 lg:top-10">
+<header id="navbar" class="fixed top-10 left-0 w-full z-[70] transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
@@ -223,13 +223,13 @@ const overigeDiensten = diensten.filter((d) => !['aanbouw', 'uitbouw', 'opbouw']
     const dropdownIsOpen = dd ? (dd.style.maxHeight !== '0' && dd.style.maxHeight !== '0px' && dd.style.maxHeight !== '') : false;
     if (window.scrollY > 50 || menuOpen || dropdownIsOpen) {
       navbar.classList.add('bg-[#111]/95', 'backdrop-blur-md', 'shadow-lg');
-      navbar.classList.remove('lg:top-10');
-      navbar.classList.add('lg:top-0');
+      navbar.classList.remove('top-10');
+      navbar.classList.add('top-0');
       if (topbar) topbar.style.transform = 'translateY(-100%)';
     } else {
       navbar.classList.remove('bg-[#111]/95', 'backdrop-blur-md', 'shadow-lg');
-      navbar.classList.remove('lg:top-0');
-      navbar.classList.add('lg:top-10');
+      navbar.classList.remove('top-0');
+      navbar.classList.add('top-10');
       if (topbar) topbar.style.transform = '';
     }
   }
