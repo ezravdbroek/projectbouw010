@@ -112,7 +112,8 @@ async function sendEmail(apiKey: string, payload: Record<string, unknown>): Prom
   return { ok: true };
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async (context) => {
+  const { request } = context;
   try {
     const formData = await request.formData();
 
@@ -129,7 +130,9 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    // Cloudflare runtime env (production) with fallback to import.meta.env (local dev)
+    const runtime = (context.locals as Record<string, unknown>).runtime as { env?: Record<string, string> } | undefined;
+    const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: 'E-mail service niet geconfigureerd.' }), {
         status: 500,
