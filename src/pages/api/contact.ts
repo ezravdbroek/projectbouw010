@@ -10,10 +10,7 @@ export const POST: APIRoute = async ({ request }) => {
     const naam = formData.get('naam') as string;
     const email = formData.get('email') as string;
     const telefoon = formData.get('telefoon') as string;
-    const type = formData.get('type') as string;
-    const straat = formData.get('straat') as string;
-    const postcode = formData.get('postcode') as string;
-    const woonplaats = formData.get('woonplaats') as string;
+    const onderwerp = formData.get('onderwerp') as string;
     const omschrijving = formData.get('omschrijving') as string;
 
     if (!naam || !email || !telefoon || !omschrijving) {
@@ -31,36 +28,22 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Collect file attachments
-    const attachments: { filename: string; content: Buffer }[] = [];
-    const fotosHuidig = formData.getAll('fotos-huidig') as File[];
-    const fotosGewenst = formData.getAll('fotos-gewenst') as File[];
-
-    for (const file of [...fotosHuidig, ...fotosGewenst]) {
-      if (file && file.size > 0) {
-        const buffer = Buffer.from(await file.arrayBuffer());
-        attachments.push({ filename: file.name, content: buffer });
-      }
-    }
-
     const resend = new Resend(apiKey);
 
     const { error } = await resend.emails.send({
       from: 'Projectbouw 010 <info@projectbouw010.nl>',
       to: 'info@projectbouw010.nl',
-      subject: `Nieuwe offerte aanvraag: ${type || 'Algemeen'} — ${naam}`,
+      subject: `Nieuw contactbericht: ${onderwerp || 'Algemeen'} — ${naam}`,
       html: `
-        <h2 style="font-family: sans-serif;">Nieuwe Offerte Aanvraag</h2>
+        <h2 style="font-family: sans-serif;">Nieuw Contactbericht</h2>
         <table style="border-collapse: collapse; width: 100%; font-family: sans-serif;">
           <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Naam</td><td style="padding: 8px; border: 1px solid #ddd;">${naam}</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">E-mail</td><td style="padding: 8px; border: 1px solid #ddd;">${email}</td></tr>
           <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Telefoon</td><td style="padding: 8px; border: 1px solid #ddd;">${telefoon}</td></tr>
-          <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Type werkzaamheden</td><td style="padding: 8px; border: 1px solid #ddd;">${type || 'Niet opgegeven'}</td></tr>
-          <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Adres</td><td style="padding: 8px; border: 1px solid #ddd;">${straat || '-'}, ${postcode || '-'} ${woonplaats || '-'}</td></tr>
-          <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Omschrijving</td><td style="padding: 8px; border: 1px solid #ddd;">${omschrijving}</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Onderwerp</td><td style="padding: 8px; border: 1px solid #ddd;">${onderwerp || 'Niet opgegeven'}</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Bericht</td><td style="padding: 8px; border: 1px solid #ddd;">${omschrijving}</td></tr>
         </table>
       `,
-      attachments: attachments.length > 0 ? attachments : undefined,
     });
 
     if (error) {
@@ -76,7 +59,7 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Offerte API error:', error);
+    console.error('Contact API error:', error);
     return new Response(JSON.stringify({ error: 'Er is een fout opgetreden.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

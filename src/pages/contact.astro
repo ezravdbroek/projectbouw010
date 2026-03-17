@@ -274,7 +274,7 @@ function getImage(path: string) {
       btn.textContent = 'Verzenden...';
 
       try {
-        const res = await fetch('/api/offerte', {
+        const res = await fetch('/api/contact', {
           method: 'POST',
           body: data,
         });
