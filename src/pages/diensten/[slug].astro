@@ -481,6 +481,7 @@ const werkwijzeStappen = [
             </div>
 
             <input type="hidden" name="type" value={dienst.slug} />
+            <input type="hidden" name="bron" value={`/diensten/${dienst.slug}`} />
 
             <div>
               <label for="omschrijving" class="block text-sm font-medium text-[#333] mb-1.5">Omschrijving werkzaamheden *</label>

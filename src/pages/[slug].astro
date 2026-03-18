@@ -391,6 +391,7 @@ const schemaOrg = JSON.stringify({
             </div>
 
             <input type="hidden" name="type" value={service.gerelateerdeSlug} />
+            <input type="hidden" name="bron" value={`/${service.slug}-${locatie.slug}`} />
 
             <div>
               <label for="omschrijving" class="block text-sm font-medium text-[#333] mb-1.5">Omschrijving werkzaamheden *</label>
