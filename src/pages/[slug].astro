@@ -86,7 +86,7 @@ const schemaOrg = JSON.stringify({
         Specialist in {service.meervoud} in {locatie.naam} en omgeving. Vakmanschap, all-in prijzen en 4 jaar garantie.
       </p>
       <div class="reveal-up flex flex-col sm:flex-row gap-4 mt-10" style="--delay: 0.3s">
-        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
+        <a href={`/offerte-aanvragen?bron=/${service.slug}-${locatie.slug}`} class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
           Gratis Offerte
         </a>
         <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center flex items-center justify-center gap-2">
@@ -167,7 +167,7 @@ const schemaOrg = JSON.stringify({
             Ontdek waarom bewoners in {locatie.naam} kiezen voor Projectbouw 010 als hun aannemer.
           </p>
           <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.2s">
-            <a href="/offerte-aanvragen" class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
+            <a href={`/offerte-aanvragen?bron=/${service.slug}-${locatie.slug}`} class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
               Gratis Offerte
             </a>
           </div>
@@ -292,7 +292,7 @@ const schemaOrg = JSON.stringify({
             <p class="text-gray-400 mb-8">
               Vraag een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.
             </p>
-            <a href="/offerte-aanvragen" class="block text-center bg-white hover:bg-gray-200 text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 mb-4">
+            <a href={`/offerte-aanvragen?bron=/${service.slug}-${locatie.slug}`} class="block text-center bg-white hover:bg-gray-200 text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 mb-4">
               Offerte Aanvragen
             </a>
             <a href="tel:0653999433" class="block text-center border border-white/20 hover:border-white/50 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200">

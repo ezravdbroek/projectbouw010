@@ -85,7 +85,7 @@ const schemaOrg = JSON.stringify({
         {project.locatie}
       </p>
       <div class="reveal-up flex flex-col sm:flex-row gap-4 mt-10" style="--delay: 0.3s">
-        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
+        <a href={`/offerte-aanvragen?bron=/projecten/${project.slug}`} class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
           Soortgelijk Project?
         </a>
         <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center flex items-center justify-center gap-2">
@@ -155,7 +155,7 @@ const schemaOrg = JSON.stringify({
                 Vraag een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.
               </p>
               <a
-                href="/offerte-aanvragen"
+                href={`/offerte-aanvragen?bron=/projecten/${project.slug}`}
                 class="block text-center bg-white hover:bg-gray-200 text-[#111] px-6 py-3.5 font-semibold rounded transition-colors duration-200 mb-3"
               >
                 Offerte Aanvragen

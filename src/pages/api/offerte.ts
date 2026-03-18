@@ -50,7 +50,7 @@ function baseLayout(content: string): string {
 
 function adminOfferteHtml(data: {
   naam: string; email: string; telefoon: string; type: string;
-  straat: string; postcode: string; woonplaats: string; omschrijving: string;
+  straat: string; postcode: string; woonplaats: string; omschrijving: string; bron: string;
 }): string {
   return baseLayout(`
     <p style="margin:0 0 6px;color:#777777;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;">Nieuwe aanvraag</p>
@@ -61,6 +61,7 @@ function adminOfferteHtml(data: {
       <tr><td style="padding:10px 12px;background:#f4f4f4;border-left:3px solid #111;color:#111;font-size:13px;font-weight:700;">Telefoon</td><td style="padding:10px 12px;background:#f4f4f4;color:#333;font-size:13px;"><a href="tel:${data.telefoon}" style="color:#111;">${data.telefoon}</a></td></tr>
       <tr><td style="padding:10px 12px;background:#fff;border-left:3px solid #111;color:#111;font-size:13px;font-weight:700;">Werkzaamheden</td><td style="padding:10px 12px;background:#fff;color:#333;font-size:13px;">${data.type || 'Niet opgegeven'}</td></tr>
       <tr><td style="padding:10px 12px;background:#f4f4f4;border-left:3px solid #111;color:#111;font-size:13px;font-weight:700;">Adres</td><td style="padding:10px 12px;background:#f4f4f4;color:#333;font-size:13px;">${[data.straat, data.postcode, data.woonplaats].filter(Boolean).join(', ') || '-'}</td></tr>
+      <tr><td style="padding:10px 12px;background:#fff;border-left:3px solid #111;color:#111;font-size:13px;font-weight:700;">Bron pagina</td><td style="padding:10px 12px;background:#fff;color:#333;font-size:13px;">${data.bron}</td></tr>
     </table>
     <p style="margin:0 0 8px;color:#111;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Omschrijving</p>
     <div style="background:#f4f4f4;border-left:3px solid #111;padding:16px;margin-bottom:28px;">
@@ -126,6 +127,7 @@ export const POST: APIRoute = async (context) => {
     const postcode = (formData.get('postcode') as string) || '';
     const woonplaats = (formData.get('woonplaats') as string) || '';
     const omschrijving = (formData.get('omschrijving') as string) || '';
+    const bron = (formData.get('bron') as string) || 'Onbekend';
 
     if (!naam || !email || !telefoon || !omschrijving) {
       return new Response(JSON.stringify({ error: 'Vul alle verplichte velden in.' }), {
@@ -163,7 +165,7 @@ export const POST: APIRoute = async (context) => {
       to: [BEDRIJF_EMAIL],
       bcc: ['info@brandways.nl'],
       subject: `Offerte aanvraag: ${type || 'Algemeen'} — ${naam}`,
-      html: adminOfferteHtml({ naam, email, telefoon, type, straat, postcode, woonplaats, omschrijving }),
+      html: adminOfferteHtml({ naam, email, telefoon, type, straat, postcode, woonplaats, omschrijving, bron }),
     };
     if (attachments.length > 0) adminPayload.attachments = attachments;
 

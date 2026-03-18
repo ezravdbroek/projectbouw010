@@ -129,7 +129,7 @@ const werkwijzeStappen = [
         {dienst.omschrijving}
       </p>
       <div class="reveal-up flex flex-col sm:flex-row gap-4 mt-10" style="--delay: 0.3s">
-        <a href="/offerte-aanvragen" class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
+        <a href={`/offerte-aanvragen?bron=/diensten/${dienst.slug}`} class="bg-white text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-gray-200">
           Gratis Offerte
         </a>
         <a href="tel:0653999433" class="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-semibold rounded text-lg transition-all duration-200 text-center flex items-center justify-center gap-2">
@@ -250,7 +250,7 @@ const werkwijzeStappen = [
             Ontdek de voordelen van {dienst.naam.toLowerCase()} door Projectbouw 010.
           </p>
           <div class="reveal-up flex flex-col sm:flex-row gap-4" style="--delay: 0.2s">
-            <a href="/offerte-aanvragen" class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
+            <a href={`/offerte-aanvragen?bron=/diensten/${dienst.slug}`} class="bg-[#111] text-white px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 text-center hover:bg-[#333]">
               Gratis Offerte
             </a>
           </div>
@@ -377,7 +377,7 @@ const werkwijzeStappen = [
               Vraag een gratis en vrijblijvende offerte aan. Wij reageren binnen 24 uur.
             </p>
             <a
-              href="/offerte-aanvragen"
+              href={`/offerte-aanvragen?bron=/diensten/${dienst.slug}`}
               class="block text-center bg-white hover:bg-gray-200 text-[#111] px-8 py-4 font-semibold rounded text-lg transition-colors duration-200 mb-4"
             >
               Offerte Aanvragen

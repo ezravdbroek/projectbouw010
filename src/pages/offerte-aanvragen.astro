@@ -66,6 +66,7 @@ function getImage(path: string) {
           </h2>
 
           <form id="offerte-form" class="reveal-up space-y-5" style="--delay: 0.15s">
+            <input type="hidden" id="bron" name="bron" value="" />
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label for="naam" class="block text-sm font-medium text-[#333] mb-1.5">Naam *</label>
@@ -298,6 +299,11 @@ function getImage(path: string) {
 <script>
   const form = document.getElementById('offerte-form') as HTMLFormElement;
   const status = document.getElementById('form-status')!;
+
+  // Capture source page: URL param ?bron= takes priority, then referrer, then current page
+  const params = new URLSearchParams(window.location.search);
+  const bronInput = document.getElementById('bron') as HTMLInputElement;
+  bronInput.value = params.get('bron') || document.referrer || window.location.pathname;
 
   // File upload count display
   document.getElementById('fotos-huidig')!.addEventListener('change', (e) => {
